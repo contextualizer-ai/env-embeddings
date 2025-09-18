@@ -1,0 +1,15 @@
+# Changes here will be overwritten by Copier
+_commit: 08e42af
+_src_path: ./monarch-project-copier
+copyright_year: '2025'
+email: justinreese@lbl.gov
+full_name: Justin Reese
+gh_action_docs_preview: true
+github_handle: justaddcoffeee
+github_org: contextualizerai
+license: BSD-3-Clause
+project_description: 'Simple experiment to compare ENVO similarity to google embedding
+    cosine similarity '
+project_name: env-embeddings
+project_slug: env_embeddings
+
