@@ -87,7 +87,7 @@ def embedding(
 def process_samples(
     tsv_file: Annotated[Path, typer.Argument(help="Path to TSV file with sample data")],
     output: Annotated[Path, typer.Option(help="Output file for results")] = Path("data/samples_with_embeddings.tsv"),
-    max_samples: Annotated[int, typer.Option(help="Maximum number of samples to process (for testing)")] = None,
+    max_samples: Annotated[Optional[int], typer.Option(help="Maximum number of samples to process (for testing)")] = None,
     project: Annotated[str, typer.Option(help="Google Cloud project ID")] = "env-embeddings-2025",
 ):
     """Process sample data to get Earth Engine embeddings for each sample."""
@@ -125,8 +125,8 @@ def process_samples(
 @app.command()
 def add_embeddings(
     tsv_file: Annotated[Path, typer.Argument(help="Path to TSV file to add embeddings to")],
-    output: Annotated[Path, typer.Option(help="Output file with embeddings added")] = None,
-    max_rows: Annotated[int, typer.Option(help="Maximum number of rows to process (for testing)")] = None,
+    output: Annotated[Optional[Path], typer.Option(help="Output file with embeddings added")] = None,
+    max_rows: Annotated[Optional[int], typer.Option(help="Maximum number of rows to process (for testing)")] = None,
     project: Annotated[str, typer.Option(help="Google Cloud project ID")] = "env-embeddings-2025",
     fallback_year: Annotated[int, typer.Option(help="Year to use when original year has no data")] = 2020,
     skip_existing: Annotated[bool, typer.Option(help="Skip rows that already have embeddings")] = True,
