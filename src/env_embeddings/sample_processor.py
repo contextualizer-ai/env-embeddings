@@ -7,6 +7,7 @@ from typing import Dict, List, Optional, Tuple
 from datetime import datetime
 
 import pandas as pd
+from tqdm import tqdm
 
 from .earth_engine import get_embedding, initialize_ee
 
@@ -270,55 +271,60 @@ def add_embeddings_to_tsv(
     
     print(f"Processing {total_rows} rows...")
     
-    for idx, row in df.iterrows():
-        # Skip if already has embeddings and skip_existing is True
-        if skip_existing and pd.notna(row.get('google_earth_embeddings')):
-            continue
-            
-        # Parse coordinates from lat_lon column
-        lat_lon_str = row.get('lat_lon', '')
-        coords = parse_coordinate_string(lat_lon_str)
-        
-        if coords is None:
-            print(f"Row {idx+1}: Invalid coordinates '{lat_lon_str}'")
-            continue
-            
-        lat, lon = coords
-        
-        # Parse year from date column
-        date_str = row.get('date', '')
-        year = parse_date_to_year(date_str)
-        
-        if year is None:
-            print(f"Row {idx+1}: Invalid date '{date_str}'")
-            continue
-        
-        # Get embedding
-        try:
-            # Try original year first
-            try:
-                embedding = get_embedding(lat, lon, year, project)
-                df.at[idx, 'google_earth_embeddings'] = str(embedding)
-                success_count += 1
-                print(f"Row {idx+1}: Got embedding for {lat},{lon} in {year}")
+    # Create progress bar
+    with tqdm(total=total_rows, desc="Processing samples", unit="row") as pbar:
+        for idx, row in df.iterrows():
+            # Skip if already has embeddings and skip_existing is True
+            if skip_existing and pd.notna(row.get('google_earth_embeddings')):
+                pbar.update(1)
+                continue
                 
-            except ValueError as e:
-                if "No embedding found" in str(e):
-                    # Try fallback year
-                    print(f"Row {idx+1}: No embedding for {lat},{lon} in {year}, trying {fallback_year}")
-                    embedding = get_embedding(lat, lon, fallback_year, project)
+            # Parse coordinates from lat_lon column
+            lat_lon_str = row.get('lat_lon', '')
+            coords = parse_coordinate_string(lat_lon_str)
+            
+            if coords is None:
+                tqdm.write(f"Row {idx+1}: Invalid coordinates '{lat_lon_str}'")
+                pbar.update(1)
+                continue
+                
+            lat, lon = coords
+            
+            # Parse year from date column
+            date_str = row.get('date', '')
+            year = parse_date_to_year(date_str)
+            
+            if year is None:
+                tqdm.write(f"Row {idx+1}: Invalid date '{date_str}'")
+                pbar.update(1)
+                continue
+            
+            # Get embedding
+            try:
+                # Try original year first
+                try:
+                    embedding = get_embedding(lat, lon, year, project)
                     df.at[idx, 'google_earth_embeddings'] = str(embedding)
                     success_count += 1
-                    print(f"Row {idx+1}: Got embedding for {lat},{lon} in {fallback_year} (fallback)")
-                else:
-                    print(f"Row {idx+1}: Error with coordinates {lat},{lon}: {e}")
+                    tqdm.write(f"Row {idx+1}: Got embedding for {lat},{lon} in {year}")
                     
-        except Exception as e:
-            print(f"Row {idx+1}: Failed to get embedding for {lat},{lon}: {e}")
-        
-        # Progress update every 50 rows
-        if (idx + 1) % 50 == 0:
-            print(f"Processed {idx+1}/{total_rows} rows, {success_count} successful embeddings")
+                except ValueError as e:
+                    if "No embedding found" in str(e):
+                        # Try fallback year
+                        tqdm.write(f"Row {idx+1}: No embedding for {lat},{lon} in {year}, trying {fallback_year}")
+                        embedding = get_embedding(lat, lon, fallback_year, project)
+                        df.at[idx, 'google_earth_embeddings'] = str(embedding)
+                        success_count += 1
+                        tqdm.write(f"Row {idx+1}: Got embedding for {lat},{lon} in {fallback_year} (fallback)")
+                    else:
+                        tqdm.write(f"Row {idx+1}: Error with coordinates {lat},{lon}: {e}")
+                        
+            except Exception as e:
+                tqdm.write(f"Row {idx+1}: Failed to get embedding for {lat},{lon}: {e}")
+            
+            # Update progress bar
+            pbar.set_postfix({"Success": f"{success_count}/{idx+1}"})
+            pbar.update(1)
     
     # Save the updated TSV
     print(f"Saving results to {output_file}")

@@ -21,6 +21,7 @@ dependencies = [
   "sentence-transformers>=5.1.0",
   "pandas>=2.3.2",
   "earthengine-api>=1.6.8",
+  "tqdm>=4.67.1",
 ]
 
 [dependency-groups]
