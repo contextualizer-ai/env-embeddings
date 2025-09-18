@@ -202,18 +202,6 @@ css = [
 ]
 
 [[package]]
-name = "blessings"
-version = "1.7"
-source = { registry = "https://pypi.org/simple" }
-dependencies = [
-    { name = "six" },
-]
-sdist = { url = "https://files.pythonhosted.org/packages/5c/f8/9f5e69a63a9243448350b44c87fae74588aa634979e6c0c501f26a4f6df7/blessings-1.7.tar.gz", hash = "sha256:98e5854d805f50a5b58ac2333411b0482516a8210f23f43308baeb58d77c157d", size = 28194 }
-wheels = [
-    { url = "https://files.pythonhosted.org/packages/03/74/489f85a78247609c6b4f13733cbf3ba0d864b11aa565617b645d6fdf2a4a/blessings-1.7-py3-none-any.whl", hash = "sha256:b1fdd7e7a675295630f9ae71527a8ebc10bfefa236b3d6aa4932ee4462c17ba3", size = 18460 },
-]
-
-[[package]]
 name = "cachetools"
 version = "5.5.2"
 source = { registry = "https://pypi.org/simple" }
@@ -534,20 +522,10 @@ wheels = [
 ]
 
 [[package]]
-name = "ee"
-version = "0.2"
-source = { registry = "https://pypi.org/simple" }
-dependencies = [
-    { name = "blessings" },
-]
-sdist = { url = "https://files.pythonhosted.org/packages/1e/85/c84cb4e02eeec6be1be045bc9b6c16ed964cb0c614abd3f0eee127f1b2be/ee-0.2.tar.gz", hash = "sha256:3f1bc017e8eb293425e7378a865c2b24cef67166f6929bd2289ea9413d0a7c65", size = 3038 }
-
-[[package]]
 name = "env-embeddings"
 source = { editable = "." }
 dependencies = [
     { name = "earthengine-api" },
-    { name = "ee" },
     { name = "linkml-runtime" },
     { name = "numpy", version = "2.2.6", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version < '3.11'" },
     { name = "numpy", version = "2.3.3", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version >= '3.11'" },
@@ -568,7 +546,6 @@ dev = [
 [package.metadata]
 requires-dist = [
     { name = "earthengine-api", specifier = ">=1.6.8" },
-    { name = "ee", specifier = ">=0.2" },
     { name = "linkml-runtime", specifier = ">=1.9.4" },
     { name = "numpy", specifier = ">=2.2.6" },
     { name = "typer", specifier = ">=0.9.0" },
