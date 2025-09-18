@@ -1,10 +1,8 @@
 """Process sample data and retrieve Earth Engine embeddings."""
 
-import csv
 import re
 from pathlib import Path
-from typing import Dict, List, Optional, Tuple
-from datetime import datetime
+from typing import List, Optional, Tuple
 
 import pandas as pd
 from tqdm import tqdm

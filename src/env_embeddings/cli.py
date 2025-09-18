@@ -1,10 +1,8 @@
 """CLI interface for env-embeddings."""
 
-import json
 from pathlib import Path
-from typing import List, Optional
+from typing import Optional
 
-import numpy as np
 import typer
 from typing_extensions import Annotated
 
