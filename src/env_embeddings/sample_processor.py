@@ -8,6 +8,7 @@ import pandas as pd
 from tqdm import tqdm
 
 from .earth_engine import get_embedding, initialize_ee
+from .envo_embeddings import get_envo_embedding_from_text
 
 
 def parse_coordinate_string(coord_str: str) -> Optional[Tuple[float, float]]:
@@ -264,6 +265,11 @@ def add_embeddings_to_tsv(
         df['google_earth_embeddings'] = None
         print("Added 'google_earth_embeddings' column")
     
+    # Add envo_embeddings column if it doesn't exist
+    if 'envo_embeddings' not in df.columns:
+        df['envo_embeddings'] = None
+        print("Added 'envo_embeddings' column")
+    
     success_count = 0
     total_rows = len(df)
     
@@ -297,7 +303,7 @@ def add_embeddings_to_tsv(
                 pbar.update(1)
                 continue
             
-            # Get embedding
+            # Get Google Earth Engine embedding
             try:
                 # Try original year first
                 try:
@@ -320,6 +326,19 @@ def add_embeddings_to_tsv(
             except Exception as e:
                 tqdm.write(f"Row {idx+1}: Failed to get embedding for {lat},{lon}: {e}")
             
+            # Get ENVO embedding if env_broad_med_local column exists and has data
+            envo_text = row.get('env_broad_med_local', '')
+            if envo_text and isinstance(envo_text, str) and envo_text.strip():
+                try:
+                    envo_embedding = get_envo_embedding_from_text(envo_text)
+                    if envo_embedding:
+                        df.at[idx, 'envo_embeddings'] = str(envo_embedding)
+                        tqdm.write(f"Row {idx+1}: Got ENVO embedding from '{envo_text[:50]}...'")
+                    else:
+                        tqdm.write(f"Row {idx+1}: No valid ENVO term found in '{envo_text[:50]}...'")
+                except Exception as e:
+                    tqdm.write(f"Row {idx+1}: Failed to get ENVO embedding: {e}")
+            
             # Update progress bar
             pbar.set_postfix({"Success": f"{success_count}/{idx+1}"})
             pbar.update(1)
@@ -329,6 +348,77 @@ def add_embeddings_to_tsv(
     df.to_csv(output_file, sep='\t', index=False)
     
     print(f"Completed! Successfully added embeddings to {success_count}/{total_rows} rows")
+    return success_count
+
+
+def add_envo_embeddings_to_tsv(
+    tsv_file: Path,
+    output_file: Path,
+    max_rows: Optional[int] = None,
+    skip_existing: bool = True
+) -> int:
+    """Add ENVO embeddings to an existing TSV file.
+    
+    Args:
+        tsv_file: Path to input TSV file
+        output_file: Path to output TSV file
+        max_rows: Maximum number of rows to process (for testing)
+        skip_existing: Skip rows that already have ENVO embeddings
+        
+    Returns:
+        Number of rows successfully processed with ENVO embeddings
+    """
+    # Read the TSV file
+    print(f"Loading TSV file: {tsv_file}")
+    df = pd.read_csv(tsv_file, sep='\t', low_memory=False)
+    
+    if max_rows:
+        df = df.head(max_rows)
+        print(f"Processing first {max_rows} rows for testing")
+    
+    # Add envo_embeddings column if it doesn't exist
+    if 'envo_embeddings' not in df.columns:
+        df['envo_embeddings'] = None
+        print("Added 'envo_embeddings' column")
+    
+    success_count = 0
+    total_rows = len(df)
+    
+    print(f"Processing {total_rows} rows for ENVO embeddings...")
+    
+    # Create progress bar
+    with tqdm(total=total_rows, desc="Processing ENVO embeddings", unit="row") as pbar:
+        for idx, row in df.iterrows():
+            # Skip if already has ENVO embeddings and skip_existing is True
+            if skip_existing and pd.notna(row.get('envo_embeddings')):
+                pbar.update(1)
+                continue
+            
+            # Get ENVO embedding if env_broad_med_local column exists and has data
+            envo_text = row.get('env_broad_med_local', '')
+            if envo_text and isinstance(envo_text, str) and envo_text.strip():
+                try:
+                    envo_embedding = get_envo_embedding_from_text(envo_text)
+                    if envo_embedding:
+                        df.at[idx, 'envo_embeddings'] = str(envo_embedding)
+                        success_count += 1
+                        tqdm.write(f"Row {idx+1}: Got ENVO embedding from '{envo_text[:50]}...'")
+                    else:
+                        tqdm.write(f"Row {idx+1}: No valid ENVO term found in '{envo_text[:50]}...'")
+                except Exception as e:
+                    tqdm.write(f"Row {idx+1}: Failed to get ENVO embedding: {e}")
+            else:
+                tqdm.write(f"Row {idx+1}: No ENVO text found in env_broad_med_local column")
+            
+            # Update progress bar
+            pbar.set_postfix({"Success": f"{success_count}/{idx+1}"})
+            pbar.update(1)
+    
+    # Save the updated TSV
+    print(f"Saving results to {output_file}")
+    df.to_csv(output_file, sep='\t', index=False)
+    
+    print(f"Completed! Successfully added ENVO embeddings to {success_count}/{total_rows} rows")
     return success_count
 
 

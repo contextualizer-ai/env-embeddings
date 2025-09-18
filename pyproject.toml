@@ -25,6 +25,7 @@ dependencies = [
   # "sentence-transformers>=5.1.0",
   "pandas>=2.3.2",
   "tqdm>=4.67.1",
+  "ols-client>=0.2.1",
 ]
 
 [dependency-groups]

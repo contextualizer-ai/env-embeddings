@@ -166,6 +166,49 @@ def add_embeddings(
         typer.echo(f"Error adding embeddings: {e}", err=True)
         raise typer.Exit(1)
 
+
+@app.command()
+def add_envo_embeddings(
+    tsv_file: Annotated[Path, typer.Argument(help="Path to TSV file to add ENVO embeddings to")],
+    output: Annotated[Optional[Path], typer.Option(help="Output file with ENVO embeddings added")] = None,
+    max_rows: Annotated[Optional[int], typer.Option(help="Maximum number of rows to process (for testing)")] = None,
+    skip_existing: Annotated[bool, typer.Option(help="Skip rows that already have ENVO embeddings")] = True,
+):
+    """Add ENVO embeddings to existing TSV file using OLS."""
+    # If tsv_file is just a filename, look in data/ directory
+    if not tsv_file.exists() and not tsv_file.is_absolute():
+        data_path = Path("data") / tsv_file
+        if data_path.exists():
+            tsv_file = data_path
+    
+    if not tsv_file.exists():
+        typer.echo(f"Error: {tsv_file} not found", err=True)
+        raise typer.Exit(1)
+    
+    if output is None:
+        # Default output to data/ directory
+        output = Path("data") / f"{tsv_file.stem}_with_envo_embeddings{tsv_file.suffix}"
+    
+    try:
+        from env_embeddings.sample_processor import add_envo_embeddings_to_tsv
+        
+        typer.echo(f"Adding ENVO embeddings to {tsv_file}...")
+        typer.echo(f"Output will be saved to: {output}")
+        
+        success_count = add_envo_embeddings_to_tsv(
+            tsv_file=tsv_file,
+            output_file=output,
+            max_rows=max_rows,
+            skip_existing=skip_existing
+        )
+        
+        typer.echo(f"Successfully added ENVO embeddings to {success_count} rows")
+        typer.echo(f"Results saved to {output}")
+        
+    except Exception as e:
+        typer.echo(f"Error adding ENVO embeddings: {e}", err=True)
+        raise typer.Exit(1)
+
 def main():
     """Main entry point for the CLI."""
     app()
