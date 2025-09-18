@@ -9,136 +9,44 @@ import typer
 from typing_extensions import Annotated
 
 from env_embeddings.earth_engine import initialize_ee, get_embedding
+from env_embeddings.sample_processor import load_sample_data, process_samples_batch
 
-app = typer.Typer(help="env-embeddings: Simple experiment to compare ENVO similarity to google embedding cosine similarity ")
-
-from .embeddings import (
-    compute_embedding,
-    compute_embeddings_batch,
-    cosine_similarity,
-    get_similarity_matrix,
-    find_most_similar,
-)
+# from .embeddings import (
+#     compute_embedding,
+#     compute_embeddings_batch,
+#     cosine_similarity,
+#     get_similarity_matrix,
+#     find_most_similar,
+# )
 
 app = typer.Typer(help="env-embeddings: Simple experiment to compare ENVO similarity to google embedding cosine similarity")
 
 
-@app.command()
-def embed(
-    text: Annotated[str, typer.Argument(help="Text to embed")],
-    model: Annotated[str, typer.Option(help="Model name")] = "sentence-transformers/all-mpnet-base-v2",
-    output: Annotated[Optional[Path], typer.Option(help="Output file for embedding")] = None,
-):
-    """Compute embedding for a single text."""
-    embedding = compute_embedding(text, model)
+# TODO: Uncomment these commands when embeddings module is implemented
+# @app.command()
+# def embed(...):
+#     """Compute embedding for a single text."""
+#     pass
 
-    if output:
-        np.save(output, embedding)
-        typer.echo(f"Embedding saved to {output}")
-    else:
-        typer.echo(f"Embedding shape: {embedding.shape}")
-        typer.echo(f"First 5 values: {embedding[:5].tolist()}")
+# @app.command()
+# def batch_embed(...):
+#     """Compute embeddings for multiple texts from a file."""
+#     pass
 
+# @app.command()
+# def similarity(...):
+#     """Compute cosine similarity between two texts."""
+#     pass
 
-@app.command()
-def batch_embed(
-    input_file: Annotated[Path, typer.Argument(help="File containing texts (one per line)")],
-    output: Annotated[Path, typer.Option(help="Output file for embeddings")] = Path("embeddings.npy"),
-    model: Annotated[str, typer.Option(help="Model name")] = "sentence-transformers/all-mpnet-base-v2",
-):
-    """Compute embeddings for multiple texts from a file."""
-    if not input_file.exists():
-        typer.echo(f"Error: {input_file} not found", err=True)
-        raise typer.Exit(1)
+# @app.command()
+# def similarity_matrix(...):
+#     """Compute pairwise similarity matrix for texts."""
+#     pass
 
-    texts = input_file.read_text().strip().split("\n")
-    texts = [t.strip() for t in texts if t.strip()]
-
-    typer.echo(f"Computing embeddings for {len(texts)} texts...")
-    embeddings = compute_embeddings_batch(texts, model)
-
-    np.save(output, embeddings)
-    typer.echo(f"Embeddings saved to {output} with shape {embeddings.shape}")
-
-
-@app.command()
-def similarity(
-    text1: Annotated[str, typer.Argument(help="First text")],
-    text2: Annotated[str, typer.Argument(help="Second text")],
-    model: Annotated[str, typer.Option(help="Model name")] = "sentence-transformers/all-mpnet-base-v2",
-):
-    """Compute cosine similarity between two texts."""
-    embedding1 = compute_embedding(text1, model)
-    embedding2 = compute_embedding(text2, model)
-
-    sim = cosine_similarity(embedding1, embedding2)
-    typer.echo(f"Cosine similarity: {sim:.4f}")
-
-
-@app.command()
-def similarity_matrix(
-    input_file: Annotated[Path, typer.Argument(help="File containing texts (one per line)")],
-    output: Annotated[Optional[Path], typer.Option(help="Output file for similarity matrix")] = None,
-    model: Annotated[str, typer.Option(help="Model name")] = "sentence-transformers/all-mpnet-base-v2",
-):
-    """Compute pairwise similarity matrix for texts."""
-    if not input_file.exists():
-        typer.echo(f"Error: {input_file} not found", err=True)
-        raise typer.Exit(1)
-
-    texts = input_file.read_text().strip().split("\n")
-    texts = [t.strip() for t in texts if t.strip()]
-
-    typer.echo(f"Computing embeddings for {len(texts)} texts...")
-    embeddings = compute_embeddings_batch(texts, model)
-
-    typer.echo("Computing similarity matrix...")
-    sim_matrix = get_similarity_matrix(embeddings)
-
-    if output:
-        if output.suffix == ".json":
-            # Save as JSON with labels
-            result = {
-                "texts": texts,
-                "matrix": sim_matrix.tolist()
-            }
-            output.write_text(json.dumps(result, indent=2))
-        else:
-            np.save(output, sim_matrix)
-        typer.echo(f"Similarity matrix saved to {output}")
-    else:
-        # Display matrix
-        typer.echo("\nSimilarity Matrix:")
-        typer.echo("-" * 50)
-        for i, text1 in enumerate(texts):
-            for j, text2 in enumerate(texts):
-                if i < j:  # Only show upper triangle
-                    typer.echo(f"{text1[:30]:30s} <-> {text2[:30]:30s}: {sim_matrix[i,j]:.4f}")
-
-
-@app.command()
-def search(
-    query: Annotated[str, typer.Argument(help="Query text")],
-    corpus_file: Annotated[Path, typer.Argument(help="File containing corpus texts")],
-    top_k: Annotated[int, typer.Option(help="Number of results")] = 5,
-    model: Annotated[str, typer.Option(help="Model name")] = "sentence-transformers/all-mpnet-base-v2",
-):
-    """Find most similar texts in a corpus."""
-    if not corpus_file.exists():
-        typer.echo(f"Error: {corpus_file} not found", err=True)
-        raise typer.Exit(1)
-
-    corpus = corpus_file.read_text().strip().split("\n")
-    corpus = [t.strip() for t in corpus if t.strip()]
-
-    typer.echo(f"Searching {len(corpus)} texts for: '{query}'")
-    results = find_most_similar(query, corpus, model, top_k)
-
-    typer.echo(f"\nTop {min(top_k, len(results))} results:")
-    typer.echo("-" * 50)
-    for i, (text, score) in enumerate(results, 1):
-        typer.echo(f"{i}. [{score:.4f}] {text}")
-
+# @app.command()
+# def search(...):
+#     """Find most similar texts in a corpus."""
+#     pass
 
 
 @app.command()
@@ -172,6 +80,92 @@ def embedding(
         typer.echo(f"Vector: {vec}")
     except Exception as e:
         typer.echo(f"Error getting embedding: {e}", err=True)
+        raise typer.Exit(1)
+
+
+@app.command()
+def process_samples(
+    tsv_file: Annotated[Path, typer.Argument(help="Path to TSV file with sample data")],
+    output: Annotated[Path, typer.Option(help="Output file for results")] = Path("data/samples_with_embeddings.tsv"),
+    max_samples: Annotated[int, typer.Option(help="Maximum number of samples to process (for testing)")] = None,
+    project: Annotated[str, typer.Option(help="Google Cloud project ID")] = "env-embeddings-2025",
+):
+    """Process sample data to get Earth Engine embeddings for each sample."""
+    # If tsv_file is just a filename, look in data/ directory
+    if not tsv_file.exists() and not tsv_file.is_absolute():
+        data_path = Path("data") / tsv_file
+        if data_path.exists():
+            tsv_file = data_path
+    
+    if not tsv_file.exists():
+        typer.echo(f"Error: {tsv_file} not found", err=True)
+        raise typer.Exit(1)
+    
+    try:
+        # Load and parse sample data
+        typer.echo(f"Loading sample data from {tsv_file}...")
+        samples = load_sample_data(tsv_file, max_samples)
+        
+        if len(samples) == 0:
+            typer.echo("No valid samples found with coordinates and dates", err=True)
+            raise typer.Exit(1)
+            
+        # Process samples to get embeddings
+        typer.echo(f"Processing {len(samples)} samples...")
+        results = process_samples_batch(samples, project, output)
+        
+        typer.echo(f"Successfully processed {len(results)} samples")
+        typer.echo(f"Results saved to {output}")
+        
+    except Exception as e:
+        typer.echo(f"Error processing samples: {e}", err=True)
+        raise typer.Exit(1)
+
+
+@app.command()
+def add_embeddings(
+    tsv_file: Annotated[Path, typer.Argument(help="Path to TSV file to add embeddings to")],
+    output: Annotated[Path, typer.Option(help="Output file with embeddings added")] = None,
+    max_rows: Annotated[int, typer.Option(help="Maximum number of rows to process (for testing)")] = None,
+    project: Annotated[str, typer.Option(help="Google Cloud project ID")] = "env-embeddings-2025",
+    fallback_year: Annotated[int, typer.Option(help="Year to use when original year has no data")] = 2020,
+    skip_existing: Annotated[bool, typer.Option(help="Skip rows that already have embeddings")] = True,
+):
+    """Add Google Earth Engine embeddings to existing TSV file."""
+    # If tsv_file is just a filename, look in data/ directory
+    if not tsv_file.exists() and not tsv_file.is_absolute():
+        data_path = Path("data") / tsv_file
+        if data_path.exists():
+            tsv_file = data_path
+    
+    if not tsv_file.exists():
+        typer.echo(f"Error: {tsv_file} not found", err=True)
+        raise typer.Exit(1)
+    
+    if output is None:
+        # Default output to data/ directory
+        output = Path("data") / f"{tsv_file.stem}_with_embeddings{tsv_file.suffix}"
+    
+    try:
+        from env_embeddings.sample_processor import add_embeddings_to_tsv
+        
+        typer.echo(f"Adding Earth Engine embeddings to {tsv_file}...")
+        typer.echo(f"Output will be saved to: {output}")
+        
+        success_count = add_embeddings_to_tsv(
+            tsv_file=tsv_file,
+            output_file=output,
+            max_rows=max_rows,
+            project=project,
+            fallback_year=fallback_year,
+            skip_existing=skip_existing
+        )
+        
+        typer.echo(f"Successfully added embeddings to {success_count} rows")
+        typer.echo(f"Results saved to {output}")
+        
+    except Exception as e:
+        typer.echo(f"Error adding embeddings: {e}", err=True)
         raise typer.Exit(1)
 
 def main():
