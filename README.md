@@ -176,6 +176,10 @@ Key dependencies:
 There are several pre-defined command-recipes available.
 They are written for the command runner [just](https://github.com/casey/just/). To list all pre-defined commands, run `just` or `just --list`.
 
+MacOS users can do a one-time installation of `just` with `uv tool install rust-just`
+
+See also: https://github.com/casey/just
+
 ## Credits
 
 This project uses the template [monarch-project-copier](https://github.com/monarch-initiative/monarch-project-copier)
