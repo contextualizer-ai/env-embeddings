@@ -86,11 +86,17 @@ def embedding(
 @app.command()
 def process_samples(
     tsv_file: Annotated[Path, typer.Argument(help="Path to TSV file with sample data")],
-    output: Annotated[Path, typer.Option(help="Output file for results")] = Path("samples_with_embeddings.tsv"),
+    output: Annotated[Path, typer.Option(help="Output file for results")] = Path("data/samples_with_embeddings.tsv"),
     max_samples: Annotated[int, typer.Option(help="Maximum number of samples to process (for testing)")] = None,
     project: Annotated[str, typer.Option(help="Google Cloud project ID")] = "env-embeddings-2025",
 ):
     """Process sample data to get Earth Engine embeddings for each sample."""
+    # If tsv_file is just a filename, look in data/ directory
+    if not tsv_file.exists() and not tsv_file.is_absolute():
+        data_path = Path("data") / tsv_file
+        if data_path.exists():
+            tsv_file = data_path
+    
     if not tsv_file.exists():
         typer.echo(f"Error: {tsv_file} not found", err=True)
         raise typer.Exit(1)
@@ -126,12 +132,19 @@ def add_embeddings(
     skip_existing: Annotated[bool, typer.Option(help="Skip rows that already have embeddings")] = True,
 ):
     """Add Google Earth Engine embeddings to existing TSV file."""
+    # If tsv_file is just a filename, look in data/ directory
+    if not tsv_file.exists() and not tsv_file.is_absolute():
+        data_path = Path("data") / tsv_file
+        if data_path.exists():
+            tsv_file = data_path
+    
     if not tsv_file.exists():
         typer.echo(f"Error: {tsv_file} not found", err=True)
         raise typer.Exit(1)
     
     if output is None:
-        output = tsv_file.parent / f"{tsv_file.stem}_with_embeddings{tsv_file.suffix}"
+        # Default output to data/ directory
+        output = Path("data") / f"{tsv_file.stem}_with_embeddings{tsv_file.suffix}"
     
     try:
         from env_embeddings.sample_processor import add_embeddings_to_tsv

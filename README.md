@@ -81,6 +81,31 @@ uv run env-embeddings embedding --lat 39.0372 --lon -121.8036 --year 2024 --proj
 
 This returns a 64-dimensional vector representing environmental/satellite features from Google's Earth Engine satellite data.
 
+#### Process Sample Data
+
+```bash
+# Add Google Earth Engine embeddings to your TSV file
+# (Files in data/ directory can be referenced by filename only)
+uv run env-embeddings add-embeddings date_and_latlon_samples_extended.tsv
+
+# Process just a subset for testing
+uv run env-embeddings add-embeddings date_and_latlon_samples_extended.tsv --max-rows 100
+
+# Specify custom output location
+uv run env-embeddings add-embeddings data/my_samples.tsv --output data/my_results.tsv
+
+# Use different fallback year when original year has no satellite data
+uv run env-embeddings add-embeddings date_and_latlon_samples_extended.tsv --fallback-year 2021
+```
+
+This command:
+- Reads your TSV file with sample coordinates and dates
+- Parses coordinates from `lat_lon` column (e.g., "50.936 N 6.952 E") 
+- Parses years from `date` column (handles "2008-08-20", "2016", etc.)
+- Retrieves 64-dimensional satellite embeddings from Google Earth Engine
+- Adds a new `google_earth_embeddings` column to your data
+- Uses fallback year (default 2020) when original year has no satellite coverage
+
 #### CLI Help
 
 ```bash
@@ -116,14 +141,17 @@ uv run pytest -v
 ```
 env-embeddings/
 ├── src/env_embeddings/
-│   ├── cli.py              # CLI interface with Typer
-│   ├── earth_engine.py     # Earth Engine integration
+│   ├── cli.py                # CLI interface with Typer
+│   ├── earth_engine.py       # Earth Engine integration
+│   ├── sample_processor.py   # Sample data processing utilities
 │   └── __init__.py
 ├── tests/
-│   ├── test_earth_engine.py # Earth Engine functionality tests
-│   └── test_simple.py       # Basic tests
-├── docs/                    # MkDocs documentation
-└── pyproject.toml          # Project configuration
+│   ├── test_earth_engine.py  # Earth Engine functionality tests
+│   └── test_simple.py        # Basic tests
+├── data/                     # Data files directory
+│   └── date_and_latlon_samples_extended.tsv  # Sample dataset
+├── docs/                     # MkDocs documentation
+└── pyproject.toml           # Project configuration
 ```
 
 ### Dependencies
