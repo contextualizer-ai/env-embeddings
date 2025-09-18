@@ -1,10 +1,10 @@
 """Google Earth Engine embedding utilities."""
 
-import ee
-from typing import List
+import ee  # type: ignore[import-untyped]
+from typing import List, Optional
 
 
-def initialize_ee(project: str = None) -> None:
+def initialize_ee(project: Optional[str] = None) -> None:
     """Initialize Google Earth Engine authentication and session.
     
     This will prompt you to authenticate if not already done.
@@ -19,11 +19,11 @@ def initialize_ee(project: str = None) -> None:
                   - No valid project specified
     """
     try:
-        ee.Authenticate()
+        ee.Authenticate()  # type: ignore[attr-defined]
         if project:
-            ee.Initialize(project=project)
+            ee.Initialize(project=project)  # type: ignore[attr-defined]
         else:
-            ee.Initialize()
+            ee.Initialize()  # type: ignore[attr-defined]
     except Exception as e:
         if "no project found" in str(e).lower():
             raise Exception(
@@ -46,7 +46,7 @@ def initialize_ee(project: str = None) -> None:
             raise e
 
 
-def get_embedding(lat: float, lon: float, year: int, project: str = None) -> List[float]:
+def get_embedding(lat: float, lon: float, year: int, project: Optional[str] = None) -> List[float]:
     """Return the 64-dimensional AlphaEarth embedding for the given lat/lon and year.
     
     Args:
@@ -78,7 +78,7 @@ def get_embedding(lat: float, lon: float, year: int, project: str = None) -> Lis
     
     # Check if Earth Engine is initialized by trying a simple operation
     try:
-        ee.data.getInfo(ee.Number(1))
+        ee.data.getInfo(ee.Number(1))  # type: ignore[attr-defined]
     except Exception as e:
         if "not initialized" in str(e).lower():
             raise Exception(
@@ -87,10 +87,10 @@ def get_embedding(lat: float, lon: float, year: int, project: str = None) -> Lis
             )
         # If it's a different error, continue (might be network issue, etc.)
     # Create a point geometry
-    point = ee.Geometry.Point(lon, lat)
+    point = ee.Geometry.Point(lon, lat)  # type: ignore[attr-defined]
 
     # Load the embeddings image collection
-    collection = ee.ImageCollection('GOOGLE/SATELLITE_EMBEDDING/V1/ANNUAL')
+    collection = ee.ImageCollection('GOOGLE/SATELLITE_EMBEDDING/V1/ANNUAL')  # type: ignore[attr-defined]
 
     # Filter to the year you want
     # e.g., from Jan 1 of the given year to Jan 1 of year+1

@@ -41,6 +41,11 @@ env-embeddings = "env_embeddings.cli:main"
 # See https://hatch.pypa.io/latest/config/build/#file-selection for how to
 # explicitly include files other than default into the build distributions.
 
+[tool.hatch.build.targets.wheel]
+include = [
+  "src/env_embeddings/py.typed",
+]
+
 [tool.hatch.version]
 source = "uv-dynamic-versioning"
 
@@ -53,6 +58,21 @@ fallback-version = "0.0.0"
 # Ref.: https://docs.pytest.org/en/stable/reference/reference.html#configuration-options
 [tool.pytest.ini_options]
 testpaths = ["tests"]
+
+# Ref.: https://mypy.readthedocs.io/en/stable/config_file.html
+[tool.mypy]
+python_version = "3.11"
+no_implicit_optional = true
+warn_redundant_casts = true
+warn_unused_ignores = true
+
+[[tool.mypy.overrides]]
+module = "env_embeddings.embeddings"
+ignore_missing_imports = true
+
+[[tool.mypy.overrides]]
+module = "ee"
+ignore_missing_imports = true
 
 # Ref.: https://github.com/codespell-project/codespell
 [tool.codespell]
