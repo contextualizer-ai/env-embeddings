@@ -66,6 +66,14 @@ vcs = "git"
 style = "pep440"
 fallback-version = "0.0.0"
 
+# Ruff configuration - exclude notebooks directory from linting
+[tool.ruff]
+exclude = [
+    "notebooks/",
+    ".venv/",
+    "__pycache__/",
+]
+
 # Ref.: https://docs.pytest.org/en/stable/reference/reference.html#configuration-options
 [tool.pytest.ini_options]
 testpaths = ["tests"]
