@@ -48,6 +48,7 @@ env-embeddings = "env_embeddings.cli:main"
 # explicitly include files other than default into the build distributions.
 
 [tool.hatch.build.targets.wheel]
+packages = ["src/env_embeddings"]
 include = [
   "src/env_embeddings/py.typed",
 ]
