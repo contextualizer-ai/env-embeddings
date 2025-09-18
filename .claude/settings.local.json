@@ -3,9 +3,13 @@
     "allow": [
       "Bash(git remote add:*)",
       "Bash(uv add:*)",
+      "Bash(just test:*)",
+      "Bash(uv run pytest:*)",
+      "Bash(uv run env-embeddings:*)"
       "Bash(uv run pytest:*)"
     ],
     "deny": [],
-    "ask": []
+    "ask": [],
+    "defaultMode": "acceptEdits"
   }
 }
