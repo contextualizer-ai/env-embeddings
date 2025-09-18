@@ -6,7 +6,7 @@ from typing import List, Optional
 from ols_client import EBIClient
 
 
-def extract_first_envo_term(envo_text: str) -> Optional[str]:
+def extract_first_envo_term(envo_text: Optional[str]) -> Optional[str]:
     """Extract the first ENVO term from a string containing multiple ENVO terms.
     
     Args:
