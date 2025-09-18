@@ -21,6 +21,9 @@ dependencies = [
   # Earth Engine is provided by `earthengine-api` but imported as `ee`.
   "earthengine-api>=1.6.8",
   "numpy>=2.2.6",
+  "sentence-transformers>=5.1.0",
+  "pandas>=2.3.2",
+  "tqdm>=4.67.1",
 ]
 
 [dependency-groups]

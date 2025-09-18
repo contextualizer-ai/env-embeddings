@@ -97,13 +97,26 @@ def get_embedding(lat: float, lon: float, year: int, project: Optional[str] = No
     start = f"{year}-01-01"
     end = f"{year+1}-01-01"
 
-    image_for_year = (collection
-                      .filterDate(start, end)
-                      .filterBounds(point)
-                      .first())
+    filtered_collection = (collection
+                       .filterDate(start, end)
+                       .filterBounds(point))
+    
+    # Check if collection has any images before calling first()
+    size = filtered_collection.size()
+    try:
+        collection_size = size.getInfo()
+        if collection_size == 0:
+            raise ValueError(f"No embedding found for {lat},{lon} at year {year}. The Google Satellite Embedding dataset may not have coverage for this location/year combination. Try years 2017-2024 for better coverage.")
+    except Exception as e:
+        raise ValueError(f"Error checking satellite embedding data availability for {lat},{lon} at year {year}: {e}")
+    
+    try:
+        image_for_year = filtered_collection.first()
+    except Exception as e:
+        raise ValueError(f"Error accessing satellite embedding data for {lat},{lon} at year {year}: {e}")
 
     if image_for_year is None:
-        raise ValueError(f"No embedding found for {lat},{lon} at year {year}")
+        raise ValueError(f"No embedding found for {lat},{lon} at year {year}. The Google Satellite Embedding dataset may not have coverage for this location/year combination. Try years 2017-2024 for better coverage.")
 
     # Sample the point to get the embedding vector  
     # 'sample' returns a FeatureCollection with properties A00..A63
