@@ -17,6 +17,9 @@ dynamic = ["version"]
 dependencies = [
   "typer >= 0.9.0",
   "linkml-runtime >=1.9.4",
+  "ee>=0.2",
+  "numpy>=2.2.6",
+  "sentence-transformers>=5.1.0",
 ]
 
 [dependency-groups]
