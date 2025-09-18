@@ -17,10 +17,13 @@ dynamic = ["version"]
 dependencies = [
   "typer >= 0.9.0",
   "linkml-runtime >=1.9.4",
-  "numpy>=2.2.6",
-  "sentence-transformers>=5.1.0",
-  "pandas>=2.3.2",
+  # IMPORTANT: Do NOT add `ee` (PyPI) — it's a legacy package.
+  # Earth Engine is provided by `earthengine-api` but imported as `ee`.
   "earthengine-api>=1.6.8",
+  "numpy>=2.2.6",
+  # NOTE: sentence-transformers removed due to PyTorch Intel Mac compatibility issues
+  # "sentence-transformers>=5.1.0",
+  "pandas>=2.3.2",
   "tqdm>=4.67.1",
 ]
 
@@ -33,6 +36,7 @@ dev = [
     "mkdocs-mermaid2-plugin>=1.1.1",
     "jupyter>=1.0.0",
     "mknotebooks>= 0.8.0",
+    "types-tqdm>=4.67.0",
 ]
 
 [project.scripts]
@@ -41,6 +45,11 @@ env-embeddings = "env_embeddings.cli:main"
 
 # See https://hatch.pypa.io/latest/config/build/#file-selection for how to
 # explicitly include files other than default into the build distributions.
+
+[tool.hatch.build.targets.wheel]
+include = [
+  "src/env_embeddings/py.typed",
+]
 
 [tool.hatch.version]
 source = "uv-dynamic-versioning"
@@ -54,6 +63,21 @@ fallback-version = "0.0.0"
 # Ref.: https://docs.pytest.org/en/stable/reference/reference.html#configuration-options
 [tool.pytest.ini_options]
 testpaths = ["tests"]
+
+# Ref.: https://mypy.readthedocs.io/en/stable/config_file.html
+[tool.mypy]
+python_version = "3.11"
+no_implicit_optional = true
+warn_redundant_casts = true
+warn_unused_ignores = true
+
+[[tool.mypy.overrides]]
+module = "env_embeddings.embeddings"
+ignore_missing_imports = true
+
+[[tool.mypy.overrides]]
+module = "ee"
+ignore_missing_imports = true
 
 # Ref.: https://github.com/codespell-project/codespell
 [tool.codespell]

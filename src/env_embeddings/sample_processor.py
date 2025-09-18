@@ -1,10 +1,8 @@
 """Process sample data and retrieve Earth Engine embeddings."""
 
-import csv
 import re
 from pathlib import Path
-from typing import Dict, List, Optional, Tuple
-from datetime import datetime
+from typing import List, Optional, Tuple
 
 import pandas as pd
 from tqdm import tqdm
@@ -123,7 +121,7 @@ def load_sample_data(tsv_path: Path, max_samples: Optional[int] = None) -> pd.Da
     return valid_samples
 
 
-def get_sample_embedding(sample: pd.Series, project: str = None, fallback_year: int = 2020) -> Optional[List[float]]:
+def get_sample_embedding(sample: pd.Series, project: Optional[str] = None, fallback_year: int = 2020) -> Optional[List[float]]:
     """Get Earth Engine embedding for a single sample.
     
     Args:
@@ -163,7 +161,7 @@ def get_sample_embedding(sample: pd.Series, project: str = None, fallback_year: 
 
 def process_samples_batch(
     samples: pd.DataFrame, 
-    project: str = None,
+    project: Optional[str] = None,
     output_path: Optional[Path] = None
 ) -> pd.DataFrame:
     """Process multiple samples to get Earth Engine embeddings.
@@ -350,5 +348,5 @@ if __name__ == "__main__":
     # Test date parsing
     test_dates = ["2008-08-20", "2016", "1998-12", "1997-07-11"]
     for date in test_dates:
-        result = parse_date_to_year(date)
-        print(f"{date} -> {result}")
+        date_result = parse_date_to_year(date)
+        print(f"{date} -> {date_result}")

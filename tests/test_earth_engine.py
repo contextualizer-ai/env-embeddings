@@ -1,7 +1,7 @@
 """Tests for Earth Engine functionality."""
 
 import pytest
-from unittest.mock import Mock, patch, MagicMock
+from unittest.mock import Mock, patch
 from env_embeddings.earth_engine import initialize_ee, get_embedding
 
 
