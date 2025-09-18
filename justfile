@@ -43,7 +43,7 @@ pytest:
 
 # include integration tests
 pytest-integration:
-	$(RUN) pytest -m ""
+	uv run pytest -m ""
 
 doctest:
   uv run pytest  --doctest-modules src
