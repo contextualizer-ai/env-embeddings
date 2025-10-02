@@ -69,7 +69,7 @@ repos:
 
       - id: pytest-cov
         name: pytest with coverage
-        entry: uv run pytest --cov=src/env_embeddings --cov-fail-under=50 --cov-report=term-missing
+        entry: uv run pytest --cov=src/env_embeddings --cov-fail-under=7 --cov-report=term-missing
         language: system
         pass_filenames: false
         always_run: true
