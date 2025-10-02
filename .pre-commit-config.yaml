@@ -22,6 +22,7 @@ repos:
       - id: codespell
         additional_dependencies:
           - tomli
+        args: [--skip=*.ipynb]
 
   - repo: https://github.com/crate-ci/typos
     rev: v1.31.1
@@ -43,3 +44,40 @@ repos:
     rev: 0.6.12
     hooks:
       - id: uv-lock
+
+  - repo: https://github.com/pre-commit/mirrors-mypy
+    rev: v1.15.0
+    hooks:
+      - id: mypy
+        additional_dependencies:
+          - types-tqdm
+          - pandas-stubs
+          - pymongo-stubs
+          - scipy-stubs
+          - numpy
+        args: [--config-file=mypy.ini, src/env_embeddings, tests]
+        pass_filenames: false
+
+  - repo: local
+    hooks:
+      - id: pytest
+        name: pytest
+        entry: uv run pytest
+        language: system
+        pass_filenames: false
+        always_run: true
+
+      - id: pytest-cov
+        name: pytest with coverage
+        entry: uv run pytest --cov=src/env_embeddings --cov-fail-under=50 --cov-report=term-missing
+        language: system
+        pass_filenames: false
+        always_run: true
+        stages: [pre-push]
+
+      - id: deptry
+        name: deptry
+        entry: uv run deptry src
+        language: system
+        pass_filenames: false
+        always_run: true

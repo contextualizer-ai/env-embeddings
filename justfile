@@ -25,18 +25,22 @@ _default: _status
 setup: _git-init _ai-instructions install _git-add
   git commit -m "Initialise git with minimal project" -a
 
-  
+
 # Install project dependencies
 [group('project management')]
 install:
   uv sync --group dev
 
 
-# Run all tests
+# Run all tests, type checking, linting, and dependency checks
 [group('model development')]
-test: pytest mypy format
+test: pytest-cov mypy ruff deptry
 
 test-full: test pytest-integration
+
+# Run pytest with coverage and timing
+pytest-cov:
+  uv run pytest --cov=src/env_embeddings --cov-report=term-missing --cov-report=html --durations=10 -v
 
 pytest:
   uv run pytest
@@ -46,13 +50,22 @@ pytest-integration:
 	uv run pytest -m ""
 
 doctest:
-  uv run pytest  --doctest-modules src
+  uv run pytest --doctest-modules src
 
+# Type checking with mypy
 mypy:
   uv run mypy src tests
 
-format:
+# Linting and formatting with ruff
+ruff:
 	uv run ruff check .
+
+# Legacy alias for ruff
+format: ruff
+
+# Check for unused dependencies
+deptry:
+  uv run deptry src
 
 # ============== Hidden internal recipes ==============
 
