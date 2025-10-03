@@ -26,6 +26,12 @@ dependencies = [
   "pandas>=2.3.2",
   "tqdm>=4.67.1",
   "ols-client>=0.2.1",
+  "requests-cache>=1.2.1",
+  "diskcache>=5.6.3",
+  "global-land-mask>=1.0.0",
+  "pymongo>=3.13.0",
+  "scikit-learn>=1.7.2",
+  "scipy>=1.15.3",
 ]
 
 [dependency-groups]
@@ -42,6 +48,11 @@ dev = [
     "seaborn>=0.13.2",
     "scikit-learn>=1.7.2",
     "scipy>=1.15.3",
+    "pytest-cov>=7.0.0",
+    "deptry>=0.23.1",
+    "pandas-stubs>=2.3.2.250926",
+    "pymongo-stubs>=0.2.0",
+    "scipy-stubs>=1.15.3.0",
 ]
 
 [project.scripts]
@@ -92,6 +103,30 @@ ignore_missing_imports = true
 [[tool.mypy.overrides]]
 module = "ee"
 ignore_missing_imports = true
+
+[[tool.mypy.overrides]]
+module = "diskcache"
+ignore_missing_imports = true
+
+[[tool.mypy.overrides]]
+module = "pandas"
+ignore_missing_imports = true
+
+[[tool.mypy.overrides]]
+module = "tqdm"
+ignore_missing_imports = true
+
+[[tool.mypy.overrides]]
+module = "ols_client"
+ignore_missing_imports = true
+
+[[tool.mypy.overrides]]
+module = "global_land_mask"
+ignore_missing_imports = true
+
+# Ref.: https://fpgmaas/deptry
+[tool.deptry]
+per_rule_ignores = {DEP002 = ["linkml-runtime", "numpy", "requests-cache", "global-land-mask"], DEP003 = ["typing_extensions"]}
 
 # Ref.: https://github.com/codespell-project/codespell
 [tool.codespell]
