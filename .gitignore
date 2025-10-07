@@ -141,3 +141,9 @@ dmypy.json
 .idea
 # Local vscode editor config
 .vscode
+
+# Data files - keep only zipped versions
+data/*.csv
+data/*.tsv
+# Large complete files - too big even zipped
+data/*_complete.csv.zip
