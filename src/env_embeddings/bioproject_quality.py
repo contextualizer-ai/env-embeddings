@@ -55,7 +55,7 @@ def get_bioproject_mapping(
     Returns:
         Dictionary mapping biosample accession to bioproject accession
     """
-    client = MongoClient(mongo_host, mongo_port)
+    client: MongoClient = MongoClient(mongo_host, mongo_port)  # type: ignore[type-arg]
     db = client[database]
     coll = db[collection]
 
