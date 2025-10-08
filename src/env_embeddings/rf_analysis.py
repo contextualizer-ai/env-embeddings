@@ -198,8 +198,59 @@ def train_rf_model(
     }
 
 
+def filter_rare_classes(
+    df: pd.DataFrame, scale: str, min_samples: int = 5, report_removed: bool = True
+) -> pd.DataFrame:
+    """Filter out classes with too few samples.
+
+    Args:
+        df: DataFrame with ENVO labels
+        scale: ENVO scale column name
+        min_samples: Minimum samples required per class
+        report_removed: Whether to print details of removed classes
+
+    Returns:
+        Filtered DataFrame with only classes having >= min_samples
+
+    Examples:
+        >>> # df_filtered = filter_rare_classes(df, "env_medium", min_samples=5)  # doctest: +SKIP
+        >>> pass
+    """
+    # Count samples per class
+    class_counts = df[scale].value_counts()
+
+    # Find classes with enough samples
+    valid_classes = class_counts[class_counts >= min_samples].index
+    removed_classes = class_counts[class_counts < min_samples]
+
+    # Filter dataframe
+    df_filtered = df[df[scale].isin(valid_classes)].copy()
+
+    n_removed_classes = len(removed_classes)
+    n_removed_samples = len(df) - len(df_filtered)
+
+    if n_removed_classes > 0:
+        print(
+            f"    Filtered: removed {n_removed_classes} rare classes "
+            f"({n_removed_samples} samples with <{min_samples} per class)"
+        )
+
+        # Report which classes were removed
+        if report_removed and n_removed_classes > 0:
+            print(f"    Removed classes ({n_removed_classes}):")
+            for term, count in removed_classes.head(10).items():
+                print(f"      - {term}: {count} samples")
+            if n_removed_classes > 10:
+                print(f"      ... and {n_removed_classes - 10} more")
+
+    return df_filtered
+
+
 def analyze_source(
-    df: pd.DataFrame, source_name: str, test_size: float = 0.2
+    df: pd.DataFrame,
+    source_name: str,
+    test_size: float = 0.2,
+    min_samples_per_class: int = 5,
 ) -> Dict[str, Dict]:
     """Train RF models for all ENVO scales for a single data source.
 
@@ -207,6 +258,7 @@ def analyze_source(
         df: DataFrame with embeddings and ENVO labels
         source_name: Name of the data source
         test_size: Fraction of data to use for testing
+        min_samples_per_class: Minimum samples required per class (to avoid CV warnings)
 
     Returns:
         Dictionary mapping scale names to result dictionaries
@@ -219,16 +271,21 @@ def analyze_source(
     print(f"Training models: {source_name}")
     print(f"{'-' * 60}")
 
-    # Prepare feature matrix (same for all scales)
-    X = np.vstack(df["ge_embedding"].values)  # type: ignore[call-overload]
-
     results = {}
 
     for scale in ENVO_SCALES:
         print(f"\n  {scale}...")
 
-        # Prepare target
-        y = df[scale].values
+        # Filter rare classes
+        df_scale = filter_rare_classes(df, scale, min_samples_per_class)
+
+        if len(df_scale) == 0:
+            print("    ✗ No data remaining after filtering")
+            continue
+
+        # Prepare feature matrix and target
+        X = np.vstack(df_scale["ge_embedding"].values)  # type: ignore[call-overload]
+        y = df_scale[scale].values
 
         # Train/test split
         X_train, X_test, y_train, y_test = train_test_split(
