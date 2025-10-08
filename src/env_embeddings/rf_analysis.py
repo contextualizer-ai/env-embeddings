@@ -12,7 +12,7 @@ from typing import Dict, Optional
 import numpy as np
 import pandas as pd
 from sklearn.ensemble import RandomForestClassifier
-from sklearn.metrics import accuracy_score
+from sklearn.metrics import accuracy_score, classification_report
 from sklearn.model_selection import cross_val_score, train_test_split
 
 # ENVO scales to analyze
@@ -185,6 +185,11 @@ def train_rf_model(
     # Cross-validation on training set
     cv_scores = cross_val_score(rf, X_train, y_train, cv=5, scoring="accuracy")
 
+    # Get per-class metrics
+    class_report = classification_report(
+        y_test, y_test_pred, output_dict=True, zero_division=0
+    )
+
     return {
         "model": rf,
         "train_accuracy": train_acc,
@@ -195,6 +200,9 @@ def train_rf_model(
         "n_classes": len(np.unique(y_train)),
         "n_train": len(X_train),
         "n_test": len(X_test),
+        "y_test": y_test,
+        "y_test_pred": y_test_pred,
+        "class_report": class_report,
     }
 
 
@@ -418,3 +426,149 @@ def print_summary(comparison_df: pd.DataFrame):
                 f"\n⚠️  Large variation across sources (std={source_var:.3f}) - "
                 "data quality differs"
             )
+
+
+def print_class_performance(results: Dict[str, Dict], source_name: str):
+    """Print per-class performance metrics.
+
+    Args:
+        results: Results dictionary from analyze_source
+        source_name: Name of the data source
+
+    Examples:
+        >>> # print_class_performance(results, "NMDC")  # doctest: +SKIP
+        >>> pass
+    """
+    print(f"\n\n{'=' * 80}")
+    print(f"PER-CLASS PERFORMANCE: {source_name}")
+    print(f"{'=' * 80}\n")
+
+    for scale in ENVO_SCALES:
+        if scale not in results:
+            continue
+
+        result = results[scale]
+        class_report = result["class_report"]
+
+        # Extract per-class F1 scores (excluding averages)
+        class_metrics = []
+        for class_label, metrics in class_report.items():
+            if class_label not in ["accuracy", "macro avg", "weighted avg"]:
+                class_metrics.append(
+                    {
+                        "Class": class_label,
+                        "Precision": metrics["precision"],
+                        "Recall": metrics["recall"],
+                        "F1": metrics["f1-score"],
+                        "Support": metrics["support"],
+                    }
+                )
+
+        class_df = pd.DataFrame(class_metrics).sort_values("F1", ascending=False)
+
+        print(f"\n{scale}:")
+        print(f"  Total classes: {len(class_df)}")
+        print(f"  Macro avg F1: {class_report['macro avg']['f1-score']:.3f}")
+        print(f"  Weighted avg F1: {class_report['weighted avg']['f1-score']:.3f}")
+
+        # Top performers
+        top_classes = class_df[class_df["F1"] > 0.9]
+        print(f"\n  High performers (F1 > 0.9): {len(top_classes)} classes")
+        if len(top_classes) > 0:
+            for _, row in top_classes.head(5).iterrows():
+                print(
+                    f"    {row['Class']}: F1={row['F1']:.3f}, support={int(row['Support'])}"
+                )
+
+        # Poor performers
+        poor_classes = class_df[class_df["F1"] < 0.3]
+        print(f"\n  Poor performers (F1 < 0.3): {len(poor_classes)} classes")
+        if len(poor_classes) > 0:
+            for _, row in poor_classes.head(5).iterrows():
+                print(
+                    f"    {row['Class']}: F1={row['F1']:.3f}, support={int(row['Support'])}"
+                )
+
+        # Classes with zero F1
+        zero_classes = class_df[class_df["F1"] == 0]
+        if len(zero_classes) > 0:
+            print(f"\n  ⚠️  Classes with 0% F1 (completely failed): {len(zero_classes)}")
+            print(
+                "      These are likely rare classes that need more samples or parent grouping"
+            )
+
+
+def print_class_coverage(df: pd.DataFrame, scale: str, min_samples: int):
+    """Report class coverage after filtering.
+
+    Args:
+        df: DataFrame with ENVO labels
+        scale: ENVO scale column name
+        min_samples: Minimum samples threshold
+
+    Examples:
+        >>> # print_class_coverage(df, "env_medium", min_samples=5)  # doctest: +SKIP
+        >>> pass
+    """
+    all_classes = df[scale].value_counts()
+    kept_classes = all_classes[all_classes >= min_samples]
+    removed_classes = all_classes[all_classes < min_samples]
+
+    kept_samples = kept_classes.sum()
+    removed_samples = removed_classes.sum()
+
+    print(f"\n{scale} - Class Coverage Analysis:")
+    print(
+        f"  Kept: {len(kept_classes)}/{len(all_classes)} classes "
+        f"({len(kept_classes) / len(all_classes) * 100:.1f}%)"
+    )
+    print(
+        f"  Covering: {kept_samples}/{len(df)} samples "
+        f"({kept_samples / len(df) * 100:.1f}%)"
+    )
+    print(
+        f"  Removed: {len(removed_classes)} rare classes "
+        f"({removed_samples} samples, {removed_samples / len(df) * 100:.1f}%)"
+    )
+
+
+def create_dedup_comparison_table(
+    results_dedup: Dict[str, Dict[str, Dict]],
+    results_no_dedup: Dict[str, Dict[str, Dict]],
+) -> pd.DataFrame:
+    """Compare metrics between deduplicated and non-deduplicated versions.
+
+    Args:
+        results_dedup: Results from deduplicated data
+        results_no_dedup: Results from non-deduplicated data
+
+    Returns:
+        DataFrame comparing dedup vs no-dedup performance
+
+    Examples:
+        >>> # df = create_dedup_comparison_table(res_dedup, res_no_dedup)  # doctest: +SKIP
+        >>> pass
+    """
+    comparison = []
+    for source in results_dedup:
+        for scale in results_dedup[source]:
+            if source in results_no_dedup and scale in results_no_dedup[source]:
+                dedup = results_dedup[source][scale]
+                no_dedup = results_no_dedup[source][scale]
+
+                comparison.append(
+                    {
+                        "Source": source,
+                        "Scale": scale.replace("env_", ""),
+                        "Dedup_Acc": dedup["test_accuracy"],
+                        "NoDedup_Acc": no_dedup["test_accuracy"],
+                        "Acc_Delta": dedup["test_accuracy"] - no_dedup["test_accuracy"],
+                        "Dedup_Overfit": dedup["overfitting"],
+                        "NoDedup_Overfit": no_dedup["overfitting"],
+                        "Overfit_Delta": dedup["overfitting"] - no_dedup["overfitting"],
+                        "Dedup_Samples": dedup["n_train"] + dedup["n_test"],
+                        "NoDedup_Samples": no_dedup["n_train"] + no_dedup["n_test"],
+                    }
+                )
+
+    return pd.DataFrame(comparison)
