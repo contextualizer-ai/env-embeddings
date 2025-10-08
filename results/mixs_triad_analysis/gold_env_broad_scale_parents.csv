@@ -1,0 +1,79 @@
+parent_term,count,label
+ENVO:01000254,11083,environmental system
+RO:0002577,11083,system
+ENVO:01001110,10908,ecosystem
+ENVO:00000428,10906,biome
+ENVO:01000813,10906,astronomical body part
+ENVO:00000446,5634,terrestrial biome
+ENVO:01001790,5634,terrestrial ecosystem
+ENVO:01000997,5634,environmental system determined by a quality
+ENVO:00002030,4721,aquatic biome
+ENVO:01001787,4721,aquatic ecosystem
+ENVO:00000873,2421,freshwater biome
+ENVO:01001789,2421,freshwater ecosystem
+ENVO:01000320,1652,marine environment
+ENVO:01001788,1652,marine ecosystem
+ENVO:00000447,1652,marine biome
+ENVO:01000252,1071,freshwater lake biome
+ENVO:01000174,977,forest biome
+ENVO:01001243,977,forest ecosystem
+ENVO:01000253,883,freshwater river biome
+ENVO:01001828,359,anthropised ecosystem
+ENVO:01000313,359,anthropogenic environment
+ENVO:01000177,346,grassland biome
+ENVO:01001206,346,grassland ecosystem
+ENVO:01001000,315,environmental system determined by an organism
+ENVO:01000023,291,marine pelagic biome
+ENVO:01000024,282,marine benthic biome
+ENVO:01000219,219,anthropogenic terrestrial biome
+ENVO:01000339,175,polar biome
+ENVO:01001001,175,plant-associated environment
+ENVO:01001703,175,polar environment
+ENVO:01000020,161,estuarine biome
+ENVO:01000249,140,urban biome
+ENVO:01001829,140,human settlement
+ENVO:01000248,140,dense settlement biome
+ENVO:01001055,140,environment associated with an animal part or small animal
+ENVO:01000658,140,dense settlement
+ENVO:01001002,140,animal-associated environment
+ENVO:01001780,133,desert ecosystem
+ENVO:01000179,133,desert biome
+ENVO:01000033,102,oceanic pelagic zone biome
+ENVO:01001831,96,temperate biome
+ENVO:01001705,96,temperate environment
+ENVO:01000181,87,mangrove biome
+ENVO:01000035,86,oceanic epipelagic zone biome
+ENVO:01000175,86,woodland biome
+ENVO:01000127,84,marine cold seep biome
+ENVO:01000176,75,shrubland biome
+ENVO:01001837,51,subalpine biome
+ENVO:01000178,33,savanna biome
+ENVO:01000189,32,temperate savanna biome
+ENVO:01000215,31,temperate shrubland biome
+ENVO:01001830,30,tropical biome
+ENVO:01001701,30,tropical environment
+ENVO:01000221,30,temperate woodland biome
+ENVO:01001702,24,subtropical environment
+ENVO:01001832,24,subtropical biome
+ENVO:01000222,23,subtropical woodland biome
+ENVO:01000433,16,needleleaf forest
+ENVO:01000196,16,coniferous forest biome
+ENVO:01000036,15,oceanic mesopelagic zone biome
+ENVO:01001834,12,subpolar biome
+ENVO:01000030,12,marine hydrothermal vent biome
+ENVO:01001704,12,subpolar environment
+ENVO:01000048,11,ocean biome
+ENVO:01000049,9,marine coral reef biome
+ENVO:01000029,9,marine reef biome
+ENVO:01001836,7,montane biome
+ENVO:01001833,6,mediterranean biome
+ENVO:01000208,5,mediterranean woodland biome
+ENVO:01000216,4,montane shrubland biome
+ENVO:01000247,4,rangeland biome
+ENVO:01001838,3,arid biome
+ENVO:00000044,2,peatland
+ENVO:01001209,2,wetland ecosystem
+ENVO:01000038,1,oceanic abyssopelagic zone biome
+ENVO:01000187,1,subtropical savanna biome
+ENVO:01000229,1,mediterranean savanna biome
+ENVO:01001835,1,alpine biome

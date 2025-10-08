@@ -1,0 +1,50 @@
+parent_term,count,label
+ENVO:00010483,8314,environmental material
+ENVO:01000813,6992,astronomical body part
+ENVO:00001998,6670,soil
+ENVO:00005749,1812,farm soil
+ENVO:00005802,858,bulk soil
+ENVO:01000815,693,liquid environmental material
+ENVO:02000140,693,fluid environmental material
+ENVO:00002006,693,liquid water
+ENVO:01000155,662,organic material
+ENVO:01000156,456,biofilm material
+ENVO:03605000,456,periphytic biofilm
+ENVO:03605001,324,epilithon
+ENVO:01000349,205,root matter
+ENVO:01000277,159,water ice
+ENVO:01001557,159,water-body-derived ice
+ENVO:00002200,159,sea ice
+ENVO:01000814,159,solid environmental material
+ENVO:01001125,159,ice
+ENVO:04000007,153,lake water
+ENVO:00005791,152,sterile water
+ENVO:00002042,151,surface water
+ENVO:00002149,132,sea water
+ENVO:00002010,132,saline water
+ENVO:00002007,130,sediment
+ENVO:01000060,130,particulate environmental material
+RO:0002577,120,system
+ENVO:01000254,120,environmental system
+ENVO:03605006,105,stream water
+ENVO:03605004,77,epipsammon
+ENVO:01001110,64,ecosystem
+ENVO:00005801,64,rhizosphere
+ENVO:01001001,56,plant-associated environment
+ENVO:01001000,56,environmental system determined by an organism
+ENVO:00002261,43,forest soil
+ENVO:00002275,36,technosol
+ENVO:00005755,30,field soil
+ENVO:03605005,24,epixylon
+ENVO:00005781,21,heat stressed soil
+ENVO:03605002,21,epipelon
+ENVO:01000599,13,river water
+ENVO:00002259,12,agricultural soil
+ENVO:00002243,10,histosol
+ENVO:01001616,10,bare soil
+ENVO:00005761,10,meadow soil
+ENVO:03605003,10,epiphyton
+ENVO:02000059,6,surface soil
+ENVO:00005750,6,grassland soil
+ENVO:00005760,2,burned soil
+ENVO:00005773,2,pasture soil

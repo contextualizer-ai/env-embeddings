@@ -1,0 +1,275 @@
+parent_term,count,label
+ENVO:01000813,8826,astronomical body part
+ENVO:01001784,4953,compound astronomical body part
+ENVO:01001479,3186,fluid astronomical body part
+ENVO:01001477,3186,liquid astronomical body part
+ENVO:01001476,2684,body of liquid
+ENVO:01000685,2684,water mass
+ENVO:00000063,2683,water body
+ENVO:01000408,1786,environmental zone
+ENVO:00000191,1764,solid astronomical body part
+ENVO:01001199,1755,terrestrial environmental zone
+RO:0002577,1556,system
+ENVO:01001305,1439,vegetated area
+ENVO:01000617,1416,lentic water body
+ENVO:01000254,1394,environmental system
+ENVO:01001110,1382,ecosystem
+ENVO:01000281,1246,layer
+ENVO:00000029,1210,watercourse
+ENVO:01000618,1210,lotic water body
+ENVO:00000023,1184,stream
+ENVO:01001886,1161,landform
+ENVO:00000020,913,lake
+ENVO:01001884,869,surface landform
+ENVO:00000022,857,river
+ENVO:01000352,806,field
+ENVO:01001209,734,wetland ecosystem
+ENVO:01001320,731,fresh water body
+ENVO:00000021,731,freshwater lake
+ENVO:00000114,721,agricultural field
+ENVO:00000070,640,human construction
+ENVO:01001813,640,construction
+ENVO:01001275,613,solid layer
+ENVO:00000027,543,spring
+ENVO:01001678,518,fluid layer
+ENVO:01001273,515,liquid layer
+ENVO:01000325,515,aquatic layer
+ENVO:01001308,487,hydroform
+ENVO:00001999,477,marine water body
+ENVO:00000044,471,peatland
+ENVO:00000051,450,hot spring
+ENVO:01001684,406,interface layer
+ENVO:00010504,403,surface layer
+ENVO:01001483,403,surface of an astronomical body
+ENVO:00000076,382,mine
+ENVO:01000843,381,area of evergreen forest
+ENVO:00000234,327,bayou
+ENVO:00000106,306,grassland area
+ENVO:00005801,302,rhizosphere
+ENVO:01001311,291,solid surface layer
+ENVO:01000816,281,area of deciduous forest
+ENVO:01001785,266,land
+ENVO:00000043,262,wetland area
+ENVO:01000295,251,marine layer
+ENVO:00000292,246,watershed
+ENVO:01000888,237,area of gramanoid or herbaceous vegetation
+ENVO:01000283,235,lake layer
+ENVO:00002169,233,coal mine
+ENVO:01000159,212,obsolete organic feature
+ENVO:00000000,207,geographic feature
+ENVO:01001293,192,bush area
+ENVO:01001319,181,saline water body
+ENVO:00000015,178,ocean
+ENVO:01000997,177,environmental system determined by a quality
+ENVO:01000155,177,organic material
+ENVO:00010483,177,environmental material
+ENVO:01001790,177,terrestrial ecosystem
+ENVO:00000109,175,woodland area
+ENVO:01000349,175,root matter
+ENVO:00000111,174,forested area
+ENVO:01000869,168,area of scrub
+ENVO:00000086,166,plain
+ENVO:00000230,162,coastal wetland ecosystem
+ENVO:00000012,162,hydrographic feature
+ENVO:01000105,160,obsolete marine benthic feature
+ENVO:00002130,155,hypolimnion
+ENVO:00000137,154,coastal inlet
+ENVO:00000475,154,inlet
+ENVO:00002000,152,slope
+ENVO:00000255,148,flood plain
+ENVO:01001206,130,grassland ecosystem
+ENVO:00000469,129,research facility
+ENVO:01001357,128,desert
+ENVO:00000141,126,bank
+ENVO:00000142,123,stream bank
+ENVO:00000143,123,river bank
+ENVO:01000313,118,anthropogenic environment
+ENVO:00000077,118,agricultural ecosystem
+ENVO:01001828,118,anthropised ecosystem
+UBERON:0001062,117,anatomical entity
+ENVO:01000338,115,litter layer
+ENVO:01000355,115,vegetation layer
+ENVO:01001677,115,fluid interface layer
+ENVO:00000208,113,marine pelagic zone
+ENVO:01001554,112,surface layer of a water body
+ENVO:01001581,112,sea surface layer
+ENVO:01001310,112,liquid surface layer
+ENVO:01001673,112,fluid surface layer
+ENVO:01001191,112,water surface
+ENVO:02000049,104,coastal water body
+ENVO:01001057,101,environment associated with a plant part or small plant
+ENVO:00000058,98,underground lake
+ENVO:00000061,98,underground water body
+ENVO:00000039,95,fjord
+ENVO:01000044,86,obsolete marine pelagic feature
+PATO:0000001,84,quality
+ENVO:00000309,84,depressed landform
+PATO:0001018,84,physical quality
+ENVO:01000262,84,seep
+ENVO:01000203,84,environmental condition
+BFO:0000019,84,quality
+ENVO:01000263,84,cold seep
+PATO:0001241,84,physical object quality
+ENVO:01000341,82,subalpine
+ENVO:01000343,82,altitudinal condition
+ENVO:00002131,80,epilimnion
+ENVO:00000057,80,mangrove swamp
+ENVO:03600112,75,
+ENVO:00000078,68,farm
+ENVO:01003020,67,fiat part of an astronomical object
+ENVO:00000025,66,reservoir
+ENVO:00000377,66,artificial lake
+ENVO:01001200,65,anthropised terrestrial environmental zone
+ENVO:00000100,64,valley
+ENVO:01000893,64,area of woody wetland
+ENVO:03000015,64,geographic basin
+ENVO:01001207,64,ranch
+ENVO:00000565,63,sports facility
+ENVO:03000110,60,cryoform
+ENVO:01001532,60,glacier ice field
+ENVO:00000299,60,ice field
+ENVO:00000045,57,estuary
+ENVO:00000035,55,marsh
+ENVO:00000358,53,area of protected biodiversity
+ENVO:01001567,53,protected area
+ENVO:00000367,53,IUCN national park
+ENVO:01001169,53,area protected according to IUCN guidelines
+ENVO:01000855,52,area of mixed forest
+ENVO:00000266,50,pasture
+BFO:0000015,48,process
+ENVO:00000108,48,meadow ecosystem
+ENVO:02500000,48,environmental system process
+ENVO:01000433,46,needleleaf forest
+ENVO:00000240,46,saline wetland
+ENVO:01001243,46,forest ecosystem
+ENVO:00000002,45,anthropogenic geographic feature
+ENVO:00000054,45,saline marsh
+ENVO:00000176,39,elevated landform
+ENVO:01000886,35,area of developed space with high usage intensity
+ENVO:01001269,35,area of developed space
+ENVO:01000892,35,area of cropland
+ENVO:01001816,34,biomaterial containment unit
+ENVO:00003074,34,manufactured product
+ENVO:00010622,34,vivarium
+ENVO:01000941,31,planetary subsurface zone
+ENVO:00000260,31,prairie
+ENVO:01001776,31,subsurface zone of an astronomical body
+ENVO:01000891,30,area of pastureland or hayfields
+ENVO:01000887,29,area of sedge- and forb-dominated herbaceous vegetation
+ENVO:01001654,29,aerosol formation process
+ENVO:01000839,29,combustion process
+ENVO:01000840,29,thermolysis
+ENVO:00000032,29,bay
+ENVO:00000038,29,lagoon
+ENVO:01000786,29,fire
+ENVO:03000043,29,material transformation process
+ENVO:01001292,29,land fire
+ENVO:01000787,29,wildfire
+ENVO:01000788,29,conflagration
+ENVO:01000621,26,microcosm
+ENVO:00000033,26,pond
+ENVO:00000297,26,paddy field
+ENVO:01000861,24,area of dwarf scrub
+ENVO:00000232,24,fen
+ENVO:00000026,24,well
+ENVO:01000333,22,hillside
+ENVO:00000501,22,submerged bed
+ENVO:01001378,21,marine bed
+ENVO:01000059,20,sea grass bed
+ENVO:00000014,20,canal
+ENVO:01001491,17,flattened elevation
+ENVO:00000210,15,marine aphotic zone
+ENVO:00000213,15,marine mesopelagic zone
+ENVO:06105011,15,water column
+ENVO:01001520,14,area of sea ice
+ENVO:01000003,13,oil well
+ENVO:02500027,13,anthropogenic environmental process
+ENVO:01001041,12,fungi-associated environment
+ENVO:01001000,12,environmental system determined by an organism
+ENVO:2100000,12,anatomical entity environment
+ENVO:01000894,12,area of emergent herbaceous wetland
+ENVO:01001246,12,agricultural process
+ENVO:00000209,11,marine photic zone
+ENVO:00012408,11,aquifer
+ENVO:01001568,11,frost heave
+ENVO:00000489,11,palsa
+ENVO:01000791,10,forest fire
+ENVO:00000053,10,freshwater marsh
+ENVO:00000477,9,mount
+ENVO:03600114,9,
+ENVO:00000011,9,garden
+ENVO:01000620,8,mesocosm
+ENVO:01001899,8,reef
+ENVO:01000143,8,marine reef
+ENVO:00000067,8,cave
+ENVO:00000150,8,coral reef
+ENVO:00000511,7,blanket bog
+ENVO:00000300,7,scrubland area
+ENVO:01001870,6,gas well
+ENVO:01000667,6,geological fracture
+ENVO:00001996,6,mine drainage
+ENVO:00001997,6,acid mine drainage
+ENVO:03000010,6,material transport process
+ENVO:01000122,6,marine hydrothermal vent
+ENVO:01000875,6,precipitation process
+ENVO:01000703,6,hydrological precipitation process
+ENVO:00000215,6,hydrothermal vent
+ENVO:00000081,6,mountain
+ENVO:1000745,6,drought
+ENVO:00000444,5,woodland clearing
+ENVO:00000533,5,landfill
+ENVO:00000248,5,glacial valley
+ENVO:00000247,4,volcano
+ENVO:00002168,4,gold mine
+ENVO:00000305,4,peninsula
+ENVO:00000195,4,sinkhole
+ENVO:01001781,4,part of a landmass
+ENVO:00000055,4,saline evaporation pond
+ENVO:01000687,3,coast
+ENVO:00000083,3,hill
+ENVO:00000562,3,park
+ENVO:01001679,3,fluid front
+ENVO:01000002,3,water well
+ENVO:00000275,3,ocean trench
+ENVO:00002269,3,thermocline
+ENVO:00000264,3,seamount
+ENVO:01000649,3,trench
+ENVO:00002132,3,metalimnion
+ENVO:03600063,3,tube well
+ENVO:01000258,3,fluid cline
+ENVO:04000010,3,soil surface layer
+ENVO:06105266,3,soil layer
+ENVO:01000230,2,arid
+ENVO:00000254,2,till plain
+ENVO:00000216,2,fumarole
+ENVO:00000481,2,pinnacle
+ENVO:00000019,2,saline lake
+ENVO:01000628,2,plant litter
+ENVO:00000128,2,dry valley
+ENVO:00000131,2,obsolete glacial feature
+ENVO:00000406,1,mid-ocean ridge
+ENVO:01001868,1,hydraulic fracturing
+ENVO:00000446,1,terrestrial biome
+ENVO:01000361,1,primary cave
+ENVO:00000426,1,ocean floor
+ENVO:00000550,1,range of seamounts
+ENVO:00000080,1,mountain range
+ENVO:00000478,1,range of mounts
+ENVO:00000110,1,lava tunnel
+ENVO:00000322,1,volcanic cave
+ENVO:01001866,1,well intervention
+ENVO:00002184,1,subsurface landform
+ENVO:00002185,1,oil reservoir
+ENVO:00000244,1,abyssal plain
+ENVO:00000384,1,river bed
+OBI:0000011,1,planned process
+ENVO:01001867,1,well stimulation
+ENVO:00002063,1,oil seep
+ENVO:01000686,1,marine water mass
+ENVO:00000383,1,stream bed
+ENVO:01000065,1,marine oxygen minimum zone
+ENVO:00000402,1,mud volcano
+ENVO:00000050,1,geyser
+ENVO:00000016,1,sea
+ENVO:01000176,1,shrubland biome
+ENVO:00000428,1,biome

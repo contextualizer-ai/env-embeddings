@@ -1,0 +1,17 @@
+{
+  "total_records": 11083,
+  "total_unique_terms": 81,
+  "terms_after_filter": 51,
+  "effective_min_count": 11,
+  "min_pct_used": 0.1,
+  "terms_below_0.01pct": 0,
+  "terms_below_0.1pct": 30,
+  "terms_below_0.5pct": 55,
+  "terms_below_1pct": 60,
+  "terms_for_50pct": 5,
+  "pct_terms_for_50pct": 6.17,
+  "terms_for_80pct": 15,
+  "pct_terms_for_80pct": 18.52,
+  "terms_for_95pct": 32,
+  "pct_terms_for_95pct": 39.51
+}

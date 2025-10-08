@@ -1,0 +1,32 @@
+term,count,percentage,label
+ENVO:00000446,3844,34.684,terrestrial biome
+ENVO:01000252,1071,9.663,freshwater lake biome
+ENVO:01000174,961,8.671,forest biome
+ENVO:00000447,907,8.184,marine biome
+ENVO:01000253,883,7.967,freshwater river biome
+ENVO:00002030,648,5.847,aquatic biome
+ENVO:00000873,467,4.214,freshwater biome
+ENVO:01000177,346,3.122,grassland biome
+ENVO:01000219,215,1.94,anthropogenic terrestrial biome
+ENVO:01000023,189,1.705,marine pelagic biome
+ENVO:01000024,177,1.597,marine benthic biome
+ENVO:01001001,175,1.579,plant-associated environment
+ENVO:01000339,175,1.579,polar biome
+ENVO:01000020,161,1.453,estuarine biome
+ENVO:01000249,140,1.263,urban biome
+ENVO:01000179,133,1.2,desert biome
+ENVO:01000181,87,0.785,mangrove biome
+ENVO:01000035,86,0.776,oceanic epipelagic zone biome
+ENVO:01000127,84,0.758,marine cold seep biome
+ENVO:01001837,51,0.46,subalpine biome
+ENVO:01000176,40,0.361,shrubland biome
+ENVO:01000189,32,0.289,temperate savanna biome
+ENVO:01000215,31,0.28,temperate shrubland biome
+ENVO:01001830,30,0.271,tropical biome
+ENVO:01000221,30,0.271,temperate woodland biome
+ENVO:01000222,18,0.162,subtropical woodland biome
+ENVO:01000196,16,0.144,coniferous forest biome
+ENVO:01000036,15,0.135,oceanic mesopelagic zone biome
+ENVO:01001834,12,0.108,subpolar biome
+ENVO:01000030,12,0.108,marine hydrothermal vent biome
+ENVO:01000048,11,0.099,ocean biome

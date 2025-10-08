@@ -1,0 +1,52 @@
+term,count,percentage,label
+ENVO:00001998,2221,20.04,soil
+ENVO:00002007,1099,9.916,sediment
+ENVO:04000007,816,7.363,lake water
+ENVO:00002149,813,7.336,sea water
+ENVO:00002261,686,6.19,forest soil
+ENVO:00005774,582,5.251,peat soil
+ENVO:01000599,460,4.151,river water
+ENVO:00002011,398,3.591,fresh water
+ENVO:02000091,359,3.239,coal
+ENVO:00002259,351,3.167,agricultural soil
+ENVO:00005802,317,2.86,bulk soil
+ENVO:03000033,278,2.508,marine sediment
+ENVO:00000546,236,2.129,lake sediment
+ENVO:00005781,226,2.039,heat stressed soil
+ENVO:00005801,185,1.669,rhizosphere
+ENVO:00002150,174,1.57,coastal sea water
+ENVO:01000157,159,1.435,microbial mat material
+ENVO:01000628,148,1.335,plant litter
+ENVO:02000059,137,1.236,surface soil
+ENVO:00005750,136,1.227,grassland soil
+ENVO:00005791,117,1.056,sterile water
+ENVO:00002042,107,0.965,surface water
+ENVO:01000349,101,0.911,root matter
+ENVO:01000910,91,0.821,soil biocrust
+ENVO:00002008,63,0.568,dust
+ENVO:01001125,60,0.541,ice
+ENVO:00005754,52,0.469,fertilized soil
+ENVO:01000017,40,0.361,sand
+ENVO:01001185,39,0.352,acidic soil
+ENVO:00005773,38,0.343,pasture soil
+ENVO:00005760,37,0.334,burned soil
+ENVO:00005749,36,0.325,farm soil
+ENVO:01000156,31,0.28,biofilm material
+ENVO:00003044,30,0.271,brine
+ENVO:00005742,30,0.271,arable soil
+ENVO:00005755,30,0.271,field soil
+ENVO:01001189,29,0.262,algal material
+ENVO:01001869,27,0.244,fracking liquid
+ENVO:01000301,25,0.226,estuarine water
+ENVO:00005740,24,0.217,paddy field soil
+ENVO:01001638,19,0.171,frost-susceptible soil
+ENVO:01001004,18,0.162,groundwater
+ENVO:00005792,17,0.153,underground water
+ENVO:00002248,14,0.126,luvisol
+ENVO:00005761,14,0.126,meadow soil
+ENVO:00002116,13,0.117,contaminated soil
+ENVO:00002262,12,0.108,clay soil
+ENVO:01000134,12,0.108,hydrothermal fluid
+ENVO:00002113,11,0.099,deep marine sediment
+ENVO:00000134,11,0.099,permafrost
+ENVO:03600065,11,0.099,spring water

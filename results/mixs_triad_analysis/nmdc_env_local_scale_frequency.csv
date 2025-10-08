@@ -1,0 +1,42 @@
+term,count,percentage,label
+ENVO:00000114,1824,21.627,agricultural field
+ENVO:01000843,1041,12.343,area of evergreen forest
+ENVO:01000816,785,9.308,area of deciduous forest
+ENVO:00000078,696,8.252,farm
+ENVO:01000888,589,6.984,area of gramanoid or herbaceous vegetation
+ENVO:01000869,510,6.047,area of scrub
+ENVO:00000209,289,3.427,marine photic zone
+ENVO:00000022,281,3.332,river
+ENVO:00005801,229,2.715,rhizosphere
+ENVO:00000148,198,2.348,riffle
+ENVO:00000011,177,2.099,garden
+ENVO:01000893,165,1.956,area of woody wetland
+ENVO:00000469,153,1.814,research facility
+ENVO:03600095,152,1.802,stream run
+ENVO:01000855,136,1.613,area of mixed forest
+ENVO:01000892,107,1.269,area of cropland
+ENVO:01001057,100,1.186,environment associated with a plant part or small plant
+ENVO:03605007,92,1.091,freshwater stream
+ENVO:00002131,92,1.091,epilimnion
+ENVO:01000891,91,1.079,area of pastureland or hayfields
+ENVO:01000861,83,0.984,area of dwarf scrub
+ENVO:01000887,83,0.984,area of sedge- and forb-dominated herbaceous vegetation
+ENVO:03600094,75,0.889,stream pool
+ENVO:01001442,56,0.664,agriculture
+ENVO:00000292,53,0.628,watershed
+ENVO:01000219,42,0.498,anthropogenic terrestrial biome
+ENVO:01000621,35,0.415,microcosm
+ENVO:01000894,31,0.368,area of emergent herbaceous wetland
+ENVO:03600096,31,0.368,step pool
+ENVO:01001206,30,0.356,grassland ecosystem
+ENVO:03600018,28,0.332,organic horizon
+ENVO:00000516,19,0.225,hummock
+ENVO:01000409,19,0.225,freshwater littoral zone
+ENVO:01001191,14,0.166,water surface
+ENVO:00002000,14,0.166,slope
+ENVO:03600011,14,0.166,mineral horizon
+ENVO:01000297,13,0.154,freshwater river
+ENVO:00000021,12,0.142,freshwater lake
+ENVO:00000100,12,0.142,valley
+ENVO:00000044,10,0.119,peatland
+ENVO:00002269,9,0.107,thermocline

@@ -1,0 +1,114 @@
+parent_term,count,label
+ENVO:00010483,10802,environmental material
+ENVO:01000813,6684,astronomical body part
+ENVO:00001998,5086,soil
+ENVO:02000140,3063,fluid environmental material
+ENVO:01000815,3053,liquid environmental material
+ENVO:00002006,3025,liquid water
+ENVO:01000060,1740,particulate environmental material
+ENVO:00002007,1624,sediment
+ENVO:00002010,1051,saline water
+ENVO:00002149,987,sea water
+ENVO:04000007,816,lake water
+ENVO:00002261,695,forest soil
+ENVO:00002243,584,histosol
+ENVO:00005774,582,peat soil
+ENVO:01000814,492,solid environmental material
+ENVO:01000155,472,organic material
+ENVO:03605006,460,stream water
+ENVO:01000599,460,river water
+ENVO:00002011,408,fresh water
+ENVO:00002259,375,agricultural soil
+ENVO:00001995,369,rock
+ENVO:00002016,359,sedimentary rock
+ENVO:02000091,359,coal
+ENVO:00005802,317,bulk soil
+ENVO:03000033,289,marine sediment
+ENVO:00000546,236,lake sediment
+ENVO:00005781,226,heat stressed soil
+RO:0002577,190,system
+ENVO:01001110,190,ecosystem
+ENVO:01000254,190,environmental system
+ENVO:00005801,185,rhizosphere
+ENVO:00002150,174,coastal sea water
+ENVO:01000157,159,microbial mat material
+ENVO:01000628,148,plant litter
+UBERON:0001062,148,anatomical entity
+ENVO:02000059,137,surface soil
+ENVO:00005750,136,grassland soil
+ENVO:00005791,117,sterile water
+ENVO:00002042,107,surface water
+ENVO:01000349,101,root matter
+ENVO:01001684,91,interface layer
+ENVO:01001784,91,compound astronomical body part
+ENVO:01000909,91,biocrust
+ENVO:00000191,91,solid astronomical body part
+ENVO:01000281,91,layer
+ENVO:01000910,91,soil biocrust
+ENVO:01001483,91,surface of an astronomical body
+ENVO:00010504,91,surface layer
+ENVO:01001275,91,solid layer
+ENVO:01001311,91,solid surface layer
+ENVO:00002008,63,dust
+ENVO:01001125,60,ice
+ENVO:00005755,54,field soil
+ENVO:00005754,52,fertilized soil
+ENVO:01000017,46,sand
+ENVO:01001185,39,acidic soil
+ENVO:00005773,38,pasture soil
+ENVO:00005760,37,burned soil
+ENVO:00005749,36,farm soil
+ENVO:00005792,35,underground water
+ENVO:01000156,31,biofilm material
+ENVO:00005742,30,arable soil
+ENVO:00003044,30,brine
+ENVO:00002012,30,hypersaline water
+ENVO:01001189,29,algal material
+ENVO:00003074,27,manufactured product
+ENVO:0010001,27,anthropogenic environmental material
+ENVO:01001869,27,fracking liquid
+ENVO:00002019,26,brackish water
+ENVO:01000301,25,estuarine water
+ENVO:00005740,24,paddy field soil
+ENVO:00002116,20,contaminated soil
+ENVO:00003082,20,enriched soil
+ENVO:01001638,19,frost-susceptible soil
+ENVO:01001004,18,groundwater
+ENVO:00005761,14,meadow soil
+ENVO:00002248,14,luvisol
+ENVO:00002141,12,leachate
+ENVO:01000134,12,hydrothermal fluid
+ENVO:00002262,12,clay soil
+ENVO:00000134,11,permafrost
+ENVO:00002113,11,deep marine sediment
+ENVO:03600065,11,spring water
+ENVO:01001397,10,ultisol
+ENVO:00002228,10,pond water
+ENVO:01001616,10,bare soil
+ENVO:00005787,9,eucalyptus forest soil
+ENVO:00002871,9,alluvial soil
+ENVO:00005743,9,roadside soil
+ENVO:00005780,8,greenhouse soil
+ENVO:03600082,7,crustal fluid
+ENVO:00002875,7,oil contaminated soil
+ENVO:00005800,6,desert sand
+ENVO:01000358,6,acidic water
+ENVO:01001206,5,grassland ecosystem
+ENVO:01001790,5,terrestrial ecosystem
+ENVO:01000997,5,environmental system determined by a quality
+ENVO:03000038,5,cryoconite deposit
+ENVO:01000063,3,planktonic material
+ENVO:00002263,3,garden soil
+ENVO:00002186,2,contaminated water
+ENVO:00002258,2,loam
+ENVO:00005741,2,alpine soil
+ENVO:01001651,2,particulate matter in a hydrosphere
+ENVO:01000436,2,waterborne particulate matter
+ENVO:01000231,1,lava
+ENVO:00002985,1,oil
+ENVO:01000001,1,mud
+ENVO:2000045,1,hydrocarbon-based environmental material
+ENVO:00002001,1,waste water
+ENVO:00002264,1,waste material
+ENVO:01000964,1,industrial wastewater
+ENVO:00002254,1,vertisol

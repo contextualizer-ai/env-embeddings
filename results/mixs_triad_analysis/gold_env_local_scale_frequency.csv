@@ -1,0 +1,92 @@
+term,count,percentage,label
+ENVO:00000022,857,7.733,river
+ENVO:00000021,731,6.596,freshwater lake
+ENVO:00000114,695,6.271,agricultural field
+ENVO:00000051,449,4.051,hot spring
+ENVO:00000044,440,3.97,peatland
+ENVO:01000843,381,3.438,area of evergreen forest
+ENVO:00000234,327,2.95,bayou
+ENVO:01001275,311,2.806,solid layer
+ENVO:00005801,302,2.725,rhizosphere
+ENVO:01000816,281,2.535,area of deciduous forest
+ENVO:01001785,266,2.4,land
+ENVO:00000292,246,2.22,watershed
+ENVO:00002169,233,2.102,coal mine
+ENVO:01000159,212,1.913,obsolete organic feature
+ENVO:01000888,207,1.868,area of gramanoid or herbaceous vegetation
+ENVO:00001999,194,1.75,marine water body
+ENVO:00000043,186,1.678,wetland area
+ENVO:00000015,178,1.606,ocean
+ENVO:01000349,175,1.579,root matter
+ENVO:00000111,174,1.57,forested area
+ENVO:01000869,168,1.516,area of scrub
+ENVO:01000105,160,1.444,obsolete marine benthic feature
+ENVO:00002130,155,1.399,hypolimnion
+ENVO:00000255,148,1.335,flood plain
+ENVO:00000076,145,1.308,mine
+ENVO:00000469,129,1.164,research facility
+ENVO:01001357,128,1.155,desert
+ENVO:00000143,123,1.11,river bank
+ENVO:01000338,115,1.038,litter layer
+ENVO:00000208,113,1.02,marine pelagic zone
+ENVO:01001581,112,1.011,sea surface layer
+ENVO:02000049,104,0.938,coastal water body
+ENVO:01001057,101,0.911,environment associated with a plant part or small plant
+ENVO:00000058,98,0.884,underground lake
+ENVO:00000039,95,0.857,fjord
+ENVO:01000044,86,0.776,obsolete marine pelagic feature
+ENVO:01000263,84,0.758,cold seep
+ENVO:01000341,82,0.74,subalpine
+ENVO:00000230,82,0.74,coastal wetland ecosystem
+ENVO:00002131,80,0.722,epilimnion
+ENVO:00000057,80,0.722,mangrove swamp
+ENVO:03600112,75,0.677,
+ENVO:00000025,66,0.596,reservoir
+ENVO:01000893,64,0.577,area of woody wetland
+ENVO:01001207,64,0.577,ranch
+ENVO:00000565,63,0.568,sports facility
+ENVO:01001532,60,0.541,glacier ice field
+ENVO:00000100,57,0.514,valley
+ENVO:00000045,57,0.514,estuary
+ENVO:00000367,53,0.478,IUCN national park
+ENVO:01000855,52,0.469,area of mixed forest
+ENVO:00000266,50,0.451,pasture
+ENVO:00000108,48,0.433,meadow ecosystem
+ENVO:00000240,46,0.415,saline wetland
+ENVO:01000433,46,0.415,needleleaf forest
+ENVO:00000054,45,0.406,saline marsh
+ENVO:00000106,38,0.343,grassland area
+ENVO:01001886,36,0.325,landform
+ENVO:01000886,35,0.316,area of developed space with high usage intensity
+ENVO:01000892,35,0.316,area of cropland
+ENVO:01001206,32,0.289,grassland ecosystem
+ENVO:00000260,31,0.28,prairie
+ENVO:01000941,31,0.28,planetary subsurface zone
+ENVO:00000137,30,0.271,coastal inlet
+ENVO:01000891,30,0.271,area of pastureland or hayfields
+ENVO:00000038,29,0.262,lagoon
+ENVO:01000887,29,0.262,area of sedge- and forb-dominated herbaceous vegetation
+ENVO:00000032,29,0.262,bay
+ENVO:00000297,26,0.235,paddy field
+ENVO:01000621,26,0.235,microcosm
+ENVO:00000232,24,0.217,fen
+ENVO:01000861,24,0.217,area of dwarf scrub
+ENVO:00000033,22,0.199,pond
+ENVO:01000333,22,0.199,hillside
+ENVO:01000059,20,0.18,sea grass bed
+ENVO:00000014,20,0.18,canal
+ENVO:01000352,19,0.171,field
+ENVO:01001292,19,0.171,land fire
+ENVO:01001491,17,0.153,flattened elevation
+ENVO:00000020,16,0.144,lake
+ENVO:00000086,15,0.135,plain
+ENVO:00000213,15,0.135,marine mesopelagic zone
+ENVO:06105011,15,0.135,water column
+ENVO:01001520,14,0.126,area of sea ice
+ENVO:01000003,13,0.117,oil well
+ENVO:01001246,12,0.108,agricultural process
+ENVO:01001041,12,0.108,fungi-associated environment
+ENVO:01000894,12,0.108,area of emergent herbaceous wetland
+ENVO:00012408,11,0.099,aquifer
+ENVO:00000209,11,0.099,marine photic zone
+ENVO:00000489,11,0.099,palsa

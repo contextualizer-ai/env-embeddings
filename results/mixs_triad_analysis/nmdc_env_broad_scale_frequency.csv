@@ -1,0 +1,16 @@
+term,count,percentage,label
+ENVO:00000446,4035,47.842,terrestrial biome
+ENVO:01000221,1820,21.579,temperate woodland biome
+ENVO:01000253,750,8.893,freshwater river biome
+ENVO:01000245,712,8.442,cropland biome
+ENVO:01000036,290,3.438,oceanic mesopelagic zone biome
+ENVO:01000252,153,1.814,freshwater lake biome
+ENVO:01001001,140,1.66,plant-associated environment
+ENVO:01000249,125,1.482,urban biome
+ENVO:01000177,122,1.447,grassland biome
+ENVO:03605008,92,1.091,freshwater stream biome
+ENVO:01001442,56,0.664,agriculture
+ENVO:01000219,48,0.569,anthropogenic terrestrial biome
+ENVO:01000174,42,0.498,forest biome
+ENVO:01001837,18,0.213,subalpine biome
+ENVO:01000196,11,0.13,coniferous forest biome

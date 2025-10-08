@@ -1,0 +1,811 @@
+parent_term,count,label
+ENVO:01000813,355002,astronomical body part
+RO:0002577,265584,system
+ENVO:01000254,254317,environmental system
+ENVO:01001110,234341,ecosystem
+ENVO:00000428,192890,biome
+ENVO:01001787,77398,aquatic ecosystem
+ENVO:00002030,76789,aquatic biome
+ENVO:01000997,68709,environmental system determined by a quality
+ENVO:01001790,67262,terrestrial ecosystem
+ENVO:00010483,63777,environmental material
+ENVO:01001784,61703,compound astronomical body part
+ENVO:00000446,55074,terrestrial biome
+ENVO:01000320,41951,marine environment
+ENVO:01001477,40942,liquid astronomical body part
+ENVO:01001479,40942,fluid astronomical body part
+ENVO:00000063,40784,water body
+ENVO:01001476,40784,body of liquid
+ENVO:01000685,40784,water mass
+ENVO:01001788,40594,marine ecosystem
+ENVO:00000447,40215,marine biome
+ENVO:01000313,35904,anthropogenic environment
+ENVO:01001828,27768,anthropised ecosystem
+ENVO:00001998,25095,soil
+ENVO:01000617,24182,lentic water body
+ENVO:01001243,23824,forest ecosystem
+ENVO:01001789,23664,freshwater ecosystem
+ENVO:00000873,23639,freshwater biome
+ENVO:00000191,20021,solid astronomical body part
+ENVO:01000408,18177,environmental zone
+ENVO:01001199,18162,terrestrial environmental zone
+ENVO:02000140,18062,fluid environmental material
+ENVO:01000815,17636,liquid environmental material
+ENVO:00002006,17619,liquid water
+ENVO:01001886,17543,landform
+ENVO:01000174,17518,forest biome
+ENVO:01001305,14630,vegetated area
+ENVO:00000029,14391,watercourse
+ENVO:01000618,14391,lotic water body
+ENVO:01000253,14142,freshwater river biome
+ENVO:01000352,14058,field
+ENVO:00000000,13386,geographic feature
+ENVO:01001884,12971,surface landform
+ENVO:01001055,12761,environment associated with an animal part or small animal
+ENVO:00000114,12615,agricultural field
+ENVO:00001999,11875,marine water body
+ENVO:01001319,11838,saline water body
+ENVO:00000012,11243,hydrographic feature
+ENVO:01001209,11099,wetland ecosystem
+ENVO:00000890,11044,small river biome
+ENVO:00000020,11025,lake
+ENVO:00000077,10977,agricultural ecosystem
+ENVO:01001000,10357,environmental system determined by an organism
+ENVO:01001206,9988,grassland ecosystem
+ENVO:01001813,9740,construction
+ENVO:00000070,9681,human construction
+ENVO:01000020,9638,estuarine biome
+ENVO:0010001,9614,anthropogenic environmental material
+ENVO:00000109,9259,woodland area
+ENVO:01001705,9084,temperate environment
+ENVO:01001002,8899,animal-associated environment
+ENVO:01000219,8502,anthropogenic terrestrial biome
+ENVO:00002044,8389,sludge
+ENVO:01001829,8271,human settlement
+ENVO:01000658,7540,dense settlement
+ENVO:01001899,7489,reef
+ENVO:00000078,7339,farm
+ENVO:00000309,7211,depressed landform
+ENVO:00002046,7062,activated sludge
+ENVO:00000015,7019,ocean
+ENVO:01000248,7016,dense settlement biome
+ENVO:00000027,6953,spring
+ENVO:01000024,6748,marine benthic biome
+ENVO:00000150,6685,coral reef
+ENVO:01000143,6685,marine reef
+ENVO:01000431,6572,mixed forest
+ENVO:00000230,6362,coastal wetland ecosystem
+ENVO:01000198,6209,mixed forest biome
+ENVO:00000111,5905,forested area
+ENVO:01000060,5904,particulate environmental material
+ENVO:00002007,5874,sediment
+ENVO:00000192,5663,mudflat
+ENVO:00000051,5573,hot spring
+ENVO:01001805,5519,temperate forest
+ENVO:00000241,5463,tidal mudflat
+ENVO:01000177,5300,grassland biome
+PATO:0000001,5213,quality
+PATO:0001018,5213,physical quality
+ENVO:01000203,5213,environmental condition
+PATO:0001241,5213,physical object quality
+BFO:0000019,5213,quality
+ENVO:00003074,4936,manufactured product
+ENVO:01001831,4441,temperate biome
+ENVO:01001244,4428,cropland ecosystem
+ENVO:00002011,4411,fresh water
+ENVO:01000245,4410,cropland biome
+ENVO:2100000,4340,anatomical entity environment
+ENVO:00000023,4143,stream
+ENVO:01000249,3953,urban biome
+ENVO:01001816,3841,biomaterial containment unit
+ENVO:01000252,3812,freshwater lake biome
+ENVO:00000016,3803,sea
+ENVO:00000533,3635,landfill
+ENVO:01000023,3623,marine pelagic biome
+ENVO:01001033,3557,digestive tract environment
+ENVO:01000281,3377,layer
+ENVO:00002010,3369,saline water
+ENVO:01001811,3358,temperate grassland
+ENVO:01000048,3182,ocean biome
+ENVO:00000035,3142,marsh
+ENVO:00000021,3137,freshwater lake
+ENVO:01001320,3137,fresh water body
+ENVO:00002149,3075,sea water
+ENVO:01000181,3004,mangrove biome
+ENVO:00002264,2987,waste material
+ENVO:00000022,2853,river
+ENVO:00002259,2825,agricultural soil
+ENVO:01001275,2771,solid layer
+ENVO:01001701,2754,tropical environment
+ENVO:00002186,2754,contaminated water
+ENVO:01001702,2715,subtropical environment
+ENVO:01000430,2715,broadleaf forest
+ENVO:00002123,2554,bioreactor
+ENVO:01001780,2548,desert ecosystem
+ENVO:01000179,2536,desert biome
+ENVO:01000175,2529,woodland biome
+ENVO:03600087,2503,greenhouse
+BFO:0000015,2501,process
+ENVO:02500000,2495,environmental system process
+ENVO:00010504,2419,surface layer
+ENVO:01001684,2419,interface layer
+ENVO:01001311,2410,solid surface layer
+ENVO:01001483,2408,surface of an astronomical body
+ENVO:02500027,2394,anthropogenic environmental process
+ENVO:01000206,2390,temperate
+ENVO:01001832,2347,subtropical biome
+ENVO:01000752,2336,area of barren land
+ENVO:00000097,2336,desert area
+ENVO:00005792,2329,underground water
+ENVO:01001004,2329,groundwater
+ENVO:01000030,2310,marine hydrothermal vent biome
+ENVO:00002001,2201,waste water
+ENVO:00000172,2145,sandy desert
+ENVO:00000002,2143,anthropogenic geographic feature
+ENVO:01001246,2125,agricultural process
+ENVO:00000011,2080,garden
+ENVO:00000100,2072,valley
+ENVO:03000015,2072,geographic basin
+ENVO:01001833,2056,mediterranean biome
+ENVO:01000814,2053,solid environmental material
+ENVO:01001830,2045,tropical biome
+ENVO:01000033,2043,oceanic pelagic zone biome
+ENVO:00000891,2000,large freshwater lake biome
+ENVO:01000892,1985,area of cropland
+ENVO:01000998,1952,environmental system determined by a material
+ENVO:00000106,1940,grassland area
+ENVO:00000117,1890,plantation
+ENVO:01001803,1867,tropical forest
+ENVO:00000469,1861,research facility
+ENVO:01001406,1843,laboratory facility
+ENVO:01001704,1773,subpolar environment
+ENVO:01000197,1757,broadleaf forest biome
+ENVO:00000045,1754,estuary
+ENVO:01001834,1676,subpolar biome
+ENVO:01001785,1662,land
+ENVO:01000635,1660,planetary landmass
+ENVO:01001782,1660,landmass
+ENVO:01000324,1660,planetary surface
+ENVO:01000433,1637,needleleaf forest
+ENVO:01000196,1637,coniferous forest biome
+ENVO:00000167,1612,bar
+ENVO:01001838,1564,arid biome
+ENVO:01001125,1528,ice
+ENVO:01000277,1528,water ice
+ENVO:00002200,1503,sea ice
+ENVO:01001557,1503,water-body-derived ice
+ENVO:01000311,1483,cultivated environment
+ENVO:2100002,1462,intestine environment
+ENVO:01001792,1446,tropical broadleaf forest
+ENVO:00000073,1426,building
+ENVO:01001703,1373,polar environment
+ENVO:01000155,1356,organic material
+ENVO:03501134,1320,healthcare facility
+ENVO:00002173,1320,hospital
+ENVO:01000339,1276,polar biome
+ENVO:01001405,1258,laboratory environment
+ENVO:00003861,1252,industrial building
+ENVO:01000035,1244,oceanic epipelagic zone biome
+ENVO:03605007,1225,freshwater stream
+ENVO:01000200,1194,tropical broadleaf forest biome
+ENVO:01001200,1194,anthropised terrestrial environmental zone
+ENVO:00000266,1169,pasture
+ENVO:00000033,1134,pond
+ENVO:01000204,1129,tropical
+ENVO:00000044,1127,peatland
+ENVO:00010622,1121,vivarium
+ENVO:2000004,1110,algal bloom
+ENVO:00000176,1095,elevated landform
+ENVO:01000250,1079,subpolar coniferous forest biome
+ENVO:00000098,1067,island
+BFO:0000030,1065,object
+ENVO:01001686,1065,mass of environmental material
+ENVO:01003020,1060,fiat part of an astronomical object
+ENVO:00000477,1047,mount
+ENVO:00002150,1028,coastal sea water
+ENVO:00000019,1016,saline lake
+ENVO:01000193,996,temperate grassland biome
+ENVO:00000081,970,mountain
+ENVO:01000772,932,rural area
+ENVO:01001794,905,temperate broadleaf forest
+ENVO:01001201,893,marine environmental zone
+ENVO:03501217,888,tissue paper
+ENVO:00003895,888,paper product
+ENVO:01001044,887,soil environment
+ENVO:00000300,880,scrubland area
+ENVO:01001691,880,mass of compounded environmental materials
+ENVO:00000296,880,rice field
+ENVO:01000221,861,temperate woodland biome
+ENVO:01001001,853,plant-associated environment
+ENVO:00000130,804,rocky reef
+ENVO:00002000,800,slope
+ENVO:00000316,776,intertidal zone
+ENVO:03000033,768,marine sediment
+ENVO:00005801,745,rhizosphere
+ENVO:02000019,737,bodily fluid material
+ENVO:00000215,719,hydrothermal vent
+ENVO:01000029,717,marine reef biome
+ENVO:00002124,711,anaerobic bioreactor
+ENVO:02000022,669,excreta material
+ENVO:00002003,668,fecal material
+ENVO:01000687,663,coast
+ENVO:00000025,655,reservoir
+ENVO:00000377,655,artificial lake
+ENVO:00000260,647,prairie
+ENVO:01000049,647,marine coral reef biome
+ENVO:01000230,643,arid
+ENVO:01001567,642,protected area
+ENVO:00000358,639,area of protected biodiversity
+ENVO:01000739,637,habitat
+ENVO:01001169,633,area protected according to IUCN guidelines
+ENVO:00000367,633,IUCN national park
+ENVO:00000501,630,submerged bed
+ENVO:01000548,622,eutrophic lake
+ENVO:00005750,618,grassland soil
+ENVO:00000057,609,mangrove swamp
+ENVO:01001796,609,temperate mixed forest
+ENVO:01001020,597,hypersaline lake
+ENVO:01001378,583,marine bed
+ENVO:00000291,574,drainage basin
+ENVO:00000076,564,mine
+ENVO:01001678,561,fluid layer
+ENVO:00000108,560,meadow ecosystem
+ENVO:00002129,559,anaerobic sludge
+ENVO:01001370,558,tundra ecosystem
+ENVO:00000115,554,orchard
+ENVO:01000205,546,subtropical
+ENVO:00000449,543,drinking water reservoir
+ENVO:01000297,538,freshwater river
+ENVO:00002272,538,waste treatment plant
+ENVO:00002261,535,forest soil
+ENVO:01001804,534,subtropical forest
+ENVO:00000856,524,city
+ENVO:01000036,511,oceanic mesopelagic zone biome
+ENVO:00002196,505,aquarium
+ENVO:00000261,505,savanna
+ENVO:00000475,485,inlet
+ENVO:00000137,485,coastal inlet
+ENVO:01000549,464,mass of biological material
+ENVO:00002043,464,wastewater treatment plant
+ENVO:01000480,462,glass
+ENVO:01000325,451,aquatic layer
+ENVO:01001273,451,liquid layer
+ENVO:01000621,448,microcosm
+ENVO:01001800,444,tropical moist broadleaf forest
+ENVO:00000892,438,small freshwater lake biome
+ENVO:00002213,436,anaerobic sludge blanket reactor
+ENVO:01000228,434,tropical moist broadleaf forest biome
+ENVO:00000141,432,bank
+ENVO:00002988,431,obsolete Temperate grasslands
+ENVO:00002169,425,coal mine
+ENVO:00000032,421,bay
+ENVO:01000212,419,temperate mixed forest biome
+ENVO:00000133,416,glacier
+ENVO:01000047,414,mediterranean sea biome
+ENVO:00000104,414,undersea feature
+ENVO:00002156,413,Superfund site
+ENVO:01001264,413,area designated for waste storage
+ENVO:01000854,408,tropical marine coral reef biome
+ENVO:03000034,406,shallow marine sediment
+ENVO:00000086,399,plain
+ENVO:01000797,397,gaseous environmental material
+ENVO:01000202,379,temperate broadleaf forest biome
+ENVO:00000038,372,lagoon
+ENVO:03501102,368,polytunnel
+ENVO:01001029,365,fecal environment
+ENVO:00012408,361,aquifer
+ENVO:00002034,354,biofilm
+ENVO:01001034,337,environment determined by a biofilm on an animal surface
+ENVO:00000054,334,saline marsh
+ENVO:00000003,321,mine tailing
+ENVO:00005780,320,greenhouse soil
+ENVO:01000178,320,savanna biome
+ENVO:00000534,317,riverine pothole
+ENVO:00000297,315,paddy field
+ENVO:03501129,313,educational facility
+ENVO:00000467,313,university campus
+ENVO:01000649,312,trench
+ENVO:00000275,312,ocean trench
+ENVO:01000180,307,tundra biome
+ENVO:00000262,307,steppe
+ENVO:01000262,304,seep
+ENVO:03501120,304,dairy farm
+ENVO:01000263,304,cold seep
+ENVO:00000116,301,vineyard
+ENVO:00002229,297,arenosol
+ENVO:00000134,296,permafrost
+ENVO:01001835,296,alpine biome
+ENVO:01000888,295,area of gramanoid or herbaceous vegetation
+ENVO:00005749,291,farm soil
+ENVO:00002005,287,air
+ENVO:00000091,286,beach
+ENVO:00005755,276,field soil
+ENVO:00005742,275,arable soil
+OBI:0000011,275,planned process
+ENVO:01001436,269,planned environmental usage process
+ENVO:01000251,268,subpolar
+ENVO:01000247,267,rangeland biome
+ENVO:00000067,266,cave
+ENVO:01000906,264,aquaculture process
+ENVO:03600004,259,drinking water treatment plant
+ENVO:01001304,255,oasis
+ENVO:01000059,254,sea grass bed
+ENVO:03501288,254,facility
+ENVO:00000273,253,continental slope
+ENVO:01000317,250,aquatic environment
+ENVO:01000176,247,shrubland biome
+ENVO:03605006,246,stream water
+ENVO:00005741,243,alpine soil
+ENVO:01000385,239,temperate deciduous broadleaf forest
+ENVO:00000514,239,crater
+ENVO:00000096,239,caldera
+ENVO:00005802,238,bulk soil
+ENVO:01000207,236,mediterranean
+ENVO:01000773,234,village
+ENVO:01000246,233,village biome
+ENVO:00002042,233,surface water
+ENVO:01001308,227,hydroform
+ENVO:00001996,225,mine drainage
+ENVO:00000156,225,desert oasis
+ENVO:00005740,224,paddy field soil
+ENVO:01000343,219,altitudinal condition
+ENVO:00009003,214,obsolete human-associated habitat
+ENVO:00000304,209,shore
+ENVO:01000187,208,subtropical savanna biome
+ENVO:01000229,208,mediterranean savanna biome
+ENVO:01001809,208,subtropical grassland
+ENVO:01000599,204,river water
+ENVO:00000887,200,large river biome
+ENVO:01000452,196,environmental disposition
+ENVO:01001082,196,climate
+ENVO:01000191,193,subtropical grassland biome
+ENVO:01000186,192,polar desert biome
+ENVO:00000463,187,harbour
+ENVO:01001793,185,subtropical broadleaf forest
+ENVO:01000201,184,subtropical broadleaf forest biome
+ENVO:01001810,180,mediterranean grassland
+ENVO:01000224,180,mediterranean grassland biome
+ENVO:00010625,178,zoological garden
+ENVO:01001814,178,organic object
+ENVO:03600074,177,aquaculture farm
+ENVO:01001254,175,animal aquaculture process
+ENVO:01000768,175,primary forest
+ENVO:01001836,173,montane biome
+ENVO:01000022,172,marine salt marsh biome
+ENVO:02000049,170,coastal water body
+ENVO:01000340,168,alpine
+ENVO:01000763,167,rural settlement
+ENVO:01000762,167,sparsely populated settlement
+ENVO:00002198,165,fresh water aquarium
+ENVO:03501300,164,manure
+PCO:0000031,163,organismal entity
+ENVO:06105012,163,biota
+PCO:0000000,163,collection of organisms
+ENVO:00000294,163,fish farm
+ENVO:06105013,163,marine biota
+ENVO:00003064,155,drinking water
+ENVO:03605008,154,freshwater stream biome
+ENVO:03605009,154,freshwater stream ecosystem
+ENVO:01001802,154,subtropical moist broadleaf forest
+ENVO:01000226,154,subtropical moist broadleaf forest biome
+ENVO:00002018,147,sewage
+BFO:0000140,146,continuant fiat boundary
+BFO:0000146,146,two-dimensional continuant fiat boundary
+ENVO:00000486,146,shoreline
+ENVO:00000369,146,brine pool
+BFO:0000141,146,immaterial entity
+ENVO:00000412,142,tidal watercourse
+ENVO:01000164,140,root nodule
+ENVO:00000090,140,coastal plain
+ENVO:01000162,140,organ
+ENVO:03600010,137,membrane bioreactor
+ENVO:00000301,136,chaparral area
+ENVO:00010624,136,botanical garden
+ENVO:0010003,134,agricultural environmental material
+ENVO:00002197,133,saline water aquarium
+ENVO:01000306,132,freshwater environment
+ENVO:00002170,130,compost
+ENVO:01000951,128,natural environment
+ENVO:2000045,127,hydrocarbon-based environmental material
+ENVO:01000213,122,subtropical shrubland biome
+ENVO:01000220,122,tropical woodland biome
+ENVO:01000411,117,infralittoral zone
+ENVO:01001460,114,mid-elevation mountain
+ENVO:01000001,112,mud
+ENVO:01001455,112,temperate mountain
+ENVO:00000482,111,sea floor
+ENVO:01000038,110,oceanic abyssopelagic zone biome
+ENVO:01000556,110,biogas
+ENVO:01000554,110,hydrocarbon gas
+ENVO:01000217,110,mediterranean shrubland biome
+ENVO:01000267,110,atmosphere
+ENVO:00000223,110,continental shelf
+ENVO:00000232,109,fen
+ENVO:00002121,108,alkaline salt lake
+ENVO:00000876,107,obsolete Temperate broadleaf and mixed forest biome
+ENVO:00000125,106,mineral spring
+ENVO:00000485,106,sea shore
+ENVO:01000891,105,area of pastureland or hayfields
+ENVO:01000008,105,microbial mat
+ENVO:01000222,105,subtropical woodland biome
+ENVO:01000858,104,marine upwelling biome
+ENVO:01000053,101,marine ultramafic hydrothermal vent biome
+ENVO:01000208,99,mediterranean woodland biome
+ENVO:02000008,99,cell culture
+ENVO:00006776,97,obsolete animal-associated habitat
+ENVO:01000964,97,industrial wastewater
+ENVO:00000142,92,stream bank
+ENVO:00000175,92,karst
+ENVO:01000211,92,temperate coniferous forest biome
+ENVO:00000222,92,oceanic island
+ENVO:01000058,88,kelp forest
+ENVO:01000445,86,disturbed ecosystem
+ENVO:03000133,84,agricultural potting mixture
+ENVO:01001048,84,sediment environment
+ENVO:01001808,82,montane grassland
+ENVO:01000598,82,freshwater spring
+ENVO:01000042,80,neritic epipelagic zone biome
+ENVO:00003965,80,anaerobic digester sludge
+ENVO:01000032,80,neritic pelagic zone biome
+ENVO:00000889,79,large river delta biome
+ENVO:01000295,77,marine layer
+ENVO:00000143,76,river bank
+ENVO:00002045,75,anaerobic sediment
+ENVO:00000478,74,range of mounts
+ENVO:00000080,74,mountain range
+ENVO:01000420,74,building part
+ENVO:00000255,73,flood plain
+ENVO:00000126,73,sulfur spring
+ENVO:00000014,72,canal
+ENVO:03500005,71,anthropogenic litter
+ENVO:01000050,70,marine subtidal rocky reef biome
+ENVO:01001245,70,woodland ecosystem
+ENVO:01000417,68,house
+ENVO:01000373,68,biological waste material
+ENVO:00000153,67,headwater
+ENVO:02000036,67,saliva material
+ENVO:00000209,67,marine photic zone
+ENVO:00002126,66,aerobic bioreactor
+ENVO:01000999,66,rhizosphere environment
+ENVO:00002160,66,estuarine mud
+ENVO:01000820,66,pedosphere
+ENVO:00000132,65,ice sheet
+ENVO:01000239,64,oak woodland
+ENVO:06105011,64,water column
+CHEBI:24431,63,chemical entity
+CHEBI:33675,63,p-block molecular entity
+CHEBI:33579,63,main group molecular entity
+CHEBI:25806,63,oxygen molecular entity
+CHEBI:24835,63,inorganic molecular entity
+ENVO:01001495,63,dioxygen dissolved in marine water
+CHEBI:138675,63,gas molecular entity
+CHEBI:15379,63,dioxygen
+CHEBI:23367,63,molecular entity
+CHEBI:33263,63,diatomic oxygen
+CHEBI:33259,63,elemental molecular entity
+CHEBI:33304,63,chalcogen molecular entity
+CHEBI:33262,63,elemental oxygen
+CHEBI:25367,63,molecule
+CHEBI:36357,63,polyatomic entity
+CHEBI:25362,63,elemental molecule
+ENVO:01000426,62,room
+ENVO:02500036,62,environmental pollution
+ENVO:00002157,62,stromatolite mat
+ENVO:01000218,60,xeric shrubland biome
+ENVO:06105266,60,soil layer
+ENVO:01001807,60,flooded grassland
+ENVO:04000010,60,soil surface layer
+ENVO:01000026,60,marine bathyal zone biome
+ENVO:01000448,60,mixed grassland
+ENVO:01000195,60,flooded grassland biome
+ENVO:01000389,59,temperate mixed broadleaf forest
+ENVO:01000517,55,pit latrine
+ENVO:01000516,55,toilet fixture
+ENVO:01000989,55,plumbing fixture
+ENVO:01000519,55,latrine
+ENVO:06105101,55,plastic
+ENVO:01000620,55,mesocosm
+ENVO:00000199,54,meromictic lake
+ENVO:01000425,54,indoor toilet
+ENVO:01000859,54,tropical marine upwelling biome
+ENVO:01000315,53,acidic environment
+ENVO:00003043,53,sewage plant
+ENVO:00000083,53,hill
+ENVO:00001995,52,rock
+ENVO:00000546,52,lake sediment
+ENVO:02000110,51,open-pit mine
+ENVO:01001269,51,area of developed space
+ENVO:00000284,51,quarry
+ENVO:01000667,50,geological fracture
+ENVO:01000860,50,temperate marine upwelling biome
+ENVO:00000247,50,volcano
+ENVO:01000296,49,dry lake bed
+ENVO:00000279,49,saline pan
+ENVO:00000402,49,mud volcano
+ENVO:00002113,49,deep marine sediment
+ENVO:00000170,49,dune
+ENVO:00000393,48,sound
+ENVO:01001625,48,polar tundra ecosystem
+ENVO:01000040,48,oceanic benthopelagic zone biome
+ENVO:01000341,48,subalpine
+ENVO:00000026,48,well
+ENVO:01001491,48,flattened elevation
+ENVO:00000877,48,"obsolete Temperate grasslands, savannas, and shrubland biome"
+ENVO:00003030,48,silage
+ENVO:00000182,48,plateau
+ENVO:04000007,45,lake water
+ENVO:00000416,44,coastal dune
+ENVO:00000303,42,sea coast
+ENVO:01000883,42,area of developed open space
+ENVO:00009002,38,obsolete mammalia-associated habitat
+ENVO:01000536,38,factory
+ENVO:00002033,38,carcass
+ENVO:01000215,38,temperate shrubland biome
+ENVO:01000156,38,biofilm material
+ENVO:01000419,37,domestic garden
+ENVO:03501295,37,processing plant
+ENVO:00002873,36,organic waste material
+ENVO:01000757,36,obsolete fruit
+ENVO:00002224,36,eutrophic water
+ENVO:01001806,36,tropical grassland
+ENVO:00002232,36,andosol
+ENVO:01001841,36,volcanic soil
+ENVO:03501182,35,clinic
+ENVO:01000194,34,montane grassland biome
+ENVO:01000382,34,cold desert
+ENVO:01000037,34,oceanic bathypelagic zone biome
+ENVO:00000488,34,glacial lake
+ENVO:01001894,33,alkaline spring
+ENVO:00000195,33,sinkhole
+ENVO:00002119,33,alkaline hot spring
+ENVO:00000010,32,transport feature
+ENVO:00000064,32,road
+ENVO:01001272,32,constructed pavement
+ENVO:00002016,32,sedimentary rock
+ENVO:01000017,30,sand
+ENVO:01000779,30,public infrastructure
+ENVO:01001837,30,subalpine biome
+ENVO:00000435,30,proglacial lake
+ENVO:00000426,30,ocean floor
+ENVO:02000091,29,coal
+ENVO:06105268,29,treated wastewater
+ENVO:00005803,28,animal habitation
+ENVO:00003096,28,tap water
+ENVO:01000390,27,temperate mixed needleleaf forest
+ENVO:00000473,27,gravel pit
+ENVO:00003082,26,enriched soil
+ENVO:00002116,26,contaminated soil
+ENVO:01001851,26,geothermally active field
+ENVO:01000886,25,area of developed space with high usage intensity
+ENVO:01000756,25,obsolete vegetable
+ENVO:02000006,25,obsolete cultured habitat
+ENVO:01000002,25,water well
+ENVO:00005772,24,orchard soil
+ENVO:00003067,24,obsolete beef
+ENVO:03600006,24,food waste
+ENVO:00002184,24,subsurface landform
+ENVO:03501358,24,processing line
+ENVO:00000180,24,mound
+ENVO:00005745,23,allotment garden
+ENVO:01000816,23,area of deciduous forest
+ENVO:01000188,22,tropical savanna biome
+ENVO:00000233,22,swamp ecosystem
+ENVO:00000270,21,beaver pond
+ENVO:00002019,21,brackish water
+ENVO:00000202,21,oxbow lake
+ENVO:00000043,20,wetland area
+ENVO:00002179,20,intertidal sediment
+ENVO:01000884,20,area of developed space with low usage intensity
+ENVO:01001056,20,environment determined by a biofilm on a saline surface
+ENVO:01000185,20,montane desert biome
+ENVO:03501254,19,water tank
+ENVO:03000010,19,material transport process
+ENVO:01000025,19,marine neritic benthic zone biome
+ENVO:06105300,18,wastewater treatment process
+ENVO:01000741,18,recycling process
+ENVO:01000238,18,polar
+ENVO:01001398,17,aerosolisation of dust
+ENVO:01001399,17,atmospheric aerosolisation of dust
+ENVO:01001367,17,primary aerosol formation process
+ENVO:02500003,17,atmospheric process
+ENVO:00002985,17,oil
+ENVO:00000055,16,saline evaporation pond
+ENVO:00000119,16,planted forest
+ENVO:00002263,16,garden soil
+ENVO:00000039,16,fjord
+ENVO:01001459,16,high-elevation mountain
+ENVO:00003040,16,animal house
+ENVO:00003065,16,distilled water
+ENVO:01000987,15,market
+ENVO:00000037,15,ditch
+ENVO:00000140,15,drainage ditch
+ENVO:00000395,15,channel of a watercourse
+ENVO:01000819,15,hydrosphere
+ENVO:00000121,15,artificial channel
+ENVO:01001781,14,part of a landmass
+ENVO:00000499,14,trough
+ENVO:00000305,14,peninsula
+ENVO:00001997,14,acid mine drainage
+ENVO:00003968,14,air filter
+ENVO:00000107,14,heath
+ENVO:00000062,13,populated place
+ENVO:06105106,13,plastisphere
+ENVO:03600071,13,cyanobacterial bloom
+ENVO:01001799,12,tropical dry broadleaf forest
+ENVO:00002012,12,hypersaline water
+ENVO:00000009,12,national geopolitical entity
+ENVO:01000367,12,anchialine cave
+ENVO:01001609,12,cryospheric layer
+ENVO:00000123,12,political entity
+ENVO:01001610,12,active layer in a cryosphere
+ENVO:01000421,12,indoor kitchen
+ENVO:03501258,12,chicken house
+ENVO:00002138,12,beach sand
+ENVO:01000127,11,marine cold seep biome
+ENVO:00000243,11,freshwater wetland ecosystem
+ENVO:01000681,11,sodium chloride salt
+ENVO:01000256,11,mineral material
+ENVO:01000508,11,salt material
+ENVO:01001641,11,glaciation
+BFO:0000038,11,one-dimensional temporal region
+BFO:0000008,11,temporal region
+ENVO:00000162,11,tea plantation
+ENVO:00000220,10,archipelago
+ENVO:00000166,10,atoll
+ENVO:00005761,10,meadow soil
+ENVO:00005804,10,nest of ant
+ENVO:01001652,10,atmospheric aerosol
+ENVO:00000206,10,marine neritic zone
+ENVO:00010505,10,aerosol
+ENVO:01000391,10,tropical semi-evergreen moist broadleaf forest
+ENVO:00000112,10,area of tundra
+ENVO:01000316,10,alkaline environment
+ENVO:01000227,9,tropical dry broadleaf forest biome
+ENVO:01000584,9,table
+ENVO:00003044,9,brine
+ENVO:01000314,9,high osmolarity environment
+ENVO:01001040,9,saline environment
+ENVO:00003905,9,obsolete vinegar
+ENVO:01001192,9,sediment surface
+ENVO:01000587,9,piece of furniture
+ENVO:01000449,9,wet meadow ecosystem
+ENVO:00000264,9,seamount
+ENVO:01000909,9,biocrust
+ENVO:00000189,8,peat swamp
+ENVO:03501326,8,bottle
+FOODON:00002403,8,food material
+ENVO:02000047,8,animal feed
+ENVO:01000361,8,primary cave
+ENVO:01000422,8,bathroom
+ENVO:01000216,8,montane shrubland biome
+ENVO:01000122,8,marine hydrothermal vent
+ENVO:01000242,8,desert scrubland
+ENVO:00000322,8,volcanic cave
+ENVO:01000910,7,soil biocrust
+ENVO:00000307,7,icefall
+ENVO:01000637,7,outer space
+ENVO:01000293,7,ice mass
+ENVO:01001547,7,land ice mass
+ENVO:01001687,7,mass of solid material
+ENVO:03000110,7,cryoform
+ENVO:00000122,7,track
+ENVO:02000059,7,surface soil
+ENVO:0010158,6,obsolete tea
+ENVO:02000007,6,tissue culture
+ENVO:03501318,6,hygienic food production area
+ENVO:03501322,6,food production high-risk contamination area
+ENVO:03000082,6,thermokarst lake
+ENVO:00002875,6,oil contaminated soil
+ENVO:00002222,6,food shop
+ENVO:00000363,6,area designated as a nature reserve
+ENVO:00002221,6,shop
+ENVO:01001222,6,commercial building
+ENVO:00002137,6,brackish estuary
+ENVO:00000013,6,cave system
+ENVO:00002209,6,saline lake sediment
+ENVO:01000240,6,conifer woodland
+ENVO:01001815,6,cell culturing
+ENVO:01000949,6,lichen woodland
+ENVO:00002872,6,bagasse
+ENVO:01001267,6,stormwater
+ENVO:01000312,6,culturing environment
+ENVO:00000004,5,administrative region
+ENVO:01001176,5,environment associated with an aquatic invertebrate
+ENVO:2000002,5,industrial wastewate treatment plant
+ENVO:00009004,5,obsolete insecta-associated habitat
+ENVO:01000639,5,planetary structural layer
+ENVO:01001431,5,land use process
+ENVO:01001057,5,environment associated with a plant part or small plant
+ENVO:01000640,5,planetary mantle
+ENVO:01000406,5,snow
+ENVO:00000183,5,stony desert
+ENVO:00002185,5,oil reservoir
+ENVO:01001456,4,tropical mountain
+ENVO:01000867,4,solar panel array
+ENVO:01000377,4,humid subtropical
+ENVO:01001605,4,Aldabra Island Xeric Scrub Ecoregion
+ENVO:01000604,4,vehicle
+ENVO:00000373,4,obsolete geothermal field
+ENVO:00002127,4,stream sediment
+ENVO:01000189,4,temperate savanna biome
+ENVO:01000285,4,holomictic lake
+ENVO:01001870,3,gas well
+ENVO:01000342,3,montane
+ENVO:01001433,3,terrestrial mining
+ENVO:00005790,3,red soil
+ENVO:01001060,3,single strain cell culture
+ENVO:00000110,3,lava tunnel
+ENVO:03501370,3,stagnant water
+ENVO:00000895,3,obsolete temperate shelf and sea biome
+ENVO:03600021,3,tailings pond
+ENVO:01000271,3,clastic sedimentary rock
+ENVO:00000240,3,saline wetland
+ENVO:00000219,3,landlocked sea
+ENVO:00002243,3,histosol
+ENVO:2000005,3,freshwater algal bloom
+ENVO:00000050,3,geyser
+ENVO:01001437,3,mining
+ENVO:00005795,3,marine mud
+ENVO:00005774,3,peat soil
+ENVO:01000875,2,precipitation process
+ENVO:01000941,2,planetary subsurface zone
+ENVO:01000327,2,strand swamp
+ENVO:01000830,2,water-based rainfall
+ENVO:03000120,2,subglacial lake
+ENVO:00002194,2,oil field production water
+ENVO:00000351,2,volcanic arc
+ENVO:00003885,2,brewery
+ENVO:01000905,2,shrimp pond
+ENVO:01000335,2,understory
+ENVO:01000355,2,vegetation layer
+ENVO:01001776,2,subsurface zone of an astronomical body
+ENVO:00002055,2,sandstone
+ENVO:02000005,2,obsolete livestock-associated habitat
+ENVO:01000283,2,lake layer
+BFO:0000034,2,function
+ENVO:00003076,2,glue
+ENVO:01001432,2,forestry
+ENVO:02500005,2,land degradation
+ENVO:02500001,2,desertification
+ENVO:01001795,2,ecosystem process
+ENVO:00002130,2,hypolimnion
+ENVO:00000385,2,stream mouth
+ENVO:00000101,2,delta
+ENVO:00000386,2,river mouth
+ENVO:00000479,2,mouth
+ENVO:00000146,2,snow field
+ENVO:00005778,2,tropical soil
+ENVO:01001062,2,crater lake
+ENVO:00003869,2,straw
+ENVO:00000354,2,volcanic field
+ENVO:03501198,2,wet market
+ENVO:01000703,2,hydrological precipitation process
+ENVO:00000198,2,ice-covered lake
+ENVO:03600081,2,cloud water
+ENVO:03600092,2,artificial pond
+ENVO:01001177,2,arable land
+ENVO:00002032,2,obsolete organism-associated habitat
+ENVO:00002120,1,acidic hot spring
+ENVO:01001898,1,acidic spring
+ENVO:02000020,1,blood material
+ENVO:01000309,1,cold environment
+ENVO:01000580,1,telephone
+UBERON:0001062,1,anatomical entity
+ENVO:02000051,1,obsolete unpasteurized milk product
+ENVO:03600044,1,organic farm
+ENVO:00002262,1,clay soil
+ENVO:01000015,1,obsolete beer
+ENVO:00002228,1,pond water
+ENVO:00002056,1,shale
+ENVO:00002226,1,borehole
+ENVO:01000965,1,constructed swimming pool
+ENVO:00000118,1,coconut plantation
+ENVO:01001801,1,subtropical dry broadleaf forest
+ENVO:03000117,1,channel
+ENVO:00005791,1,sterile water
+ENVO:00003323,1,tannery
+ENVO:02500019,1,obsolete alga
+ENVO:00002176,1,contaminated sludge
+ENVO:00002060,1,oil sludge
+ENVO:01000333,1,hillside
+ENVO:00003068,1,obsolete bovine milk

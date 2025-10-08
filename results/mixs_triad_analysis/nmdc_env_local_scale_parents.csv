@@ -1,0 +1,134 @@
+parent_term,count,label
+ENVO:01000813,7472,astronomical body part
+ENVO:01001199,3621,terrestrial environmental zone
+ENVO:01000408,3621,environmental zone
+ENVO:01001305,2836,vegetated area
+ENVO:01000352,1828,field
+ENVO:00000114,1824,agricultural field
+ENVO:01001784,1364,compound astronomical body part
+RO:0002577,1132,system
+ENVO:01000254,1132,environmental system
+ENVO:01001110,1113,ecosystem
+ENVO:01001477,1043,liquid astronomical body part
+ENVO:01001479,1043,fluid astronomical body part
+ENVO:01000843,1041,area of evergreen forest
+ENVO:01000816,785,area of deciduous forest
+ENVO:01001828,738,anthropised ecosystem
+ENVO:01000313,738,anthropogenic environment
+ENVO:00000077,696,agricultural ecosystem
+ENVO:00000078,696,farm
+ENVO:01000888,680,area of gramanoid or herbaceous vegetation
+ENVO:00000106,680,grassland area
+ENVO:01001308,645,hydroform
+ENVO:01001293,593,bush area
+ENVO:01000869,510,area of scrub
+ENVO:00000063,504,water body
+ENVO:01001476,504,body of liquid
+ENVO:01000685,504,water mass
+ENVO:01000281,456,layer
+ENVO:01001678,413,fluid layer
+ENVO:01000325,401,aquatic layer
+ENVO:01001273,401,liquid layer
+ENVO:00000029,386,watercourse
+ENVO:01000618,386,lotic water body
+ENVO:00000023,386,stream
+ENVO:00000022,294,river
+ENVO:01000295,291,marine layer
+ENVO:00000209,289,marine photic zone
+ENVO:00005801,229,rhizosphere
+ENVO:00000148,198,riffle
+ENVO:00000043,196,wetland area
+ENVO:00000011,177,garden
+ENVO:00000000,177,geographic feature
+ENVO:00000002,177,anthropogenic geographic feature
+ENVO:01000893,165,area of woody wetland
+ENVO:00000070,153,human construction
+ENVO:01001813,153,construction
+ENVO:00000469,153,research facility
+ENVO:03600095,152,stream run
+ENVO:01000855,136,area of mixed forest
+ENVO:00000191,123,solid astronomical body part
+ENVO:01000892,107,area of cropland
+ENVO:03600094,106,stream pool
+ENVO:03605007,105,freshwater stream
+ENVO:01001057,100,environment associated with a plant part or small plant
+ENVO:01000997,97,environmental system determined by a quality
+ENVO:01000283,96,lake layer
+ENVO:00002131,92,epilimnion
+ENVO:01000891,91,area of pastureland or hayfields
+ENVO:01001200,91,anthropised terrestrial environmental zone
+ENVO:01000861,83,area of dwarf scrub
+ENVO:01000887,83,area of sedge- and forb-dominated herbaceous vegetation
+ENVO:01001790,78,terrestrial ecosystem
+ENVO:01001886,69,landform
+ENVO:02500000,56,environmental system process
+ENVO:01001442,56,agriculture
+ENVO:01001431,56,land use process
+ENVO:02500027,56,anthropogenic environmental process
+ENVO:01001436,56,planned environmental usage process
+BFO:0000015,56,process
+OBI:0000011,56,planned process
+ENVO:00000292,53,watershed
+ENVO:06105266,42,soil layer
+ENVO:00000446,42,terrestrial biome
+ENVO:01000219,42,anthropogenic terrestrial biome
+ENVO:03600030,42,soil horizon
+ENVO:00000428,42,biome
+ENVO:00010622,35,vivarium
+ENVO:00003074,35,manufactured product
+ENVO:01001816,35,biomaterial containment unit
+ENVO:01000621,35,microcosm
+ENVO:01001884,33,surface landform
+ENVO:03600096,31,step pool
+ENVO:01000894,31,area of emergent herbaceous wetland
+ENVO:01001206,30,grassland ecosystem
+ENVO:03600018,28,organic horizon
+ENVO:01001684,27,interface layer
+ENVO:00000176,27,elevated landform
+ENVO:01001677,26,fluid interface layer
+ENVO:01000998,19,environmental system determined by a material
+ENVO:00000516,19,hummock
+ENVO:01000407,19,littoral zone
+ENVO:01000317,19,aquatic environment
+ENVO:01000409,19,freshwater littoral zone
+ENVO:00010504,15,surface layer
+ENVO:01001275,15,solid layer
+ENVO:00000100,14,valley
+ENVO:00000309,14,depressed landform
+ENVO:00002000,14,slope
+ENVO:01001310,14,liquid surface layer
+ENVO:01001673,14,fluid surface layer
+ENVO:03600011,14,mineral horizon
+ENVO:03000015,14,geographic basin
+ENVO:01001191,14,water surface
+ENVO:01000297,13,freshwater river
+ENVO:01000258,12,fluid cline
+ENVO:01001679,12,fluid front
+ENVO:00000021,12,freshwater lake
+ENVO:01000617,12,lentic water body
+ENVO:01001320,12,fresh water body
+ENVO:00002269,12,thermocline
+ENVO:00000020,12,lake
+ENVO:00000044,10,peatland
+ENVO:01001209,10,wetland ecosystem
+ENVO:01001357,6,desert
+ENVO:01001370,6,tundra ecosystem
+ENVO:01001781,4,part of a landmass
+ENVO:00002130,4,hypolimnion
+ENVO:00000083,4,hill
+ENVO:00000086,4,plain
+ENVO:00000444,4,woodland clearing
+ENVO:00000305,4,peninsula
+ENVO:00000477,4,mount
+ENVO:00000182,4,plateau
+ENVO:01001491,4,flattened elevation
+ENVO:00002132,3,metalimnion
+ENVO:00000128,2,dry valley
+ENVO:00000210,2,marine aphotic zone
+ENVO:00000426,1,ocean floor
+ENVO:00000501,1,submerged bed
+ENVO:01001483,1,surface of an astronomical body
+ENVO:01001311,1,solid surface layer
+ENVO:01001378,1,marine bed
+ENVO:00000211,1,marine bathypelagic zone
+ENVO:00000213,1,marine mesopelagic zone
