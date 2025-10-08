@@ -1,5 +1,26 @@
 ## Add your own just recipes here. This is imported by the main justfile.
 
+# MIxS triad ontology term frequency analysis for a single source
+[group('mixs-analysis')]
+mixs-triad-frequency source='gold' file='data/gold_flattened_biosamples_for_env_embeddings_202510061108.tsv' min_pct='0.1':
+  @echo "Analyzing MIxS triad term frequencies for {{source}} (min {{min_pct}}%)..."
+  uv run mixs-triad-analysis frequency --file {{file}} --source {{source}} --min-pct {{min_pct}}
+  @echo "✅ Done!"
+
+# MIxS triad parent class analysis for a single source
+[group('mixs-analysis')]
+mixs-triad-parents source='gold' file='data/gold_flattened_biosamples_for_env_embeddings_202510061108.tsv' column='':
+  @echo "Analyzing MIxS triad parent classes for {{source}}..."
+  {{ if column != '' { "uv run mixs-triad-analysis parents --file " + file + " --source " + source + " --column " + column } else { "uv run mixs-triad-analysis parents --file " + file + " --source " + source } }}
+  @echo "✅ Done!"
+
+# Run complete MIxS triad analysis for all three sources
+[group('mixs-analysis')]
+mixs-triad-all gold='data/gold_flattened_biosamples_for_env_embeddings_202510061108.tsv' ncbi='data/ncbi_flattened_biosamples_for_env_embeddings_202510061108_normalized.tsv' nmdc='data/nmdc_flattened_biosample_for_env_embeddings_202510061052.tsv' min_pct='0.1' output='results/mixs_triad_analysis':
+  @echo "Running complete MIxS triad analysis for GOLD, NCBI, and NMDC (min {{min_pct}}%)..."
+  uv run mixs-triad-analysis analyze-all --gold {{gold}} --ncbi {{ncbi}} --nmdc {{nmdc}} --min-pct {{min_pct}} --output {{output}}
+  @echo "✅ Results saved to {{output}}"
+
 # Normalize NCBI raw biosample data
 [group('embeddings')]
 normalize-ncbi input='data/ncbi_flattened_biosamples_for_env_embeddings_202510061108.tsv':

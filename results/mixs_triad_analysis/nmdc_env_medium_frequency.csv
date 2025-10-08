@@ -1,0 +1,28 @@
+term,count,percentage,label
+ENVO:00001998,3812,45.198,soil
+ENVO:00005749,1812,21.484,farm soil
+ENVO:00005802,858,10.173,bulk soil
+ENVO:03605001,324,3.842,epilithon
+ENVO:01000349,205,2.431,root matter
+ENVO:00002200,159,1.885,sea ice
+ENVO:04000007,153,1.814,lake water
+ENVO:00005791,152,1.802,sterile water
+ENVO:00002042,151,1.79,surface water
+ENVO:00002149,132,1.565,sea water
+ENVO:00002007,130,1.541,sediment
+ENVO:03605006,92,1.091,stream water
+ENVO:03605004,77,0.913,epipsammon
+ENVO:00005801,64,0.759,rhizosphere
+ENVO:01001001,56,0.664,plant-associated environment
+ENVO:00002261,43,0.51,forest soil
+ENVO:00002275,36,0.427,technosol
+ENVO:00005755,30,0.356,field soil
+ENVO:03605005,24,0.285,epixylon
+ENVO:00005781,21,0.249,heat stressed soil
+ENVO:03605002,21,0.249,epipelon
+ENVO:01000599,13,0.154,river water
+ENVO:00002259,12,0.142,agricultural soil
+ENVO:01001616,10,0.119,bare soil
+ENVO:03605003,10,0.119,epiphyton
+ENVO:00002243,10,0.119,histosol
+ENVO:00005761,10,0.119,meadow soil

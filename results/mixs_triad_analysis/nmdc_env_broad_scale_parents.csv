@@ -1,0 +1,65 @@
+parent_term,count,label
+ENVO:01000254,8378,environmental system
+RO:0002577,8378,system
+ENVO:00000428,8238,biome
+ENVO:01001110,8238,ecosystem
+ENVO:01000813,8238,astronomical body part
+ENVO:01000997,6900,environmental system determined by a quality
+ENVO:00000446,6808,terrestrial biome
+ENVO:01001790,6808,terrestrial ecosystem
+ENVO:01001705,1830,temperate environment
+ENVO:01001831,1830,temperate biome
+ENVO:01000175,1824,woodland biome
+ENVO:01000221,1820,temperate woodland biome
+ENVO:01001787,1287,aquatic ecosystem
+ENVO:00002030,1287,aquatic biome
+ENVO:00000873,995,freshwater biome
+ENVO:01001789,995,freshwater ecosystem
+ENVO:01001828,887,anthropised ecosystem
+ENVO:01000313,887,anthropogenic environment
+ENVO:01000219,762,anthropogenic terrestrial biome
+ENVO:01000253,750,freshwater river biome
+ENVO:01001244,712,cropland ecosystem
+ENVO:01000245,712,cropland biome
+ENVO:01000320,292,marine environment
+ENVO:00000447,292,marine biome
+ENVO:01001788,292,marine ecosystem
+ENVO:01000033,291,oceanic pelagic zone biome
+ENVO:01000023,291,marine pelagic biome
+ENVO:01000036,290,oceanic mesopelagic zone biome
+ENVO:01001000,265,environmental system determined by an organism
+ENVO:01000252,153,freshwater lake biome
+ENVO:01001001,140,plant-associated environment
+ENVO:01001055,125,environment associated with an animal part or small animal
+ENVO:01000658,125,dense settlement
+ENVO:01001002,125,animal-associated environment
+ENVO:01000248,125,dense settlement biome
+ENVO:01001829,125,human settlement
+ENVO:01000249,125,urban biome
+ENVO:01001206,122,grassland ecosystem
+ENVO:01000177,122,grassland biome
+ENVO:03605008,92,freshwater stream biome
+ENVO:03605009,92,freshwater stream ecosystem
+ENVO:01001442,56,agriculture
+ENVO:01001436,56,planned environmental usage process
+ENVO:02500027,56,anthropogenic environmental process
+ENVO:02500000,56,environmental system process
+BFO:0000015,56,process
+ENVO:01001431,56,land use process
+OBI:0000011,56,planned process
+ENVO:01000174,53,forest biome
+ENVO:01001243,53,forest ecosystem
+ENVO:01001837,18,subalpine biome
+ENVO:01000176,12,shrubland biome
+ENVO:01000196,11,coniferous forest biome
+ENVO:01000433,11,needleleaf forest
+ENVO:01000216,6,montane shrubland biome
+ENVO:01000215,6,temperate shrubland biome
+ENVO:01001836,6,montane biome
+ENVO:01000178,4,savanna biome
+ENVO:01000189,4,temperate savanna biome
+ENVO:01000247,2,rangeland biome
+ENVO:01000024,1,marine benthic biome
+ENVO:01000029,1,marine reef biome
+ENVO:01000049,1,marine coral reef biome
+ENVO:01000037,1,oceanic bathypelagic zone biome

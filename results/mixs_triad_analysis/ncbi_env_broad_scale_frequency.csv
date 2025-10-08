@@ -1,0 +1,141 @@
+term,count,percentage,label
+ENVO:00000428,44592,9.846,biome
+ENVO:00001998,19297,4.261,soil
+ENVO:00000446,17667,3.901,terrestrial biome
+ENVO:00000447,16334,3.607,marine biome
+ENVO:00002030,12935,2.856,aquatic biome
+ENVO:00000114,12300,2.716,agricultural field
+ENVO:00000890,11044,2.439,small river biome
+ENVO:00000029,9807,2.165,watercourse
+ENVO:01000020,9638,2.128,estuarine biome
+ENVO:01000174,7915,1.748,forest biome
+ENVO:00002046,7062,1.559,activated sludge
+ENVO:00000015,7019,1.55,ocean
+ENVO:00000150,6685,1.476,coral reef
+ENVO:00000111,5905,1.304,forested area
+ENVO:01000198,5790,1.278,mixed forest biome
+ENVO:00000051,5536,1.222,hot spring
+ENVO:00000873,5531,1.221,freshwater biome
+ENVO:00000020,5480,1.21,lake
+ENVO:00000241,5463,1.206,tidal mudflat
+ENVO:01000313,5389,1.19,anthropogenic environment
+ENVO:00000078,5144,1.136,farm
+ENVO:00002007,4955,1.094,sediment
+ENVO:01001055,4485,0.99,environment associated with an animal part or small animal
+ENVO:01000245,4410,0.974,cropland biome
+ENVO:00002011,4225,0.933,fresh water
+ENVO:00002006,4139,0.914,liquid water
+ENVO:01000177,4017,0.887,grassland biome
+ENVO:01000249,3953,0.873,urban biome
+ENVO:01000219,3825,0.845,anthropogenic terrestrial biome
+ENVO:00000016,3800,0.839,sea
+ENVO:01001805,3674,0.811,temperate forest
+ENVO:00000533,3635,0.803,landfill
+ENVO:01000024,3631,0.802,marine benthic biome
+ENVO:00000109,3354,0.741,woodland area
+ENVO:01000048,3182,0.703,ocean biome
+ENVO:00000021,3131,0.691,freshwater lake
+ENVO:01000248,3063,0.676,dense settlement biome
+ENVO:01000181,3004,0.663,mangrove biome
+ENVO:01000253,2819,0.622,freshwater river biome
+ENVO:00000035,2808,0.62,marsh
+ENVO:00002259,2601,0.574,agricultural soil
+ENVO:03600087,2503,0.553,greenhouse
+ENVO:01000206,2390,0.528,temperate
+ENVO:01001811,2362,0.522,temperate grassland
+ENVO:01001004,2329,0.514,groundwater
+ENVO:01000179,2324,0.513,desert biome
+ENVO:00000022,2315,0.511,river
+ENVO:01000030,2209,0.488,marine hydrothermal vent biome
+ENVO:00000172,2145,0.474,sandy desert
+ENVO:00000077,2129,0.47,agricultural ecosystem
+ENVO:01001246,2125,0.469,agricultural process
+ENVO:01001033,2095,0.463,digestive tract environment
+ENVO:00000100,2072,0.458,valley
+ENVO:00002149,2047,0.452,sea water
+ENVO:01000254,2040,0.45,environmental system
+ENVO:00000891,2000,0.442,large freshwater lake biome
+ENVO:01000892,1985,0.438,area of cropland
+ENVO:00002001,1957,0.432,waste water
+ENVO:01001406,1843,0.407,laboratory facility
+ENVO:00000045,1748,0.386,estuary
+ENVO:00000011,1706,0.377,garden
+ENVO:00002123,1640,0.362,bioreactor
+ENVO:00000167,1612,0.356,bar
+ENVO:01001831,1602,0.354,temperate biome
+ENVO:01001838,1564,0.345,arid biome
+ENVO:00002200,1503,0.332,sea ice
+ENVO:01000023,1500,0.331,marine pelagic biome
+ENVO:01000311,1483,0.327,cultivated environment
+ENVO:2100002,1462,0.323,intestine environment
+ENVO:01000252,1374,0.303,freshwater lake biome
+ENVO:01000320,1357,0.3,marine environment
+ENVO:01000352,1341,0.296,field
+ENVO:00002173,1320,0.291,hospital
+ENVO:01001405,1258,0.278,laboratory environment
+ENVO:01000035,1244,0.275,oceanic epipelagic zone biome
+ENVO:00000266,1169,0.258,pasture
+ENVO:01000204,1129,0.249,tropical
+ENVO:01000175,1121,0.248,woodland biome
+ENVO:2000004,1107,0.244,algal bloom
+ENVO:00000033,1095,0.242,pond
+ENVO:01000339,1084,0.239,polar biome
+ENVO:01000250,1079,0.238,subpolar coniferous forest biome
+ENVO:01001833,1045,0.231,mediterranean biome
+ENVO:00002150,1028,0.227,coastal sea water
+ENVO:00000044,1010,0.223,peatland
+ENVO:01000193,996,0.22,temperate grassland biome
+ENVO:00000098,975,0.215,island
+ENVO:01000772,932,0.206,rural area
+ENVO:00010483,919,0.203,environmental material
+ENVO:03501217,888,0.196,tissue paper
+ENVO:01001044,887,0.196,soil environment
+ENVO:00001999,883,0.195,marine water body
+ENVO:00000296,880,0.194,rice field
+ENVO:01000221,861,0.19,temperate woodland biome
+ENVO:01001790,855,0.189,terrestrial ecosystem
+ENVO:01001001,853,0.188,plant-associated environment
+ENVO:00000130,804,0.178,rocky reef
+ENVO:2100000,783,0.173,anatomical entity environment
+ENVO:00000316,776,0.171,intertidal zone
+ENVO:0010001,770,0.17,anthropogenic environmental material
+ENVO:00002044,767,0.169,sludge
+ENVO:01000200,751,0.166,tropical broadleaf forest biome
+ENVO:00005801,745,0.165,rhizosphere
+ENVO:00000300,736,0.163,scrubland area
+ENVO:00000081,715,0.158,mountain
+ENVO:00000215,711,0.157,hydrothermal vent
+ENVO:03605007,687,0.152,freshwater stream
+ENVO:00002003,668,0.148,fecal material
+ENVO:00000260,647,0.143,prairie
+ENVO:01000230,643,0.142,arid
+ENVO:01000739,637,0.141,habitat
+ENVO:00000367,633,0.14,IUCN national park
+ENVO:00000070,629,0.139,human construction
+ENVO:01001002,623,0.138,animal-associated environment
+ENVO:01000548,622,0.137,eutrophic lake
+ENVO:01000687,621,0.137,coast
+ENVO:00005750,618,0.136,grassland soil
+ENVO:00000057,609,0.134,mangrove swamp
+ENVO:01001000,605,0.134,environmental system determined by an organism
+ENVO:00000023,603,0.133,stream
+ENVO:01001020,597,0.132,hypersaline lake
+ENVO:01001834,597,0.132,subpolar biome
+ENVO:01000635,593,0.131,planetary landmass
+ENVO:00000291,574,0.127,drainage basin
+ENVO:00000115,554,0.122,orchard
+ENVO:00002186,553,0.122,contaminated water
+ENVO:00000108,551,0.122,meadow ecosystem
+ENVO:00000449,543,0.12,drinking water reservoir
+ENVO:01000297,538,0.119,freshwater river
+ENVO:00002261,535,0.118,forest soil
+ENVO:01001794,526,0.116,temperate broadleaf forest
+ENVO:00000856,524,0.116,city
+ENVO:01000036,511,0.113,oceanic mesopelagic zone biome
+ENVO:00000261,505,0.112,savanna
+ENVO:01000155,482,0.106,organic material
+ENVO:00002129,479,0.106,anaerobic sludge
+ENVO:01000196,466,0.103,coniferous forest biome
+ENVO:01000480,462,0.102,glass
+ENVO:00002043,459,0.101,wastewater treatment plant
+ENVO:00000063,457,0.101,water body
