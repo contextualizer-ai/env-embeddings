@@ -32,6 +32,7 @@ dependencies = [
   "pymongo>=3.13.0",
   "scikit-learn>=1.7.2",
   "scipy>=1.15.3",
+  "oaklib>=0.6.23",
 ]
 
 [dependency-groups]
@@ -126,7 +127,7 @@ ignore_missing_imports = true
 
 # Ref.: https://fpgmaas/deptry
 [tool.deptry]
-per_rule_ignores = {DEP002 = ["linkml-runtime", "numpy", "requests-cache", "global-land-mask"], DEP003 = ["typing_extensions"]}
+per_rule_ignores = {DEP002 = ["linkml-runtime", "numpy", "requests-cache", "global-land-mask", "oaklib"], DEP003 = ["typing_extensions"]}
 
 # Ref.: https://github.com/codespell-project/codespell
 [tool.codespell]
