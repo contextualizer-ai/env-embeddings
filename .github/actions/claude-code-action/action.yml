@@ -139,6 +139,7 @@ runs:
             -p \
             --verbose \
             --output-format stream-json \
+            --model anthropic/claude-sonnet \
             "$(cat ${{ env.PROMPT_PATH }})" \
             ${{ inputs.allowed_tools != '' && format('--allowedTools "{0}"', inputs.allowed_tools) || '' }}
         else
@@ -147,6 +148,7 @@ runs:
             -p \
             --verbose \
             --output-format stream-json \
+            --model anthropic/claude-sonnet \
             "$(cat ${{ env.PROMPT_PATH }})" \
             ${{ inputs.allowed_tools != '' && format('--allowedTools "{0}"', inputs.allowed_tools) || '' }} | tee output.txt
 
