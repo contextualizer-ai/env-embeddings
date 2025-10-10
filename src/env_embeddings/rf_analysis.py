@@ -170,6 +170,7 @@ def train_rf_model(
         max_depth=max_depth,
         min_samples_split=2,
         min_samples_leaf=1,
+        class_weight="balanced",  # Handle class imbalance by weighting inversely to frequency
         random_state=RANDOM_STATE,
         n_jobs=-1,
     )
@@ -284,11 +285,19 @@ def analyze_source(
     for scale in ENVO_SCALES:
         print(f"\n  {scale}...")
 
-        # Filter rare classes
-        df_scale = filter_rare_classes(df, scale, min_samples_per_class)
+        # NOTE: Rare class filtering disabled to preserve full ENVO expressiveness
+        # class_weight='balanced' in RandomForestClassifier handles class imbalance instead
+        # Uncomment below to re-enable filtering if needed:
+        # df_scale = filter_rare_classes(df, scale, min_samples_per_class)
+        # if len(df_scale) == 0:
+        #     print("    ✗ No data remaining after filtering")
+        #     continue
+
+        # Use full dataset without filtering
+        df_scale = df
 
         if len(df_scale) == 0:
-            print("    ✗ No data remaining after filtering")
+            print("    ✗ No data in scale")
             continue
 
         # Prepare feature matrix and target
