@@ -1,0 +1,1036 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://contextualizerai.github.io/env-embeddings/MISSING_ISSUES_ANALYSIS/">
+      
+      
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.21">
+    
+    
+      
+        <title>Missing Issues Analysis: RF Enhancements - env-embeddings</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.2a3383ac.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../css/ansi-colours.css">
+    
+      <link rel="stylesheet" href="../css/jupyter-cells.css">
+    
+      <link rel="stylesheet" href="../css/pandas-dataframe.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#missing-issues-analysis-rf-enhancements" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="env-embeddings" class="md-header__button md-logo" aria-label="env-embeddings" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            env-embeddings
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Missing Issues Analysis: RF Enhancements
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/contextualizerai/env-embeddings" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.0.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="env-embeddings" class="md-nav__button md-logo" aria-label="env-embeddings" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    env-embeddings
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/contextualizerai/env-embeddings" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.0.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Home
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      Summary
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-exists-vs-whats-missing" class="md-nav__link">
+    <span class="md-ellipsis">
+      What Exists vs What's Missing
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="What Exists vs What&#39;s Missing">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#what-is-covered-issue-49" class="md-nav__link">
+    <span class="md-ellipsis">
+      ✅ What IS Covered (Issue #49)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#what-is-not-covered" class="md-nav__link">
+    <span class="md-ellipsis">
+      ❌ What is NOT Covered
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="❌ What is NOT Covered">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#missing-issue-1-combinedjoint-prediction" class="md-nav__link">
+    <span class="md-ellipsis">
+      Missing Issue #1: Combined/Joint Prediction
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#missing-issue-2-ontology-aware-evaluation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Missing Issue #2: Ontology-Aware Evaluation
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Missing Issue #2: Ontology-Aware Evaluation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#2a-hierarchy-based-partial-credit" class="md-nav__link">
+    <span class="md-ellipsis">
+      2a. Hierarchy-based Partial Credit
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2b-semantic-similarity" class="md-nav__link">
+    <span class="md-ellipsis">
+      2b. Semantic Similarity
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2c-taxonomic-level-scoring" class="md-nav__link">
+    <span class="md-ellipsis">
+      2c. Taxonomic Level Scoring
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#proposed-new-issues" class="md-nav__link">
+    <span class="md-ellipsis">
+      Proposed New Issues
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Proposed New Issues">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#issue-multi-output-random-forest-for-joint-triad-prediction" class="md-nav__link">
+    <span class="md-ellipsis">
+      Issue: Multi-Output Random Forest for Joint Triad Prediction
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#issue-ontology-aware-evaluation-metrics-for-envo-predictions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Issue: Ontology-Aware Evaluation Metrics for ENVO Predictions
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#issue-analyze-rf-feature-importance-across-triad-components" class="md-nav__link">
+    <span class="md-ellipsis">
+      Issue: Analyze RF Feature Importance Across Triad Components
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#priority-ranking" class="md-nav__link">
+    <span class="md-ellipsis">
+      Priority Ranking
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Priority Ranking">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#high-priority" class="md-nav__link">
+    <span class="md-ellipsis">
+      High Priority
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#medium-priority" class="md-nav__link">
+    <span class="md-ellipsis">
+      Medium Priority
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lower-priority" class="md-nav__link">
+    <span class="md-ellipsis">
+      Lower Priority
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#recommended-next-steps" class="md-nav__link">
+    <span class="md-ellipsis">
+      Recommended Next Steps
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Recommended Next Steps">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#option-1-add-to-issue-49-current-prbranch" class="md-nav__link">
+    <span class="md-ellipsis">
+      Option 1: Add to Issue #49 (Current PR/Branch)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#option-2-create-separate-issues-better" class="md-nav__link">
+    <span class="md-ellipsis">
+      Option 2: Create Separate Issues (Better)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#option-3-milestone-based" class="md-nav__link">
+    <span class="md-ellipsis">
+      Option 3: Milestone-Based
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#technical-implementation-notes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Technical Implementation Notes
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Technical Implementation Notes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ontology-aware-scoring" class="md-nav__link">
+    <span class="md-ellipsis">
+      Ontology-Aware Scoring
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#multi-output-rf" class="md-nav__link">
+    <span class="md-ellipsis">
+      Multi-Output RF
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#feature-importance-comparison" class="md-nav__link">
+    <span class="md-ellipsis">
+      Feature Importance Comparison
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="missing-issues-analysis-rf-enhancements">Missing Issues Analysis: RF Enhancements</h1>
+<h2 id="summary">Summary</h2>
+<p>After reviewing all issues, <strong>NONE</strong> of the following enhancements are tracked:</p>
+<ol>
+<li>❌ RF performance on other two fields (env_broad_scale, env_medium)</li>
+<li>❌ RF performance on combinations of fields (pairs or all three combined)</li>
+<li>❌ Partial success scoring using ontology hierarchy (parent/child relationships)</li>
+</ol>
+<h2 id="what-exists-vs-whats-missing">What Exists vs What's Missing</h2>
+<h3 id="what-is-covered-issue-49">✅ What IS Covered (Issue #49)</h3>
+<p><strong>Issue #49</strong> ("Apply Random Forest ENVO predictor to NMDC complete dataset") addresses:
+- Running RF on NMDC complete dataset (8,121 samples)
+- Expanding from <code>env_local_scale</code> only to <strong>all 3 MIxS scales</strong>:
+  - <code>env_broad_scale</code>
+  - <code>env_local_scale</code>
+  - <code>env_medium</code>
+- Training <strong>3 separate classifiers</strong> (one per scale)
+- Comparing RF to k-NN baseline</p>
+<p><strong>Success criteria from #49:</strong></p>
+<pre><code>- [ ] Trains 3 classifiers: broad_scale, local_scale, medium
+- [ ] Reports accuracy, precision, recall, F1 per scale
+- [ ] Feature importance analysis for all 3 scales
+- [ ] Performance comparison: RF vs k-NN
+</code></pre>
+<p>This covers <strong>your question #1</strong> ✅</p>
+<h3 id="what-is-not-covered">❌ What is NOT Covered</h3>
+<h4 id="missing-issue-1-combinedjoint-prediction">Missing Issue #1: Combined/Joint Prediction</h4>
+<p><strong>Your question #2:</strong> "How does it perform on combinations of the three fields?"</p>
+<p><strong>Not addressed:</strong> Training models that predict:
+- <strong>Pairs:</strong>
+  - broad_scale + local_scale jointly
+  - broad_scale + medium jointly
+  - local_scale + medium jointly
+- <strong>All three:</strong> broad_scale + local_scale + medium as a single multi-output prediction</p>
+<p><strong>Current approach (Issue #49):</strong> 3 <strong>independent</strong> classifiers, each predicting one scale</p>
+<p><strong>Missing approach:</strong>
+- <strong>Multi-output RandomForest</strong> - Predict all 3 scales simultaneously
+- <strong>Chained classifiers</strong> - Use predicted broad_scale as feature for predicting local_scale
+- <strong>Joint encoding</strong> - Treat triad as a single categorical variable (e.g., "ENVO:X|ENVO:Y|ENVO:Z")</p>
+<p><strong>Research questions:</strong>
+- Does predicting all 3 together improve accuracy vs independent models?
+- Are certain triads more predictable from satellite imagery?
+- Can we use hierarchical constraints (e.g., if broad=marine, local can't be desert)?</p>
+<hr />
+<h4 id="missing-issue-2-ontology-aware-evaluation">Missing Issue #2: Ontology-Aware Evaluation</h4>
+<p><strong>Your question #3:</strong> "Can we consider predictions of the parent or a child of the asserted value a 'partial success'?"</p>
+<p><strong>Not addressed:</strong>
+- Using ENVO ontology hierarchy in evaluation
+- Partial credit scoring
+- Semantic similarity metrics</p>
+<p><strong>Current evaluation (Issue #49):</strong> Binary exact match
+- Predicted <code>ENVO:00000447</code> vs True <code>ENVO:00000447</code> → ✅ Correct (1.0)
+- Predicted <code>ENVO:00000448</code> vs True <code>ENVO:00000447</code> → ❌ Wrong (0.0)</p>
+<p><strong>Missing evaluation approaches:</strong></p>
+<h5 id="2a-hierarchy-based-partial-credit">2a. Hierarchy-based Partial Credit</h5>
+<p>Use ENVO ontology structure to assign partial scores:</p>
+<pre><code class="language-python">def ontology_aware_score(predicted, true, ontology):
+    &quot;&quot;&quot;
+    Score based on ontology distance.
+
+    Examples:
+        - Exact match: 1.0
+        - Parent/child (1 hop): 0.75
+        - Grandparent/grandchild (2 hops): 0.5
+        - Sibling (same parent): 0.5
+        - Distant relative: 0.25
+        - Unrelated: 0.0
+    &quot;&quot;&quot;
+    if predicted == true:
+        return 1.0
+
+    distance = ontology.shortest_path(predicted, true)
+    relationship = ontology.get_relationship(predicted, true)
+
+    if relationship == &quot;parent&quot; or relationship == &quot;child&quot;:
+        return 0.75
+    elif relationship == &quot;sibling&quot;:
+        return 0.5
+    elif distance &lt;= 3:
+        return 0.25
+    else:
+        return 0.0
+</code></pre>
+<p><strong>Example scenarios:</strong></p>
+<pre><code>True: ENVO:00000447 (marine biome)
+  ├─ Predicted ENVO:00000447 (marine biome) → 1.0 ✅ exact
+  ├─ Predicted ENVO:01000048 (coastal sea water) → 0.75 ⚠️ child term
+  ├─ Predicted ENVO:00000428 (biome) → 0.75 ⚠️ parent term
+  ├─ Predicted ENVO:01000174 (terrestrial biome) → 0.5 ⚠️ sibling
+  └─ Predicted ENVO:00002011 (soil) → 0.0 ❌ unrelated
+</code></pre>
+<h5 id="2b-semantic-similarity">2b. Semantic Similarity</h5>
+<p>Use ENVO embedding cosine similarity:</p>
+<pre><code class="language-python">def semantic_similarity_score(predicted, true, envo_embeddings):
+    &quot;&quot;&quot;
+    Score based on embedding similarity between predicted and true terms.
+
+    Examples:
+        - Cosine similarity &gt; 0.9: High similarity (partial success)
+        - Cosine similarity 0.7-0.9: Moderate similarity
+        - Cosine similarity &lt; 0.7: Low similarity (failure)
+    &quot;&quot;&quot;
+    pred_emb = envo_embeddings[predicted]
+    true_emb = envo_embeddings[true]
+
+    similarity = cosine_similarity(pred_emb, true_emb)
+
+    # Convert similarity to score
+    if similarity &gt; 0.9:
+        return 0.9
+    elif similarity &gt; 0.7:
+        return 0.6
+    else:
+        return 0.0
+</code></pre>
+<h5 id="2c-taxonomic-level-scoring">2c. Taxonomic Level Scoring</h5>
+<p>Different penalties for errors at different granularity levels:</p>
+<pre><code class="language-python"># For env_broad_scale (coarse) - stricter evaluation
+#   Wrong biome = major error
+
+# For env_local_scale (fine) - more lenient
+#   Wrong local term but correct parent = minor error
+
+# Weighted average:
+#   broad_scale_score * 0.4 +
+#   medium_score * 0.3 +
+#   local_scale_score * 0.3
+</code></pre>
+<hr />
+<h2 id="proposed-new-issues">Proposed New Issues</h2>
+<h3 id="issue-multi-output-random-forest-for-joint-triad-prediction">Issue: Multi-Output Random Forest for Joint Triad Prediction</h3>
+<p><strong>Title:</strong> Train multi-output RF to predict environmental triad jointly (broad + local + medium)</p>
+<p><strong>Description:</strong>
+Currently (Issue #49) we train 3 independent Random Forest classifiers. Test whether predicting all 3 MIxS scales <strong>simultaneously</strong> improves performance.</p>
+<p><strong>Approaches:</strong>
+1. <strong>Multi-output RandomForestClassifier</strong> - sklearn native support
+2. <strong>Chained classifiers</strong> - Use broad_scale prediction as feature for medium/local
+3. <strong>Joint encoding</strong> - Treat triad as single 553³ categorical space</p>
+<p><strong>Research questions:</strong>
+- Does joint prediction improve accuracy?
+- Which triads are most predictable from GE embeddings?
+- Can hierarchical constraints help (e.g., marine broad → no desert local)?</p>
+<p><strong>Comparison metrics:</strong>
+- Independent RF (3 models) vs Multi-output RF (1 model)
+- Accuracy per scale
+- Triad-level accuracy (all 3 correct)
+- Execution time
+- Feature importance differences</p>
+<p><strong>Deliverables:</strong>
+- <code>notebooks/random_forest_joint_triad_prediction.ipynb</code>
+- Comparison table: independent vs joint
+- Visualization: triad confusion matrix</p>
+<p><strong>Related:</strong> #49 (independent classifiers), #31 (original classifier idea)</p>
+<hr />
+<h3 id="issue-ontology-aware-evaluation-metrics-for-envo-predictions">Issue: Ontology-Aware Evaluation Metrics for ENVO Predictions</h3>
+<p><strong>Title:</strong> Implement partial credit scoring using ENVO hierarchy (parent/child relationships)</p>
+<p><strong>Description:</strong>
+Current RF evaluation uses binary exact match (correct/incorrect). This penalizes semantically close predictions equally with completely wrong predictions.</p>
+<p><strong>Example problem:</strong></p>
+<pre><code>True: ENVO:00000447 (marine biome)
+Predicted: ENVO:00000428 (biome) [parent term]
+Current score: 0.0 (wrong)
+Better score: 0.75 (close - parent term)
+</code></pre>
+<p><strong>Implementation tasks:</strong></p>
+<ol>
+<li><strong>ENVO Ontology Integration</strong></li>
+<li>Use <code>pronto</code> or <code>owlready2</code> to load ENVO.owl</li>
+<li>Build graph structure for relationship queries</li>
+<li>
+<p>Cache ontology in repo or download on-demand</p>
+</li>
+<li>
+<p><strong>Hierarchy-Based Scoring</strong></p>
+</li>
+<li>Exact match: 1.0</li>
+<li>Parent/child (1 hop): 0.75</li>
+<li>Grandparent/grandchild or sibling: 0.5</li>
+<li>Distant (3+ hops): 0.25</li>
+<li>
+<p>Unrelated: 0.0</p>
+</li>
+<li>
+<p><strong>Semantic Similarity Scoring</strong></p>
+</li>
+<li>Use ENVO embeddings (already have 1536-dim vectors)</li>
+<li>Cosine similarity between predicted and true term</li>
+<li>
+<p>Scale to 0-1 score</p>
+</li>
+<li>
+<p><strong>New Metrics</strong></p>
+</li>
+<li><code>hierarchical_accuracy</code>: Mean hierarchy-aware score</li>
+<li><code>semantic_accuracy</code>: Mean embedding-similarity score</li>
+<li><code>top_k_hierarchical</code>: True term in top-k by hierarchy distance</li>
+<li>
+<p>Per-scale analysis: Which scale benefits most from partial credit?</p>
+</li>
+<li>
+<p><strong>Visualization</strong></p>
+</li>
+<li>Heatmap: True vs Predicted with hierarchy coloring</li>
+<li>Scatter: Exact accuracy vs hierarchical accuracy per class</li>
+<li>Examples: "Close misses" that get partial credit</li>
+</ol>
+<p><strong>Use cases:</strong>
+- More nuanced evaluation of RF performance
+- Identify when model is "close" vs "completely wrong"
+- Inform active learning (focus on truly confused samples, not close calls)
+- Better comparison to k-NN (which may predict related terms)</p>
+<p><strong>Deliverables:</strong>
+- <code>src/env_embeddings/ontology_metrics.py</code> - Scoring functions
+- Updated RF notebook with hierarchy-aware metrics
+- Comparison: exact vs hierarchical accuracy
+- Analysis: Which ENVO terms have closest "near misses"?</p>
+<p><strong>Related:</strong> #49 (RF training), #31 (original classifier), OLS integration in codebase</p>
+<hr />
+<h3 id="issue-analyze-rf-feature-importance-across-triad-components">Issue: Analyze RF Feature Importance Across Triad Components</h3>
+<p><strong>Title:</strong> Compare which GE embedding dimensions predict broad vs local vs medium scales</p>
+<p><strong>Description:</strong>
+Issue #49 trains 3 independent RF classifiers (broad, local, medium). Analyze whether different satellite features predict different ENVO scales.</p>
+<p><strong>Research questions:</strong>
+- Do different GE embedding dimensions matter for different scales?
+- Is broad_scale predicted by coarse features (low-freq bands)?
+- Is local_scale predicted by fine features (high-freq bands)?
+- Can we prune features per-scale for efficiency?</p>
+<p><strong>Analysis tasks:</strong></p>
+<ol>
+<li><strong>Feature Importance Comparison</strong></li>
+<li>Plot top 20 features for each scale side-by-side</li>
+<li>Identify unique vs shared important dimensions</li>
+<li>
+<p>Correlation: broad_importance vs local_importance</p>
+</li>
+<li>
+<p><strong>Dimension Specialization</strong></p>
+</li>
+<li>Which dimensions predict only broad? only local? only medium?</li>
+<li>
+<p>Which are universal (important for all 3)?</p>
+</li>
+<li>
+<p><strong>Earth Engine Band Mapping</strong></p>
+</li>
+<li>Map GE_dim_0 through GE_dim_63 to actual EE bands</li>
+<li>Identify: Are blue bands more important than IR? NDVI vs NDWI?</li>
+<li>
+<p>Physical interpretation of top features</p>
+</li>
+<li>
+<p><strong>Efficiency Analysis</strong></p>
+</li>
+<li>Can we train with fewer features per scale?</li>
+<li>Trade-off: accuracy vs speed</li>
+</ol>
+<p><strong>Deliverables:</strong>
+- Feature importance comparison plots
+- Venn diagram: shared vs unique important features
+- Table: Top features per scale with EE band interpretation
+- Recommendation: Keep all 64 dims or specialize per scale?</p>
+<p><strong>Related:</strong> #49 (trains 3 classifiers), EE embedding code</p>
+<hr />
+<h2 id="priority-ranking">Priority Ranking</h2>
+<h3 id="high-priority">High Priority</h3>
+<ol>
+<li><strong>Ontology-Aware Evaluation</strong> ⭐⭐⭐</li>
+<li>Most scientifically valuable</li>
+<li>Relatively easy to implement (ENVO already integrated)</li>
+<li>Improves evaluation quality immediately</li>
+<li>No retraining needed - just scoring changes</li>
+</ol>
+<h3 id="medium-priority">Medium Priority</h3>
+<ol>
+<li><strong>Multi-Output RF</strong> ⭐⭐</li>
+<li>Interesting research question</li>
+<li>Moderate implementation effort</li>
+<li>May or may not improve accuracy (experiment needed)</li>
+<li>
+<p>Requires retraining models</p>
+</li>
+<li>
+<p><strong>Feature Importance Analysis</strong> ⭐⭐</p>
+</li>
+<li>Good for interpretation</li>
+<li>Easy to add to existing #49 work</li>
+<li>Helps understand what satellite sees</li>
+<li>No additional training needed</li>
+</ol>
+<h3 id="lower-priority">Lower Priority</h3>
+<ol>
+<li><strong>Pair-wise Prediction</strong> ⭐</li>
+<li>Less clear value over independent or joint</li>
+<li>More complex to evaluate (which pairs matter?)</li>
+<li>Could be subset of multi-output work</li>
+</ol>
+<hr />
+<h2 id="recommended-next-steps">Recommended Next Steps</h2>
+<h3 id="option-1-add-to-issue-49-current-prbranch">Option 1: Add to Issue #49 (Current PR/Branch)</h3>
+<p>Expand #49 success criteria to include:
+- [x] Train 3 independent classifiers
+- [ ] Implement ontology-aware scoring
+- [ ] Compare exact vs hierarchical accuracy
+- [ ] Analyze feature importance across scales</p>
+<p><strong>Pros:</strong> Keep work consolidated, faster iteration
+<strong>Cons:</strong> Makes #49 larger in scope</p>
+<h3 id="option-2-create-separate-issues-better">Option 2: Create Separate Issues (Better)</h3>
+<p>Keep #49 focused on basic RF training, create new issues for:
+- Issue #50: Ontology-aware evaluation (post #49)
+- Issue #51: Multi-output joint triad prediction (post #49)
+- Issue #52: Feature importance comparison (during/after #49)</p>
+<p><strong>Pros:</strong> Clear separation of concerns, parallel work possible
+<strong>Cons:</strong> More issues to track</p>
+<h3 id="option-3-milestone-based">Option 3: Milestone-Based</h3>
+<p>Create milestone "RF Enhancements" with sub-issues:
+- Milestone: Advanced RF Analysis
+  - #49: Basic 3-classifier training ← current
+  - #50: Ontology evaluation
+  - #51: Joint prediction
+  - #52: Feature analysis</p>
+<p><strong>Pros:</strong> Shows progression, organized roadmap
+<strong>Cons:</strong> Requires milestone management</p>
+<hr />
+<h2 id="technical-implementation-notes">Technical Implementation Notes</h2>
+<h3 id="ontology-aware-scoring">Ontology-Aware Scoring</h3>
+<p><strong>Dependencies needed:</strong></p>
+<pre><code class="language-python"># Add to pyproject.toml
+pronto = &quot;^2.5.0&quot;  # OBO/OWL parsing
+networkx = &quot;^3.0&quot;  # Graph operations (already have?)
+</code></pre>
+<p><strong>Code structure:</strong></p>
+<pre><code class="language-python"># src/env_embeddings/ontology_metrics.py
+from pronto import Ontology
+import networkx as nx
+
+class ENVOHierarchy:
+    def __init__(self, owl_path=&quot;data/envo.owl&quot;):
+        self.ontology = Ontology(owl_path)
+        self.graph = self._build_graph()
+
+    def distance(self, term1, term2):
+        &quot;&quot;&quot;Shortest path in ontology graph&quot;&quot;&quot;
+        return nx.shortest_path_length(self.graph, term1, term2)
+
+    def hierarchical_score(self, predicted, true):
+        &quot;&quot;&quot;Score based on ontology distance&quot;&quot;&quot;
+        if predicted == true:
+            return 1.0
+
+        try:
+            dist = self.distance(predicted, true)
+            if dist == 1:
+                return 0.75  # parent/child
+            elif dist == 2:
+                return 0.5   # grandparent or sibling
+            elif dist &lt;= 3:
+                return 0.25
+            else:
+                return 0.0
+        except nx.NetworkXNoPath:
+            return 0.0  # unrelated branches
+
+# Usage in notebook:
+envo_hierarchy = ENVOHierarchy()
+scores = [envo_hierarchy.hierarchical_score(pred, true)
+          for pred, true in zip(y_pred, y_test)]
+hierarchical_accuracy = np.mean(scores)
+</code></pre>
+<h3 id="multi-output-rf">Multi-Output RF</h3>
+<p><strong>sklearn native support:</strong></p>
+<pre><code class="language-python">from sklearn.ensemble import RandomForestClassifier
+from sklearn.multioutput import MultiOutputClassifier
+
+# Create targets matrix (n_samples, 3)
+y_multi = df[['env_broad_scale', 'env_local_scale', 'env_medium']].values
+
+# Train multi-output model
+rf_multi = MultiOutputClassifier(
+    RandomForestClassifier(n_estimators=100, max_depth=10)
+)
+rf_multi.fit(X_train, y_multi_train)
+
+# Predict all 3 scales at once
+y_pred_multi = rf_multi.predict(X_test)  # shape: (n_test, 3)
+
+# Evaluate per-scale and triad-level
+broad_acc = accuracy_score(y_multi_test[:, 0], y_pred_multi[:, 0])
+local_acc = accuracy_score(y_multi_test[:, 1], y_pred_multi[:, 1])
+medium_acc = accuracy_score(y_multi_test[:, 2], y_pred_multi[:, 2])
+
+# Triad-level accuracy (all 3 must match)
+triad_correct = (y_multi_test == y_pred_multi).all(axis=1)
+triad_acc = triad_correct.mean()
+</code></pre>
+<h3 id="feature-importance-comparison">Feature Importance Comparison</h3>
+<p><strong>Simple implementation in existing notebook:</strong></p>
+<pre><code class="language-python"># After training 3 classifiers in Issue #49
+
+import matplotlib.pyplot as plt
+
+fig, axes = plt.subplots(1, 3, figsize=(18, 5))
+
+for idx, (scale, clf) in enumerate([
+    ('broad_scale', rf_broad),
+    ('local_scale', rf_local),
+    ('medium', rf_medium)
+]):
+    importances = clf.feature_importances_
+    top_20 = np.argsort(importances)[-20:]
+
+    axes[idx].barh(range(20), importances[top_20])
+    axes[idx].set_title(f'Top 20 Features: {scale}')
+    axes[idx].set_xlabel('Importance')
+    axes[idx].set_ylabel('GE Dimension')
+
+plt.tight_layout()
+plt.show()
+
+# Correlation analysis
+broad_imp = rf_broad.feature_importances_
+local_imp = rf_local.feature_importances_
+medium_imp = rf_medium.feature_importances_
+
+print(f&quot;Broad-Local correlation: {np.corrcoef(broad_imp, local_imp)[0,1]:.3f}&quot;)
+print(f&quot;Broad-Medium correlation: {np.corrcoef(broad_imp, medium_imp)[0,1]:.3f}&quot;)
+print(f&quot;Local-Medium correlation: {np.corrcoef(local_imp, medium_imp)[0,1]:.3f}&quot;)
+</code></pre>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "..", "features": ["content.tabs.link"], "search": "../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.f55a23d4.min.js"></script>
+      
+    
+  </body>
+</html>
