@@ -66,52 +66,66 @@ class ONTOLOGYDistance:
     ) -> float:
         """Calculate shortest path distance between two terms in ontology.
 
-        Uses oaklib's paths() method to find all paths between terms,
-        restricted to is_a (subclass) relationships only. Returns the length
-        of the shortest path.
-
-        Args:
-            term1: First ENVO term (CURIE)
-            term2: Second ENVO term (CURIE)
-            ontology_adapter: Initialized oaklib adapter for ENVO
-
-        Returns:
-            Shortest path distance as integer (number of edges), or float('inf') if no path
-
-        Note:
-            Only follows is_a (rdfs:subClassOf) relationships. Does NOT follow
-            part_of or other relationship types.
-
-        Examples:
-            >>> # With real ENVO ontology loaded
-            >>> adapter = get_adapter("sqlite:obo:envo")  # doctest: +SKIP
-            >>> dist = ONTOLOGYDistance.calculate("ENVO:X", "ENVO:Y", adapter)  # doctest: +SKIP
-            >>> isinstance(dist, (int, float))  # doctest: +SKIP
-            True
+        Uses BFS-style graph walk to find the minimum distance via common ancestors.
+        This is more accurate than counting positions in ancestor lists.
         """
         if term1 is None or term2 is None:
             return float("inf")
+        if term1 == term2:
+            return 0
 
         try:
-            # oaklib's paths() returns all paths between two terms
-            # Each path is a tuple of nodes (term1, ..., term2)
-            # Restrict to only is_a (subclass) relationships for hierarchical scoring
-            paths = list(ontology_adapter.paths(term1, term2, predicates=["is_a"]))
+            # Build ancestor paths with distances from each term
+            # Use a dict to track minimum distance to each ancestor
+            def get_ancestor_distances(term):
+                """Get minimum distance to each ancestor using BFS."""
+                distances = {term: 0}
+                queue = [(term, 0)]
+                visited = set()
+
+                while queue:
+                    current, dist = queue.pop(0)
+                    if current in visited:
+                        continue
+                    visited.add(current)
+
+                    # Get direct parents (subClassOf relationships)
+                    parents = list(
+                        ontology_adapter.ancestors(
+                            current, reflexive=False, predicates=["rdfs:subClassOf"]
+                        )
+                    )
+
+                    for parent in parents:
+                        new_dist = dist + 1
+                        if parent not in distances or new_dist < distances[parent]:
+                            distances[parent] = new_dist
+                            queue.append((parent, new_dist))
+
+                return distances
+
+            # Get distances from both terms to their ancestors
+            dist1 = get_ancestor_distances(term1)
+            dist2 = get_ancestor_distances(term2)
+
+            # Check if one is ancestor of the other
+            if term1 in dist2:
+                return float(dist2[term1])
+            if term2 in dist1:
+                return float(dist1[term2])
+
+            # Find common ancestors and calculate total distance via LCA
+            common = set(dist1.keys()) & set(dist2.keys())
+            if not common:
+                return float("inf")
+
+            # Distance via closest common ancestor
+            min_dist = min(dist1[ancestor] + dist2[ancestor] for ancestor in common)
+            return float(min_dist)
+
         except (AttributeError, TypeError, ValueError) as e:
-            # Only catch actual oaklib query failures, not logic errors
             logger.debug(f"Error querying ontology for distance: {e}")
             return float("inf")
-
-        # Logic operations unguarded - let logic errors propagate
-        if not paths:
-            return float("inf")
-
-        # Find shortest path (minimum length)
-        shortest_path = min(paths, key=len)
-
-        # Distance is number of edges (nodes - 1)
-        distance = len(shortest_path) - 1
-        return distance if distance >= 0 else float("inf")
 
 
 class ENVOHierarchy:

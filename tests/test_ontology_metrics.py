@@ -31,8 +31,10 @@ class TestOntologyDistance:
         """Test distance calculation with mock ontology adapter."""
         # Mock oaklib adapter
         mock_adapter = Mock()
-        # paths() returns iterable of tuples representing paths
-        mock_adapter.paths = Mock(return_value=[("ENVO:child", "ENVO:parent")])
+        # Mock ancestors() to return parent for the child
+        mock_adapter.ancestors = Mock(
+            return_value=["ENVO:parent"]  # child's parent is parent
+        )
 
         distance = ONTOLOGYDistance.calculate("ENVO:child", "ENVO:parent", mock_adapter)
         assert distance == 1  # 1 hop

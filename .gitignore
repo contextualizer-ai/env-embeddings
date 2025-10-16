@@ -141,6 +141,8 @@ dmypy.json
 .idea
 # Local vscode editor config
 .vscode
+# Claude Code editor state
+.claude
 
 # Data files - keep only zipped versions
 data/*.csv
