@@ -12,7 +12,11 @@ from typing import Dict, Optional, Tuple
 import numpy as np
 import pandas as pd
 from sklearn.ensemble import RandomForestClassifier
-from sklearn.metrics import accuracy_score, classification_report
+from sklearn.metrics import (
+    accuracy_score,
+    balanced_accuracy_score,
+    classification_report,
+)
 from sklearn.model_selection import (
     StratifiedKFold,
     cross_val_score,
@@ -212,6 +216,10 @@ def train_rf_model(
     train_acc = accuracy_score(y_train, y_train_pred)
     test_acc = accuracy_score(y_test, y_test_pred)
 
+    # Balanced accuracy - better for imbalanced datasets
+    train_balanced_acc = balanced_accuracy_score(y_train, y_train_pred)
+    test_balanced_acc = balanced_accuracy_score(y_test, y_test_pred)
+
     # Adaptive cross-validation: adjust n_splits based on minimum class frequency
     # This prevents warnings when classes have fewer samples than n_splits
     unique_classes, class_counts = np.unique(y_train, return_counts=True)
@@ -239,6 +247,8 @@ def train_rf_model(
         "test_f1": test_f1,
         "train_accuracy": train_acc,
         "test_accuracy": test_acc,
+        "train_balanced_accuracy": train_balanced_acc,
+        "test_balanced_accuracy": test_balanced_acc,
         "cv_mean": cv_scores.mean(),
         "cv_std": cv_scores.std(),
         "overfitting": train_f1 - test_f1,
@@ -474,10 +484,21 @@ def analyze_source(
         X = np.vstack(df_scale["ge_embedding"].values)  # type: ignore[call-overload]
         y = df_scale[scale].values
 
-        # Train/test split
-        X_train, X_test, y_train, y_test = train_test_split(
-            X, y, test_size=test_size, random_state=RANDOM_STATE
-        )
+        # Train/test split with stratification to ensure proportional class representation
+        # Check if stratification is possible (requires at least 2 samples per class)
+        unique_classes, class_counts = np.unique(y, return_counts=True)  # type: ignore
+        min_samples = int(class_counts.min())
+
+        if min_samples >= 2:
+            # Use stratified split when all classes have at least 2 samples
+            X_train, X_test, y_train, y_test = train_test_split(
+                X, y, test_size=test_size, random_state=RANDOM_STATE, stratify=y
+            )
+        else:
+            # Fall back to random split for datasets with singleton classes
+            X_train, X_test, y_train, y_test = train_test_split(
+                X, y, test_size=test_size, random_state=RANDOM_STATE
+            )
 
         # Train and evaluate
         result = train_rf_model(X_train, y_train, X_test, y_test)
@@ -487,6 +508,7 @@ def analyze_source(
         print(
             f"    Classes: {result['n_classes']:3d} | "
             f"Test F1: {result['test_f1']:.3f} | "
+            f"Balanced Acc: {result['test_balanced_accuracy']:.3f} | "
             f"CV: {result['cv_mean']:.3f}±{result['cv_std'] * 2:.3f} | "
             f"Overfit: {result['overfitting']:+.3f}"
         )
