@@ -128,6 +128,10 @@ ignore_missing_imports = true
 module = "global_land_mask"
 ignore_missing_imports = true
 
+[[tool.mypy.overrides]]
+module = "oaklib"
+ignore_missing_imports = true
+
 # Ref.: https://fpgmaas/deptry
 [tool.deptry]
 per_rule_ignores = {DEP002 = ["linkml-runtime", "numpy", "requests-cache", "global-land-mask", "oaklib"], DEP003 = ["typing_extensions"]}

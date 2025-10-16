@@ -7,13 +7,14 @@ from satellite imagery embeddings.
 
 import ast
 from pathlib import Path
-from typing import Dict, Optional
+from typing import Dict, Optional, Tuple
 
 import numpy as np
 import pandas as pd
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import accuracy_score, classification_report
 from sklearn.model_selection import cross_val_score, train_test_split
+from scipy.spatial.distance import cosine
 
 # ENVO scales to analyze
 ENVO_SCALES = ["env_broad_scale", "env_local_scale", "env_medium"]
@@ -253,6 +254,132 @@ def filter_rare_classes(
                 print(f"      ... and {n_removed_classes - 10} more")
 
     return df_filtered
+
+
+def filter_near_identical_samples(
+    df: pd.DataFrame,
+    embedding_similarity_threshold: float = 0.995,
+    lat_long_tolerance_km: float = 0.5,
+    date_tolerance_days: int = 3,
+    report_removed: bool = True,
+) -> Tuple[pd.DataFrame, int]:
+    """Filter near-identical samples for pseudo-replication control.
+
+    SCIENTIFIC RATIONALE:
+    Including samples from the same location, time, and satellite observation
+    violates statistical independence assumptions and can inflate model metrics.
+    This function identifies likely pseudo-replicates for OPTIONAL removal.
+
+    Criteria for near-identity (all must match):
+    - Embedding cosine similarity > threshold (default 0.995 = nearly identical)
+    - Geographic distance < tolerance (default 0.5 km = same site)
+    - Collection date within tolerance days (default 3 days = same survey)
+
+    Args:
+        df: DataFrame with embeddings and location/date columns
+        embedding_similarity_threshold: Cosine similarity cutoff (0-1, default 0.995)
+        lat_long_tolerance_km: Geographic proximity in km (default 0.5)
+        date_tolerance_days: Temporal proximity in days (default 3)
+        report_removed: Whether to print removal details
+
+    Returns:
+        Tuple of (filtered_dataframe, n_removed_samples)
+
+    Examples:
+        >>> # df_filtered, n_removed = filter_near_identical_samples(df)  # doctest: +SKIP
+        >>> pass
+
+    IMPORTANT NOTES:
+    - This is a DATA QUALITY filter, NOT a performance optimization
+    - Use ONLY if pseudo-replication is suspected
+    - Default thresholds are conservative (keep more data)
+    - Recommend comparing F1 scores (not accuracy) with/without filtering
+    - Document your choice in Methods section for peer review
+    """
+    if "ge_embedding" not in df.columns:
+        raise ValueError("DataFrame must contain 'ge_embedding' column")
+
+    if len(df) == 0:
+        return df, 0
+
+    initial_count = len(df)
+    df_filtered = df.copy()
+    removed_indices = set()
+
+    # Quick haversine distance approximation (lat/long tolerance)
+    def approx_distance_km(lat1, lon1, lat2, lon2):
+        """Rough distance in km (good enough for 0.5 km tolerance)."""
+        return (
+            np.sqrt((lat2 - lat1) ** 2 + (lon2 - lon1) ** 2)  # degrees as proxy
+            * 111  # approx km per degree
+        )
+
+    # Group by rough grid cell to speed up comparisons
+    df_sorted = df_filtered.sort_values(
+        ["latitude", "longitude", "collection_date"]
+    ).reset_index(drop=True)
+
+    for i in range(len(df_sorted) - 1):
+        if i in removed_indices:
+            continue
+
+        row_i = df_sorted.iloc[i]
+        lat_i = row_i["latitude"]
+        lon_i = row_i["longitude"]
+        date_i = pd.to_datetime(row_i["collection_date"])
+        emb_i = row_i["ge_embedding"]
+
+        # Only check nearby rows
+        for j in range(i + 1, min(i + 50, len(df_sorted))):
+            if j in removed_indices:
+                continue
+
+            row_j = df_sorted.iloc[j]
+
+            # Early exit: date too different
+            date_j = pd.to_datetime(row_j["collection_date"])
+            if abs((date_j - date_i).days) > date_tolerance_days:
+                break
+
+            lat_j = row_j["latitude"]
+            lon_j = row_j["longitude"]
+
+            # Check geographic proximity
+            if approx_distance_km(lat_i, lon_i, lat_j, lon_j) > lat_long_tolerance_km:
+                continue
+
+            # Check embedding similarity
+            emb_j = row_j["ge_embedding"]
+            similarity = 1 - cosine(emb_i, emb_j)
+
+            if similarity >= embedding_similarity_threshold:
+                # Mark j for removal (keep i, remove j)
+                removed_indices.add(j)
+
+    # Keep only rows not marked for removal
+    indices_to_keep = [i for i in range(len(df_sorted)) if i not in removed_indices]
+    df_filtered = df_sorted.iloc[indices_to_keep].reset_index(drop=True)
+
+    n_removed = initial_count - len(df_filtered)
+
+    if report_removed and n_removed > 0:
+        pct_removed = n_removed / initial_count * 100
+        print("\n  Near-identical sample filtering:")
+        print(
+            f"    Removed: {n_removed} samples ({pct_removed:.1f}% of {initial_count})"
+        )
+        print("    Criteria:")
+        print(f"      - Embedding similarity ≥ {embedding_similarity_threshold}")
+        print(f"      - Geographic distance ≤ {lat_long_tolerance_km} km")
+        print(f"      - Collection date ≤ {date_tolerance_days} days apart")
+        print(
+            "\n  ⚠️  Scientific note: Removed samples likely represent pseudo-replication."
+        )
+        print(
+            "      Document this filtering decision for peer review (Methods section)."
+        )
+
+    return df_filtered, n_removed
 
 
 def analyze_source(
