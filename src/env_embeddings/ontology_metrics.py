@@ -97,19 +97,21 @@ class ONTOLOGYDistance:
             # Each path is a tuple of nodes (term1, ..., term2)
             # Restrict to only is_a (subclass) relationships for hierarchical scoring
             paths = list(ontology_adapter.paths(term1, term2, predicates=["is_a"]))
-
-            if not paths:
-                return float("inf")
-
-            # Find shortest path (minimum length)
-            shortest_path = min(paths, key=len)
-
-            # Distance is number of edges (nodes - 1)
-            distance = len(shortest_path) - 1
-            return distance if distance >= 0 else float("inf")
-        except Exception as e:
-            logger.debug(f"Error calculating distance: {e}")
+        except (AttributeError, TypeError, ValueError) as e:
+            # Only catch actual oaklib query failures, not logic errors
+            logger.debug(f"Error querying ontology for distance: {e}")
             return float("inf")
+
+        # Logic operations unguarded - let logic errors propagate
+        if not paths:
+            return float("inf")
+
+        # Find shortest path (minimum length)
+        shortest_path = min(paths, key=len)
+
+        # Distance is number of edges (nodes - 1)
+        distance = len(shortest_path) - 1
+        return distance if distance >= 0 else float("inf")
 
 
 class ENVOHierarchy:
@@ -205,8 +207,9 @@ class ENVOHierarchy:
             # Use oaklib's ancestor checking
             ancestors = self.adapter.ancestors(term, reflexive=True)
             return parent in ancestors
-        except Exception as e:
-            logger.debug(f"Error checking subclass: {e}")
+        except (AttributeError, TypeError, ValueError) as e:
+            # Only catch actual oaklib query failures, not logic errors
+            logger.debug(f"Error checking subclass in ontology: {e}")
             return False
 
 
