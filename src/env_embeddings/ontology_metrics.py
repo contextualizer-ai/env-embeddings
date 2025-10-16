@@ -67,7 +67,8 @@ class ONTOLOGYDistance:
         """Calculate shortest path distance between two terms in ontology.
 
         Uses oaklib's paths() method to find all paths between terms,
-        then returns the length of the shortest path.
+        restricted to is_a (subclass) relationships only. Returns the length
+        of the shortest path.
 
         Args:
             term1: First ENVO term (CURIE)
@@ -76,6 +77,10 @@ class ONTOLOGYDistance:
 
         Returns:
             Shortest path distance as integer (number of edges), or float('inf') if no path
+
+        Note:
+            Only follows is_a (rdfs:subClassOf) relationships. Does NOT follow
+            part_of or other relationship types.
 
         Examples:
             >>> # With real ENVO ontology loaded
@@ -90,7 +95,8 @@ class ONTOLOGYDistance:
         try:
             # oaklib's paths() returns all paths between two terms
             # Each path is a tuple of nodes (term1, ..., term2)
-            paths = list(ontology_adapter.paths(term1, term2))
+            # Restrict to only is_a (subclass) relationships for hierarchical scoring
+            paths = list(ontology_adapter.paths(term1, term2, predicates=["is_a"]))
 
             if not paths:
                 return float("inf")
