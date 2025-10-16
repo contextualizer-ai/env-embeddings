@@ -110,10 +110,12 @@ class ENVOHierarchy:
     """Load and cache ENVO ontology for hierarchical operations.
 
     This class provides efficient access to ENVO ontology structure,
-    including distance calculations and subclass checking.
+    including distance calculations and subclass checking. Distances
+    are cached to avoid repeated graph traversals.
 
     Attributes:
         adapter: Initialized oaklib adapter for ENVO ontology
+        _distance_cache: Cache for computed distances (term1, term2) -> distance
     """
 
     _instance: Optional["ENVOHierarchy"] = None
@@ -132,13 +134,16 @@ class ENVOHierarchy:
         """
         try:
             self.adapter = get_adapter("sqlite:obo:envo")
+            self._distance_cache: dict = {}  # Cache for (term1, term2) -> distance
             logger.info("ENVO ontology loaded via oaklib")
         except Exception as e:
             logger.error(f"Failed to load ENVO ontology: {e}")
             raise
 
     def distance(self, term1: Optional[str], term2: Optional[str]) -> float:
-        """Calculate shortest path distance between two ENVO terms.
+        """Calculate shortest path distance between two ENVO terms with caching.
+
+        Results are cached to avoid repeated graph traversals.
 
         Args:
             term1: First ENVO term (CURIE format, e.g., 'ENVO:00000428')
@@ -152,7 +157,21 @@ class ENVOHierarchy:
             >>> hierarchy.distance("ENVO:X", "ENVO:X")  # doctest: +SKIP
             0
         """
-        return ONTOLOGYDistance.calculate(term1, term2, self.adapter)
+        # Normalize cache key (order doesn't matter for undirected distance)
+        if term1 is None or term2 is None:
+            return float("inf")
+
+        cache_key = tuple(sorted([term1, term2]))
+
+        # Check cache first
+        if cache_key in self._distance_cache:
+            return self._distance_cache[cache_key]
+
+        # Compute and cache
+        distance = ONTOLOGYDistance.calculate(term1, term2, self.adapter)
+        self._distance_cache[cache_key] = distance
+
+        return distance
 
     def is_subclass_of(self, term: Optional[str], parent: Optional[str]) -> bool:
         """Check if term is a subclass of parent in ENVO.
