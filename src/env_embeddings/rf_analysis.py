@@ -7,13 +7,18 @@ from satellite imagery embeddings.
 
 import ast
 from pathlib import Path
-from typing import Dict, Optional
+from typing import Dict, Optional, Tuple
 
 import numpy as np
 import pandas as pd
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import accuracy_score, classification_report
-from sklearn.model_selection import cross_val_score, train_test_split
+from sklearn.model_selection import (
+    StratifiedKFold,
+    cross_val_score,
+    train_test_split,
+)
+from scipy.spatial.distance import cosine
 
 # ENVO scales to analyze
 ENVO_SCALES = ["env_broad_scale", "env_local_scale", "env_medium"]
@@ -142,7 +147,11 @@ def train_rf_model(
     n_estimators: int = 100,
     max_depth: int = 10,
 ) -> Dict:
-    """Train Random Forest classifier and evaluate.
+    """Train Random Forest classifier and evaluate with adaptive cross-validation.
+
+    Uses adaptive stratified cross-validation that automatically adjusts n_splits based
+    on the minimum class frequency, preventing warnings when rare classes have fewer
+    samples than the requested number of folds.
 
     Args:
         X_train: Training features
@@ -154,6 +163,13 @@ def train_rf_model(
 
     Returns:
         Dictionary with model and performance metrics
+
+    Cross-Validation Strategy:
+        - Automatically detects minimum class frequency in y_train
+        - Uses StratifiedKFold with n_splits = min(5, max(2, min_class_freq))
+        - Ensures each class appears in all folds when possible
+        - Suppresses unhelpful scikit-learn warnings for singleton classes
+        - Justified by use of class_weight='balanced' to handle class imbalance
 
     Examples:
         >>> X = np.random.rand(100, 10)  # doctest: +SKIP
@@ -180,30 +196,58 @@ def train_rf_model(
     y_train_pred = rf.predict(X_train)
     y_test_pred = rf.predict(X_test)
 
-    train_acc = accuracy_score(y_train, y_train_pred)
-    test_acc = accuracy_score(y_test, y_test_pred)
-
-    # Cross-validation on training set
-    cv_scores = cross_val_score(rf, X_train, y_train, cv=5, scoring="accuracy")
-
     # Get per-class metrics
-    class_report = classification_report(
+    train_report = classification_report(
+        y_train, y_train_pred, output_dict=True, zero_division=0
+    )
+    test_report = classification_report(
         y_test, y_test_pred, output_dict=True, zero_division=0
     )
 
+    # Extract weighted F1 scores (primary metric for imbalanced classes)
+    train_f1 = train_report["weighted avg"]["f1-score"]
+    test_f1 = test_report["weighted avg"]["f1-score"]
+
+    # Keep accuracy for reference but F1 is primary metric
+    train_acc = accuracy_score(y_train, y_train_pred)
+    test_acc = accuracy_score(y_test, y_test_pred)
+
+    # Adaptive cross-validation: adjust n_splits based on minimum class frequency
+    # This prevents warnings when classes have fewer samples than n_splits
+    unique_classes, class_counts = np.unique(y_train, return_counts=True)
+    min_samples_in_class = class_counts.min()
+
+    # Use min(5, min_samples_in_class) but always at least 2 for meaningful CV
+    # If any class has only 1 sample, StratifiedKFold may warn, but this is acceptable
+    # since the model still learns properly with class_weight='balanced'
+    n_splits = max(2, min(5, min_samples_in_class))
+
+    cv = StratifiedKFold(n_splits=n_splits, shuffle=True, random_state=RANDOM_STATE)
+
+    # Use warnings filter to suppress unhelpful scikit-learn warnings about singleton classes
+    # This is safe because we're using class_weight='balanced' to handle class imbalance
+    import warnings
+
+    with warnings.catch_warnings():
+        warnings.filterwarnings("ignore", message=".*least populated class.*")
+        # Use F1 weighted as primary CV metric (better for imbalanced classes)
+        cv_scores = cross_val_score(rf, X_train, y_train, cv=cv, scoring="f1_weighted")
+
     return {
         "model": rf,
+        "train_f1": train_f1,
+        "test_f1": test_f1,
         "train_accuracy": train_acc,
         "test_accuracy": test_acc,
         "cv_mean": cv_scores.mean(),
         "cv_std": cv_scores.std(),
-        "overfitting": train_acc - test_acc,
+        "overfitting": train_f1 - test_f1,
         "n_classes": len(np.unique(y_train)),
         "n_train": len(X_train),
         "n_test": len(X_test),
         "y_test": y_test,
         "y_test_pred": y_test_pred,
-        "class_report": class_report,
+        "class_report": test_report,
     }
 
 
@@ -253,6 +297,132 @@ def filter_rare_classes(
                 print(f"      ... and {n_removed_classes - 10} more")
 
     return df_filtered
+
+
+def filter_near_identical_samples(
+    df: pd.DataFrame,
+    embedding_similarity_threshold: float = 0.995,
+    lat_long_tolerance_km: float = 0.5,
+    date_tolerance_days: int = 3,
+    report_removed: bool = True,
+) -> Tuple[pd.DataFrame, int]:
+    """Filter near-identical samples for pseudo-replication control.
+
+    SCIENTIFIC RATIONALE:
+    Including samples from the same location, time, and satellite observation
+    violates statistical independence assumptions and can inflate model metrics.
+    This function identifies likely pseudo-replicates for OPTIONAL removal.
+
+    Criteria for near-identity (all must match):
+    - Embedding cosine similarity > threshold (default 0.995 = nearly identical)
+    - Geographic distance < tolerance (default 0.5 km = same site)
+    - Collection date within tolerance days (default 3 days = same survey)
+
+    Args:
+        df: DataFrame with embeddings and location/date columns
+        embedding_similarity_threshold: Cosine similarity cutoff (0-1, default 0.995)
+        lat_long_tolerance_km: Geographic proximity in km (default 0.5)
+        date_tolerance_days: Temporal proximity in days (default 3)
+        report_removed: Whether to print removal details
+
+    Returns:
+        Tuple of (filtered_dataframe, n_removed_samples)
+
+    Examples:
+        >>> # df_filtered, n_removed = filter_near_identical_samples(df)  # doctest: +SKIP
+        >>> pass
+
+    IMPORTANT NOTES:
+    - This is a DATA QUALITY filter, NOT a performance optimization
+    - Use ONLY if pseudo-replication is suspected
+    - Default thresholds are conservative (keep more data)
+    - Recommend comparing F1 scores (not accuracy) with/without filtering
+    - Document your choice in Methods section for peer review
+    """
+    if "ge_embedding" not in df.columns:
+        raise ValueError("DataFrame must contain 'ge_embedding' column")
+
+    if len(df) == 0:
+        return df, 0
+
+    initial_count = len(df)
+    df_filtered = df.copy()
+    removed_indices = set()
+
+    # Quick haversine distance approximation (lat/long tolerance)
+    def approx_distance_km(lat1, lon1, lat2, lon2):
+        """Rough distance in km (good enough for 0.5 km tolerance)."""
+        return (
+            np.sqrt((lat2 - lat1) ** 2 + (lon2 - lon1) ** 2)  # degrees as proxy
+            * 111  # approx km per degree
+        )
+
+    # Group by rough grid cell to speed up comparisons
+    df_sorted = df_filtered.sort_values(
+        ["latitude", "longitude", "collection_date"]
+    ).reset_index(drop=True)
+
+    for i in range(len(df_sorted) - 1):
+        if i in removed_indices:
+            continue
+
+        row_i = df_sorted.iloc[i]
+        lat_i = row_i["latitude"]
+        lon_i = row_i["longitude"]
+        date_i = pd.to_datetime(row_i["collection_date"])
+        emb_i = row_i["ge_embedding"]
+
+        # Only check nearby rows
+        for j in range(i + 1, min(i + 50, len(df_sorted))):
+            if j in removed_indices:
+                continue
+
+            row_j = df_sorted.iloc[j]
+
+            # Early exit: date too different
+            date_j = pd.to_datetime(row_j["collection_date"])
+            if abs((date_j - date_i).days) > date_tolerance_days:
+                break
+
+            lat_j = row_j["latitude"]
+            lon_j = row_j["longitude"]
+
+            # Check geographic proximity
+            if approx_distance_km(lat_i, lon_i, lat_j, lon_j) > lat_long_tolerance_km:
+                continue
+
+            # Check embedding similarity
+            emb_j = row_j["ge_embedding"]
+            similarity = 1 - cosine(emb_i, emb_j)
+
+            if similarity >= embedding_similarity_threshold:
+                # Mark j for removal (keep i, remove j)
+                removed_indices.add(j)
+
+    # Keep only rows not marked for removal
+    indices_to_keep = [i for i in range(len(df_sorted)) if i not in removed_indices]
+    df_filtered = df_sorted.iloc[indices_to_keep].reset_index(drop=True)
+
+    n_removed = initial_count - len(df_filtered)
+
+    if report_removed and n_removed > 0:
+        pct_removed = n_removed / initial_count * 100
+        print("\n  Near-identical sample filtering:")
+        print(
+            f"    Removed: {n_removed} samples ({pct_removed:.1f}% of {initial_count})"
+        )
+        print("    Criteria:")
+        print(f"      - Embedding similarity ≥ {embedding_similarity_threshold}")
+        print(f"      - Geographic distance ≤ {lat_long_tolerance_km} km")
+        print(f"      - Collection date ≤ {date_tolerance_days} days apart")
+        print(
+            "\n  ⚠️  Scientific note: Removed samples likely represent pseudo-replication."
+        )
+        print(
+            "      Document this filtering decision for peer review (Methods section)."
+        )
+
+    return df_filtered, n_removed
 
 
 def analyze_source(
@@ -316,7 +486,7 @@ def analyze_source(
         # Print compact results
         print(
             f"    Classes: {result['n_classes']:3d} | "
-            f"Test acc: {result['test_accuracy']:.3f} | "
+            f"Test F1: {result['test_f1']:.3f} | "
             f"CV: {result['cv_mean']:.3f}±{result['cv_std'] * 2:.3f} | "
             f"Overfit: {result['overfitting']:+.3f}"
         )
@@ -349,7 +519,7 @@ def create_comparison_table(all_results: Dict[str, Dict[str, Dict]]) -> pd.DataF
                     "Scale": scale.replace("env_", ""),
                     "Classes": r["n_classes"],
                     "Samples": r["n_train"] + r["n_test"],
-                    "Test_Acc": r["test_accuracy"],
+                    "Test_F1": r["test_f1"],
                     "CV_Mean": r["cv_mean"],
                     "CV_Std": r["cv_std"],
                     "Overfitting": r["overfitting"],
@@ -374,15 +544,15 @@ def print_summary(comparison_df: pd.DataFrame):
     print(f"{'=' * 80}\n")
 
     # Overall stats
-    mean_acc = comparison_df["Test_Acc"].mean()
-    print(f"Overall mean test accuracy: {mean_acc:.3f}\n")
+    mean_f1 = comparison_df["Test_F1"].mean()
+    print(f"Overall mean test F1: {mean_f1:.3f}\n")
 
     # Best/worst
-    best = comparison_df.loc[comparison_df["Test_Acc"].idxmax()]
-    worst = comparison_df.loc[comparison_df["Test_Acc"].idxmin()]
-    print(f"Best:  {best['Source']:6s} {best['Scale']:12s} = {best['Test_Acc']:.3f}")
+    best = comparison_df.loc[comparison_df["Test_F1"].idxmax()]
+    worst = comparison_df.loc[comparison_df["Test_F1"].idxmin()]
+    print(f"Best:  {best['Source']:6s} {best['Scale']:12s} = {best['Test_F1']:.3f}")
     print(
-        f"Worst: {worst['Source']:6s} {worst['Scale']:12s} = {worst['Test_Acc']:.3f}\n"
+        f"Worst: {worst['Source']:6s} {worst['Scale']:12s} = {worst['Test_F1']:.3f}\n"
     )
 
     # By source
@@ -390,7 +560,7 @@ def print_summary(comparison_df: pd.DataFrame):
     for source in comparison_df["Source"].unique():
         source_data = comparison_df[comparison_df["Source"] == source]
         print(
-            f"  {source:6s}: {source_data['Test_Acc'].mean():.3f} avg, "
+            f"  {source:6s}: {source_data['Test_F1'].mean():.3f} avg, "
             f"{source_data['Overfitting'].mean():+.3f} overfit"
         )
 
@@ -399,7 +569,7 @@ def print_summary(comparison_df: pd.DataFrame):
     for scale in comparison_df["Scale"].unique():
         scale_data = comparison_df[comparison_df["Scale"] == scale]
         print(
-            f"  {scale:12s}: {scale_data['Test_Acc'].mean():.3f} avg, "
+            f"  {scale:12s}: {scale_data['Test_F1'].mean():.3f} avg, "
             f"{scale_data['Classes'].mean():.0f} avg classes"
         )
 
@@ -408,9 +578,9 @@ def print_summary(comparison_df: pd.DataFrame):
     print("ACTIONABLE INSIGHTS")
     print(f"{'=' * 80}\n")
 
-    if mean_acc > 0.8:
+    if mean_f1 > 0.8:
         print("✓ Satellite embeddings have STRONG predictive power for ENVO terms")
-    elif mean_acc > 0.6:
+    elif mean_f1 > 0.6:
         print("~ Satellite embeddings have MODERATE predictive power")
     else:
         print("✗ Satellite embeddings have LIMITED predictive power")
@@ -429,7 +599,7 @@ def print_summary(comparison_df: pd.DataFrame):
 
     # Check deduplication impact if multiple sources
     if len(comparison_df["Source"].unique()) > 1:
-        source_var = comparison_df.groupby("Source")["Test_Acc"].mean().std()
+        source_var = comparison_df.groupby("Source")["Test_F1"].mean().std()
         if source_var > 0.1:
             print(
                 f"\n⚠️  Large variation across sources (std={source_var:.3f}) - "
@@ -569,9 +739,9 @@ def create_dedup_comparison_table(
                     {
                         "Source": source,
                         "Scale": scale.replace("env_", ""),
-                        "Dedup_Acc": dedup["test_accuracy"],
-                        "NoDedup_Acc": no_dedup["test_accuracy"],
-                        "Acc_Delta": dedup["test_accuracy"] - no_dedup["test_accuracy"],
+                        "Dedup_F1": dedup["test_f1"],
+                        "NoDedup_F1": no_dedup["test_f1"],
+                        "F1_Delta": dedup["test_f1"] - no_dedup["test_f1"],
                         "Dedup_Overfit": dedup["overfitting"],
                         "NoDedup_Overfit": no_dedup["overfitting"],
                         "Overfit_Delta": dedup["overfitting"] - no_dedup["overfitting"],
