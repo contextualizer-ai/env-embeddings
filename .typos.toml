@@ -1,0 +1,10 @@
+# Typos configuration - prevent false positives
+# https://github.com/crate-ci/typos
+
+[default.extend-words]
+# NumPy functions
+arange = "arange"  # np.arange is correct, not "arrange"
+
+[files]
+# Skip these file types entirely
+extend-exclude = ["*.ipynb", "*.csv", "*.tsv", "*.json"]

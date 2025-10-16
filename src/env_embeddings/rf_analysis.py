@@ -196,6 +196,19 @@ def train_rf_model(
     y_train_pred = rf.predict(X_train)
     y_test_pred = rf.predict(X_test)
 
+    # Get per-class metrics
+    train_report = classification_report(
+        y_train, y_train_pred, output_dict=True, zero_division=0
+    )
+    test_report = classification_report(
+        y_test, y_test_pred, output_dict=True, zero_division=0
+    )
+
+    # Extract weighted F1 scores (primary metric for imbalanced classes)
+    train_f1 = train_report["weighted avg"]["f1-score"]
+    test_f1 = test_report["weighted avg"]["f1-score"]
+
+    # Keep accuracy for reference but F1 is primary metric
     train_acc = accuracy_score(y_train, y_train_pred)
     test_acc = accuracy_score(y_test, y_test_pred)
 
@@ -217,26 +230,24 @@ def train_rf_model(
 
     with warnings.catch_warnings():
         warnings.filterwarnings("ignore", message=".*least populated class.*")
-        cv_scores = cross_val_score(rf, X_train, y_train, cv=cv, scoring="accuracy")
-
-    # Get per-class metrics
-    class_report = classification_report(
-        y_test, y_test_pred, output_dict=True, zero_division=0
-    )
+        # Use F1 weighted as primary CV metric (better for imbalanced classes)
+        cv_scores = cross_val_score(rf, X_train, y_train, cv=cv, scoring="f1_weighted")
 
     return {
         "model": rf,
+        "train_f1": train_f1,
+        "test_f1": test_f1,
         "train_accuracy": train_acc,
         "test_accuracy": test_acc,
         "cv_mean": cv_scores.mean(),
         "cv_std": cv_scores.std(),
-        "overfitting": train_acc - test_acc,
+        "overfitting": train_f1 - test_f1,
         "n_classes": len(np.unique(y_train)),
         "n_train": len(X_train),
         "n_test": len(X_test),
         "y_test": y_test,
         "y_test_pred": y_test_pred,
-        "class_report": class_report,
+        "class_report": test_report,
     }
 
 
@@ -475,7 +486,7 @@ def analyze_source(
         # Print compact results
         print(
             f"    Classes: {result['n_classes']:3d} | "
-            f"Test acc: {result['test_accuracy']:.3f} | "
+            f"Test F1: {result['test_f1']:.3f} | "
             f"CV: {result['cv_mean']:.3f}±{result['cv_std'] * 2:.3f} | "
             f"Overfit: {result['overfitting']:+.3f}"
         )
@@ -508,7 +519,7 @@ def create_comparison_table(all_results: Dict[str, Dict[str, Dict]]) -> pd.DataF
                     "Scale": scale.replace("env_", ""),
                     "Classes": r["n_classes"],
                     "Samples": r["n_train"] + r["n_test"],
-                    "Test_Acc": r["test_accuracy"],
+                    "Test_F1": r["test_f1"],
                     "CV_Mean": r["cv_mean"],
                     "CV_Std": r["cv_std"],
                     "Overfitting": r["overfitting"],
@@ -533,15 +544,15 @@ def print_summary(comparison_df: pd.DataFrame):
     print(f"{'=' * 80}\n")
 
     # Overall stats
-    mean_acc = comparison_df["Test_Acc"].mean()
-    print(f"Overall mean test accuracy: {mean_acc:.3f}\n")
+    mean_f1 = comparison_df["Test_F1"].mean()
+    print(f"Overall mean test F1: {mean_f1:.3f}\n")
 
     # Best/worst
-    best = comparison_df.loc[comparison_df["Test_Acc"].idxmax()]
-    worst = comparison_df.loc[comparison_df["Test_Acc"].idxmin()]
-    print(f"Best:  {best['Source']:6s} {best['Scale']:12s} = {best['Test_Acc']:.3f}")
+    best = comparison_df.loc[comparison_df["Test_F1"].idxmax()]
+    worst = comparison_df.loc[comparison_df["Test_F1"].idxmin()]
+    print(f"Best:  {best['Source']:6s} {best['Scale']:12s} = {best['Test_F1']:.3f}")
     print(
-        f"Worst: {worst['Source']:6s} {worst['Scale']:12s} = {worst['Test_Acc']:.3f}\n"
+        f"Worst: {worst['Source']:6s} {worst['Scale']:12s} = {worst['Test_F1']:.3f}\n"
     )
 
     # By source
@@ -549,7 +560,7 @@ def print_summary(comparison_df: pd.DataFrame):
     for source in comparison_df["Source"].unique():
         source_data = comparison_df[comparison_df["Source"] == source]
         print(
-            f"  {source:6s}: {source_data['Test_Acc'].mean():.3f} avg, "
+            f"  {source:6s}: {source_data['Test_F1'].mean():.3f} avg, "
             f"{source_data['Overfitting'].mean():+.3f} overfit"
         )
 
@@ -558,7 +569,7 @@ def print_summary(comparison_df: pd.DataFrame):
     for scale in comparison_df["Scale"].unique():
         scale_data = comparison_df[comparison_df["Scale"] == scale]
         print(
-            f"  {scale:12s}: {scale_data['Test_Acc'].mean():.3f} avg, "
+            f"  {scale:12s}: {scale_data['Test_F1'].mean():.3f} avg, "
             f"{scale_data['Classes'].mean():.0f} avg classes"
         )
 
@@ -567,9 +578,9 @@ def print_summary(comparison_df: pd.DataFrame):
     print("ACTIONABLE INSIGHTS")
     print(f"{'=' * 80}\n")
 
-    if mean_acc > 0.8:
+    if mean_f1 > 0.8:
         print("✓ Satellite embeddings have STRONG predictive power for ENVO terms")
-    elif mean_acc > 0.6:
+    elif mean_f1 > 0.6:
         print("~ Satellite embeddings have MODERATE predictive power")
     else:
         print("✗ Satellite embeddings have LIMITED predictive power")
@@ -588,7 +599,7 @@ def print_summary(comparison_df: pd.DataFrame):
 
     # Check deduplication impact if multiple sources
     if len(comparison_df["Source"].unique()) > 1:
-        source_var = comparison_df.groupby("Source")["Test_Acc"].mean().std()
+        source_var = comparison_df.groupby("Source")["Test_F1"].mean().std()
         if source_var > 0.1:
             print(
                 f"\n⚠️  Large variation across sources (std={source_var:.3f}) - "
@@ -728,9 +739,9 @@ def create_dedup_comparison_table(
                     {
                         "Source": source,
                         "Scale": scale.replace("env_", ""),
-                        "Dedup_Acc": dedup["test_accuracy"],
-                        "NoDedup_Acc": no_dedup["test_accuracy"],
-                        "Acc_Delta": dedup["test_accuracy"] - no_dedup["test_accuracy"],
+                        "Dedup_F1": dedup["test_f1"],
+                        "NoDedup_F1": no_dedup["test_f1"],
+                        "F1_Delta": dedup["test_f1"] - no_dedup["test_f1"],
                         "Dedup_Overfit": dedup["overfitting"],
                         "NoDedup_Overfit": no_dedup["overfitting"],
                         "Overfit_Delta": dedup["overfitting"] - no_dedup["overfitting"],
