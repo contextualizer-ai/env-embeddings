@@ -22,7 +22,7 @@ from typing import Optional, List, Tuple
 import logging
 
 try:
-    from oaklib import get_adapter  # type: ignore[import-untyped]
+    from oaklib import get_adapter  # type: ignore
 except ImportError:
     raise ImportError("oaklib is required. Install with: pip install oaklib")
 
