@@ -31,8 +31,8 @@ class TestOntologyDistance:
         """Test distance calculation with mock ontology adapter."""
         # Mock oaklib adapter
         mock_adapter = Mock()
-        # shortest_path returns list of nodes including start and end
-        mock_adapter.shortest_path = Mock(return_value=["ENVO:child", "ENVO:parent"])
+        # paths() returns iterable of tuples representing paths
+        mock_adapter.paths = Mock(return_value=[("ENVO:child", "ENVO:parent")])
 
         distance = ONTOLOGYDistance.calculate("ENVO:child", "ENVO:parent", mock_adapter)
         assert distance == 1  # 1 hop
@@ -41,7 +41,7 @@ class TestOntologyDistance:
         """Unrelated terms should return infinity/max distance."""
         mock_adapter = Mock()
         # No path between unrelated terms
-        mock_adapter.shortest_path = Mock(return_value=None)
+        mock_adapter.paths = Mock(return_value=[])
 
         distance = ONTOLOGYDistance.calculate("ENVO:A", "ENVO:X", mock_adapter)
         assert distance == float("inf")

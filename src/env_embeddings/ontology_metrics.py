@@ -66,13 +66,16 @@ class ONTOLOGYDistance:
     ) -> float:
         """Calculate shortest path distance between two terms in ontology.
 
+        Uses oaklib's paths() method to find all paths between terms,
+        then returns the length of the shortest path.
+
         Args:
             term1: First ENVO term (CURIE)
             term2: Second ENVO term (CURIE)
             ontology_adapter: Initialized oaklib adapter for ENVO
 
         Returns:
-            Shortest path distance as integer, or float('inf') if no path
+            Shortest path distance as integer (number of edges), or float('inf') if no path
 
         Examples:
             >>> # With real ENVO ontology loaded
@@ -85,12 +88,18 @@ class ONTOLOGYDistance:
             return float("inf")
 
         try:
-            # oaklib's shortest_path returns list of nodes in path
-            path = ontology_adapter.shortest_path(term1, term2)
-            if path is None or len(path) == 0:
+            # oaklib's paths() returns all paths between two terms
+            # Each path is a tuple of nodes (term1, ..., term2)
+            paths = list(ontology_adapter.paths(term1, term2))
+
+            if not paths:
                 return float("inf")
-            # Path length is number of edges (nodes - 1)
-            distance = len(path) - 1
+
+            # Find shortest path (minimum length)
+            shortest_path = min(paths, key=len)
+
+            # Distance is number of edges (nodes - 1)
+            distance = len(shortest_path) - 1
             return distance if distance >= 0 else float("inf")
         except Exception as e:
             logger.debug(f"Error calculating distance: {e}")
